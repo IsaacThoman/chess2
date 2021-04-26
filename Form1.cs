@@ -19,6 +19,8 @@ namespace chess2
         public Form1()
         {
             InitializeComponent();
+            board.resetBoard();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -30,6 +32,7 @@ namespace chess2
 
         private void panel1_Click(object sender, EventArgs e)
         {
+
             renderer.render(panel1);
 
         }
