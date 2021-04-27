@@ -31,7 +31,7 @@ namespace chess2
 
             set
             {
-
+                
             }
             get
             {

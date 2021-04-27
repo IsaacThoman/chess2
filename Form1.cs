@@ -44,5 +44,11 @@ namespace chess2
 
             renderer.render(panel1);
         }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            Interface.selX = 0;
+            Interface.selY = 0;
+        }
     }
 }
