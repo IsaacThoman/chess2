@@ -11,9 +11,9 @@ namespace chess2
     {
         private static int intselX = 0;
         private static int intselY = 0;
+        private static bool firstSel = false;
 
-
-        public static void setSelection(int x, int y)
+        public static void setSelection(int x, int y) //kill this.
         {
             if(x > 8 || y > 8|| x < 1 || y < 1)
             {
@@ -31,7 +31,7 @@ namespace chess2
 
             set
             {
-                
+                intselX = selX;
             }
             get
             {
@@ -45,7 +45,7 @@ namespace chess2
 
             set
             {
-
+                intselY = selY;
             }
             get
             {

@@ -47,8 +47,8 @@ namespace chess2
 
         private void Form1_Click(object sender, EventArgs e)
         {
-            Interface.selX = 0;
-            Interface.selY = 0;
+            Interface.setSelection(0, 0);
+                
         }
     }
 }
