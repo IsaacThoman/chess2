@@ -54,6 +54,9 @@ namespace chess2
             boardSquare[5, 8] = 12;
 
 
+
+
+
         }
 
         public static int[,] boardSquare

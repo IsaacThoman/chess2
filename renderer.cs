@@ -38,6 +38,7 @@ namespace chess2
             Rectangle[,] boardRect = new Rectangle[9, 9];
             SolidBrush DBrush = new SolidBrush(Color.DarkGreen);
             SolidBrush LBrush = new SolidBrush(Color.LightGray);
+            SolidBrush YBrush = new SolidBrush(Color.LightYellow);
 
             Graphics g = panel.CreateGraphics();
             
@@ -60,6 +61,13 @@ namespace chess2
                         g.FillRectangle(DBrush, boardRect[fillerX, fillerY]);
                     }
                     
+                    if(Interface.selX==fillerX && Interface.selY == fillerY)
+                    {
+
+                        g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
+                    }
+
+
                     if (myPiece > 0 && myPiece < 13)
                     {
                         

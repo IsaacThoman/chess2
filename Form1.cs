@@ -33,8 +33,16 @@ namespace chess2
         private void panel1_Click(object sender, EventArgs e)
         {
 
-            renderer.render(panel1);
+            
 
+            var relativePoint = this.PointToClient(Cursor.Position);
+
+            int selX =  (relativePoint.X-panel1.Location.X) / 64 + 1;
+            int selY = 0 - (relativePoint.Y - panel1.Location.Y) / 64 + 8;
+           
+            Interface.setSelection(selX, selY);
+
+            renderer.render(panel1);
         }
     }
 }
