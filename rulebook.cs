@@ -8,16 +8,40 @@ namespace chess2
 {
     class rulebook
     {
-
-        public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY)
+        
+        public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY, bool whitesMove)
         {
-            if (board.boardSquare[sourceX, sourceY] == 0)
+          
+        
+            int[,] myInternalBoard = board.boardSquare; //get this from board.boardSquareReversed if it's black's move
+
+
+            if(myInternalBoard[sourceX,sourceY] == 1)//pawns
             {
-        return false;
-            }
+            if((sourceX+1==destinationX^ sourceX - 1 == destinationX) &&sourceY+1 == destinationY) //pawn diagonal move
+                {
+                    if (myInternalBoard[destinationX, destinationY]>6)
+                    {
 
-            return true;
+                        return true;
+                    }
+                }
 
+                if (sourceX == destinationX && sourceY + 1 == destinationY) //pawn forward
+                {
+                    if (myInternalBoard[destinationX, destinationY] == 0)//make sure square is empty
+                    {
+                        return true;
+
+                    }
+
+                }
+            }//close pawns
+
+
+
+
+            return false;
         }
 
 

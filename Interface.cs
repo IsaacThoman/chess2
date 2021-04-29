@@ -12,6 +12,8 @@ namespace chess2
         private static int intselX = 0;
         private static int intselY = 0;
         private static bool firstSel = true;
+        public static bool whitesMove = true;
+
 
         public static void setSelection(int x, int y) //kill this.
         {
@@ -32,10 +34,21 @@ namespace chess2
                 int fromSquareValue = board.boardSquare[intselX, intselY];
                 int toSquareValue = board.boardSquare[x, y];
 
-                if (rulebook.checkLegality(intselX, intselY, x, y))
+                if (rulebook.checkLegality(intselX, intselY, x, y,whitesMove))
                 { 
                     board.boardSquare[intselX, intselY] = toSquareValue;
                     board.boardSquare[x, y] = fromSquareValue;
+
+
+                    if (whitesMove == true)
+                    {
+                        whitesMove = false;
+                    }
+                    if (whitesMove == false)
+                    {
+                        whitesMove = true;
+                    }
+
 
                 }
 
