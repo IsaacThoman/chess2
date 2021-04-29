@@ -35,9 +35,14 @@ namespace chess2
                 int toSquareValue = board.boardSquare[x, y];
 
                 if (rulebook.checkLegality(intselX, intselY, x, y,whitesMove))
-                { 
+                {
+                    if (toSquareValue != 0)
+                    {
+                        toSquareValue = 0; //I wasn't paying attention when writing this, it seems to work but it might be awful
+                    }
                     board.boardSquare[intselX, intselY] = toSquareValue;
                     board.boardSquare[x, y] = fromSquareValue;
+
 
 
                     if (whitesMove)

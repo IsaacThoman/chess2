@@ -50,6 +50,16 @@ namespace chess2
                     }
 
                 }
+
+                if(sourceX==destinationX && sourceY + 2 == destinationY)
+                {
+                    if (myInternalBoard[destinationX, sourceY + 2] == 0 && myInternalBoard[destinationX, sourceY + 1] == 0)
+                    {
+                        return true;
+
+                    }
+
+                }
             }//close pawns
 
 
