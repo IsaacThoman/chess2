@@ -11,16 +11,23 @@ namespace chess2
         
         public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY, bool whitesMove)
         {
-            int[,] myInternalBoard = new int[9,9];
+            int[,] myInternalBoard = new int[9, 9];
 
             if (whitesMove)
             {
-                myInternalBoard = board.boardSquare; 
+                myInternalBoard = board.boardSquare;
             }
             else
             {
-                myInternalBoard = board.boardSquareReversede;
+                myInternalBoard = board.boardSquareReversed;
+                sourceX = 9 - sourceX;
+                sourceY = 9 - sourceY;
+
+                destinationX = 9-destinationX;
+                destinationY = 9-destinationY;
+
             }
+
 
 
             if (myInternalBoard[sourceX,sourceY] == 1)//pawns

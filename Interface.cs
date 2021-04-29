@@ -12,7 +12,7 @@ namespace chess2
         private static int intselX = 0;
         private static int intselY = 0;
         private static bool firstSel = true;
-        public static bool whitesMove = true;
+        private static bool whitesMove = true;
 
 
         public static void setSelection(int x, int y) //kill this.
@@ -40,15 +40,17 @@ namespace chess2
                     board.boardSquare[x, y] = fromSquareValue;
 
 
-                    if (whitesMove == true)
+                    if (whitesMove)
                     {
                         whitesMove = false;
                     }
-                    if (whitesMove == false)
+                    else
                     {
                         whitesMove = true;
                     }
 
+
+                    Debug.WriteLine(whitesMove);
 
                 }
 
