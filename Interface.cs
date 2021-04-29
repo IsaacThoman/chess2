@@ -31,8 +31,12 @@ namespace chess2
                 int fromSquareValue = board.boardSquare[intselX, intselY];
                 int toSquareValue = board.boardSquare[x, y];
 
-                board.boardSquare[intselX, intselY] = toSquareValue;
-                board.boardSquare[x, y] = fromSquareValue;
+                if (rulebook.checkLegality(intselX, intselY, x, y))
+                { 
+                    board.boardSquare[intselX, intselY] = toSquareValue;
+                    board.boardSquare[x, y] = fromSquareValue;
+
+                }
 
 
 
