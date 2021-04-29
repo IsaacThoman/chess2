@@ -11,12 +11,19 @@ namespace chess2
         
         public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY, bool whitesMove)
         {
-          
-        
-            int[,] myInternalBoard = board.boardSquare; //get this from board.boardSquareReversed if it's black's move
+            int[,] myInternalBoard = new int[9,9];
+
+            if (whitesMove)
+            {
+                myInternalBoard = board.boardSquare; 
+            }
+            else
+            {
+                myInternalBoard = board.boardSquareReversede;
+            }
 
 
-            if(myInternalBoard[sourceX,sourceY] == 1)//pawns
+            if (myInternalBoard[sourceX,sourceY] == 1)//pawns
             {
             if((sourceX+1==destinationX^ sourceX - 1 == destinationX) &&sourceY+1 == destinationY) //pawn diagonal move
                 {
