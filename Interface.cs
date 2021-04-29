@@ -55,7 +55,7 @@ namespace chess2
                     }
 
 
-                    Debug.WriteLine(whitesMove);
+                    //Debug.WriteLine(whitesMove);
 
                 }
 
@@ -68,7 +68,7 @@ namespace chess2
             }
 
 
-            Debug.WriteLine(x + ", " + y);
+           // Debug.WriteLine(x + ", " + y);
 
         }
 

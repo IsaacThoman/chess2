@@ -73,7 +73,6 @@ namespace chess2
                     return false;
 
                 }
-
                 if (sourceX > destinationX)
                 {
                     scanDirX = 0 - 1;
@@ -92,17 +91,25 @@ namespace chess2
                     scanDirY = 1;
                 }
 
-                for (int depth = 1; depth <= distance; depth++)
+                for (int scanner = 1; scanner <= distance - 1; scanner++)
                 {
-
-                    if (myInternalBoard[sourceX + (depth * scanDirX), sourceY + (depth * scanDirY)]>0)
+                    int scannerPosX = sourceX + (scanner * scanDirX);
+                    int scannerPosY = sourceY + (scanner * scanDirY);
+                    if (myInternalBoard[scannerPosX, scannerPosY] > 0)
                     {
                         return false;
-
                     }
 
-                    return true;
                 }
+
+                if(myInternalBoard[destinationX,destinationY]==0 | myInternalBoard[destinationX, destinationY] > 6)
+                {
+                    return true;
+
+                }
+
+
+                    
             }//close bishops
 
 
