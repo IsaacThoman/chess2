@@ -50,5 +50,10 @@ namespace chess2
             Interface.setSelection(0, 0);
                 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Text = ""+board.boardSquareReversed[3, 3];
+        }
     }
 }

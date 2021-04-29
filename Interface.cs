@@ -15,8 +15,9 @@ namespace chess2
 
         public static void setSelection(int x, int y) //kill this.
         {
-            if(x > 8 || y > 8|| x < 1 || y < 1)
+            if(x > 8 || y > 8|| x < 1 || y < 1) 
             {
+                //can't click outside the board, buddy
                 return;
             }
 

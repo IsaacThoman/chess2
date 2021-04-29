@@ -65,9 +65,44 @@ namespace chess2
             set { boardSquaresInternal = value; }
         }
 
-        public static int[,] boardSquareReverse
+        public static int[,] boardSquareReversed
         {
-            get { return boardSquaresInternal; }
+            get {
+                int[,] horizontalTransferFlippyThing = new int[9, 9];
+
+                for (int fillerX = 1; fillerX < 9; fillerX++)
+                {
+                    for (int fillerY = 1; fillerY < 9; fillerY++)
+                    {
+                        horizontalTransferFlippyThing[fillerX, fillerY] = boardSquaresInternal[9 - fillerX, fillerY];
+
+                    }
+
+                }
+
+
+                int[,] verticalTransferFlippyThing = new int[9, 9];
+
+                for (int fillerX = 1; fillerX < 9; fillerX++)
+                {
+                    for (int fillerY = 1; fillerY < 9; fillerY++)
+                    {
+                        verticalTransferFlippyThing[fillerX, fillerY] = horizontalTransferFlippyThing[fillerX, 9-fillerY];
+
+                    }
+
+                }
+
+                //board.resetBoard();
+
+
+                return verticalTransferFlippyThing; 
+            }
+
+
+
+
+
             set { boardSquaresInternal = value; }
         }
 
