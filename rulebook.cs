@@ -62,10 +62,51 @@ namespace chess2
                 }
             }//close pawns
 
+            if (myInternalBoard[sourceX, sourceY] == 2)//bishops
+            {
+                int distance = Math.Abs(sourceX - destinationX);
+                int scanDirX = 0;
+                int scanDirY = 0;
+
+                if(Math.Abs(sourceX-destinationX) != Math.Abs(sourceY - destinationY))
+                {
+                    return false;
+
+                }
+
+                if (sourceX > destinationX)
+                {
+                    scanDirX = 0 - 1;
+                }
+                else
+                {
+                    scanDirX = 1;
+                }
+
+                if (sourceY > destinationY)
+                {
+                    scanDirY = 0 - 1;
+                }
+                else
+                {
+                    scanDirY = 1;
+                }
+
+                for (int depth = 1; depth <= distance; depth++)
+                {
+
+                    if (myInternalBoard[sourceX + (depth * scanDirX), sourceY + (depth * scanDirY)]>0)
+                    {
+                        return false;
+
+                    }
+
+                    return true;
+                }
+            }//close bishops
 
 
-
-            return false;
+                return false;
         }
 
 
