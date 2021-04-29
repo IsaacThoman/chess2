@@ -93,10 +93,71 @@ namespace chess2
 
                 }
 
-                //board.resetBoard();
+                int[,] allFlipped = new int[9, 9];
+                for (int fillerX = 1; fillerX < 9; fillerX++)
+                {
+                    for (int fillerY = 1; fillerY < 9; fillerY++)
+                    {
+                        int original = verticalTransferFlippyThing[fillerX, fillerY];
+                        int newPiece;
 
 
-                return verticalTransferFlippyThing; 
+                        switch (original)
+                        {
+                            case 0:
+                                newPiece = 0;
+                                break;
+                            case 1:
+                                newPiece = 7;
+                                break;
+                            case 2:
+                                newPiece = 8;
+                                break;
+                            case 3:
+                                newPiece = 9;
+                                break;
+                            case 4:
+                                newPiece = 10;
+                                break;
+                            case 5:
+                                newPiece = 11;
+                                break;
+                            case 6:
+                                newPiece = 12;
+                                break;
+                            case 7:
+                                newPiece = 1;
+                                break;
+                            case 8:
+                                newPiece = 2;
+                                break;
+                            case 9:
+                                newPiece = 3;
+                                break;
+                            case 10:
+                                newPiece = 4;
+                                break;
+                            case 11:
+                                newPiece = 5;
+                                break;
+                            case 12:
+                                newPiece = 6;
+                                break;
+                            default:
+                                newPiece = 0;
+                                break;
+                        }
+
+                        allFlipped[fillerX, fillerY] = newPiece;
+
+                    }
+                }
+
+
+                        //board.resetBoard();
+
+
+                        return allFlipped; 
             }
 
 
