@@ -48,6 +48,8 @@ namespace chess2
                     if (whitesMove)
                     {
                         whitesMove = false;
+                        //do engine stuff?
+                        engine.mapLegalMoves(false);
                     }
                     else
                     {
