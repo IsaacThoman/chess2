@@ -174,6 +174,112 @@ namespace chess2
 
                 return true;
             }
+            if (myInternalBoard[sourceX, sourceY] == 5) //le queen
+            {
+                if (sourceX == destinationX | destinationY == sourceY)
+                {
+                    //rook
+                    int scanDirX = 0;
+                    int scanDirY = 0;
+                    int distance = (Math.Abs(sourceX - destinationX) + Math.Abs(sourceY - destinationY));
+
+                    if (sourceX != destinationX && sourceY != destinationY)
+                    {
+                        return false;
+                    }
+
+                    if (sourceX > destinationX)
+                    {
+                        scanDirX = 0 - 1;
+                    }
+                    if (sourceX < destinationX)
+                    {
+                        scanDirX = 1;
+                    }
+
+                    if (sourceY > destinationY)
+                    {
+                        scanDirY = 0 - 1;
+                    }
+                    if (sourceY < destinationY)
+                    {
+                        scanDirY = 1;
+                    }
+
+                    for (int scanner = 1; scanner <= distance - 1; scanner++)
+                    {
+                        int scannerPosX = sourceX + (scanner * scanDirX);
+                        int scannerPosY = sourceY + (scanner * scanDirY);
+                        if (myInternalBoard[scannerPosX, scannerPosY] > 0)
+                        {
+                            return false;
+                        }
+
+                    }
+                    if (myInternalBoard[destinationX, destinationY] > 6 | myInternalBoard[destinationX, destinationY] < 1)
+                    {
+                        return true;
+                    }
+
+
+                    return true;
+                    //close rook
+                }
+
+                if(Math.Abs(sourceX-destinationX)== Math.Abs(sourceY - destinationY))
+                {
+                    //bishop
+                    int distance = Math.Abs(sourceX - destinationX);
+                    int scanDirX = 0;
+                    int scanDirY = 0;
+
+                    if (Math.Abs(sourceX - destinationX) != Math.Abs(sourceY - destinationY))
+                    {
+                        return false;
+
+                    }
+                    if (sourceX > destinationX)
+                    {
+                        scanDirX = 0 - 1;
+                    }
+                    else
+                    {
+                        scanDirX = 1;
+                    }
+
+                    if (sourceY > destinationY)
+                    {
+                        scanDirY = 0 - 1;
+                    }
+                    else
+                    {
+                        scanDirY = 1;
+                    }
+
+                    for (int scanner = 1; scanner <= distance - 1; scanner++)
+                    {
+                        int scannerPosX = sourceX + (scanner * scanDirX);
+                        int scannerPosY = sourceY + (scanner * scanDirY);
+                        if (myInternalBoard[scannerPosX, scannerPosY] > 0)
+                        {
+                            return false;
+                        }
+
+                    }
+
+                    if (myInternalBoard[destinationX, destinationY] == 0 | myInternalBoard[destinationX, destinationY] > 6)
+                    {
+                        return true;
+
+                    }
+//close bishop
+                }
+
+                return false;
+            }
+
+
+
 
 
 
