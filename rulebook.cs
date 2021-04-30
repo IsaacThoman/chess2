@@ -272,18 +272,37 @@ namespace chess2
                         return true;
 
                     }
-//close bishop
+//close bishop inside queen
                 }
 
-                return false;
+
+
+                    return false;
+            }//close queen
+
+
+            if (myInternalBoard[sourceX, sourceY] == 3)
+            {
+                int changeX = Math.Abs(sourceX - destinationX);
+                int changeY = Math.Abs(sourceY - destinationY);
+
+                if ((changeX == 1 && changeY == 2) | (changeX == 2 && changeY == 1))
+                {
+                    if (myInternalBoard[destinationX, destinationY] > 6 | myInternalBoard[destinationX, destinationY] ==0)
+                    {
+                        return true;
+
+                    }
+
+                }
+
+
             }
 
 
 
 
-
-
-                return false;
+            return false;
         }
 
 
