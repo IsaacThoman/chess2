@@ -29,6 +29,11 @@ namespace chess2
             }
 
 
+            if(sourceX==destinationX && sourceY == destinationY)
+            {
+                return false;
+
+            }
 
             if (myInternalBoard[sourceX,sourceY] == 1)//pawns
             {

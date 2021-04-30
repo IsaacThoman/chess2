@@ -49,7 +49,23 @@ namespace chess2
                     {
                         whitesMove = false;
                         //do engine stuff?
-                        engine.mapLegalMoves(false);
+                        int[] poo = engine.findLegalMove(false);
+                        int fromValue = board.boardSquare[poo[1], poo[2]];
+                        int toValue = board.boardSquare[poo[3], poo[4]];
+
+                        if (toValue != 0)
+                        {
+                            toSquareValue = 0; //I wasn't paying attention when writing this, it seems to work but it might be awful
+                        }
+                        board.boardSquare[poo[1],poo[2]] = toValue;
+                        board.boardSquare[poo[3], poo[4]] = fromValue;
+                        Debug.WriteLine(poo[1]);
+                        Debug.WriteLine(poo[2]);
+                        Debug.WriteLine(poo[3]);
+                        Debug.WriteLine(poo[4]);
+                        whitesMove = true;
+
+
                     }
                     else
                     {

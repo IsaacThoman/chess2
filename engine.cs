@@ -35,6 +35,34 @@ namespace chess2
         }
 
 
+        public static int[] findLegalMove(bool whitesMove) {
+            int[] myMap = new int[5];
 
-    }
+            for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
+            {
+                for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
+                {
+                    for (int scannerDestX = 1; scannerDestX <= 8; scannerDestX++)
+                    {
+                        for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
+                        {
+                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, whitesMove))
+                            {
+                                myMap[1] = scannerSourceX;
+                                myMap[2] = scannerSourceY;
+                                myMap[3] = scannerDestX;
+                                myMap[4] = scannerDestY;
+                            }
+
+                        }
+                    }
+                }
+            }
+            return myMap;
+
+
+        }
+
+
+        }
 }
