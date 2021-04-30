@@ -177,7 +177,7 @@ namespace chess2
                 }
 
 
-                return true;
+               // return true;
             }
             if (myInternalBoard[sourceX, sourceY] == 5) //le queen
             {
