@@ -112,6 +112,70 @@ namespace chess2
                     
             }//close bishops
 
+            if (myInternalBoard[sourceX, sourceY] == 6) //le king
+            {
+                if(Math.Abs(sourceX-destinationX)>1 | Math.Abs(sourceY - destinationY) > 1)
+                {
+                    return false;
+                }
+                if(myInternalBoard[destinationX,destinationY]>0 && myInternalBoard[destinationX, destinationY] < 7)
+                {
+                    return false;
+                }
+                return true;
+
+            }//close king
+
+
+            if (myInternalBoard[sourceX, sourceY] == 4)//do rooks
+            {
+                int scanDirX = 0;
+                int scanDirY = 0;
+                int distance = (Math.Abs(sourceX - destinationX) + Math.Abs(sourceY - destinationY));
+
+                if (sourceX != destinationX&&sourceY!=destinationY)
+                {
+                    return false;
+                }
+
+                if (sourceX > destinationX)
+                {
+                    scanDirX = 0 - 1;
+                }
+                if(sourceX < destinationX)
+                {
+                    scanDirX = 1;
+                }
+
+                if (sourceY > destinationY)
+                {
+                    scanDirY = 0 - 1;
+                }
+                if (sourceY < destinationY)
+                {
+                    scanDirY = 1;
+                }
+
+                for (int scanner = 1; scanner <= distance - 1; scanner++)
+                {
+                    int scannerPosX = sourceX + (scanner * scanDirX);
+                    int scannerPosY = sourceY + (scanner * scanDirY);
+                    if (myInternalBoard[scannerPosX, scannerPosY] > 0)
+                    {
+                        return false;
+                    }
+
+                }
+                if (myInternalBoard[destinationX, destinationY] > 6 | myInternalBoard[destinationX, destinationY] <1)
+                {
+                    return true;
+                }
+
+
+                return true;
+            }
+
+
 
                 return false;
         }
