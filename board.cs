@@ -166,7 +166,11 @@ namespace chess2
 
             set { boardSquaresInternal = value; }
         }
+        public static int points()
+        {
+            return -1;
 
+        }
 
     }
 

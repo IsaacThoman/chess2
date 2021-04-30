@@ -56,7 +56,7 @@ namespace chess2
 
                 }
 
-                if(sourceX==destinationX && sourceY + 2 == destinationY)
+                if(sourceX==destinationX && 4 == destinationY)
                 {
                     if (myInternalBoard[destinationX, sourceY + 2] == 0 && myInternalBoard[destinationX, sourceY + 1] == 0)
                     {
@@ -176,7 +176,7 @@ namespace chess2
                     return true;
                 }
 
-
+                
                // return true;
             }
             if (myInternalBoard[sourceX, sourceY] == 5) //le queen
@@ -227,7 +227,7 @@ namespace chess2
                     }
 
 
-                    return true;
+                    //return true;
                     //close rook
                 }
 
