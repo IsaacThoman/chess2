@@ -50,6 +50,31 @@ namespace chess2
                 
         }
 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            Interface.againstBot = false;
+            Interface.againstLocal = true;
+            Interface.againstOnline = false;
+        }
 
+        private void radioComputer_CheckedChanged(object sender, EventArgs e)
+        {
+            Interface.againstBot = true;
+            Interface.againstLocal = false;
+            Interface.againstOnline = false;
+        }
+
+        private void radioOnline_CheckedChanged(object sender, EventArgs e)
+        {
+            Interface.againstBot = false;
+            Interface.againstLocal = false;
+            Interface.againstOnline = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            beanchat.send("hello there");
+            button1.Text = beanchat.recieve();
+        }
     }
 }
