@@ -35,6 +35,8 @@ namespace chess2
             this.radioComputer = new System.Windows.Forms.RadioButton();
             this.radioLocal = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,10 +66,10 @@ namespace chess2
             this.radioOnline.AutoSize = true;
             this.radioOnline.Location = new System.Drawing.Point(7, 73);
             this.radioOnline.Name = "radioOnline";
-            this.radioOnline.Size = new System.Drawing.Size(156, 19);
+            this.radioOnline.Size = new System.Drawing.Size(83, 19);
             this.radioOnline.TabIndex = 2;
             this.radioOnline.TabStop = true;
-            this.radioOnline.Text = "Play online (nonexistant)";
+            this.radioOnline.Text = "Play online";
             this.radioOnline.UseVisualStyleBackColor = true;
             this.radioOnline.CheckedChanged += new System.EventHandler(this.radioOnline_CheckedChanged);
             // 
@@ -101,15 +103,34 @@ namespace chess2
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "output";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(535, 295);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(616, 248);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "input";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 567);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
@@ -120,6 +141,7 @@ namespace chess2
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -131,6 +153,8 @@ namespace chess2
         private System.Windows.Forms.RadioButton radioComputer;
         private System.Windows.Forms.RadioButton radioLocal;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

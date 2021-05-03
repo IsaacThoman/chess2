@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,6 +12,103 @@ namespace chess2
 {
     class beanchat
     {
+
+       
+
+        public static string createBoardString(int[,] boardToUse)
+        {
+            string boardString = "";
+            for (int scannerY = 1; scannerY <= 8; scannerY++)
+            {
+                for (int scannerX = 1; scannerX <= 8; scannerX++)
+                {
+                    string newVal = boardToUse[scannerX, scannerY].ToString();
+                    if (boardToUse[scannerX, scannerY] > 9)
+                    {
+                        if (boardToUse[scannerX, scannerY] == 10)
+                        {
+                            newVal = "a";
+                        }
+                        if (boardToUse[scannerX, scannerY] == 11)
+                        {
+                            newVal = "b";
+                        }
+                        if (boardToUse[scannerX, scannerY] == 12)
+                        {
+                            newVal = "c";
+                        }
+
+                    }
+                    boardString = boardString + newVal;
+
+                }
+            }
+
+            boardString = boardString + "STOP";
+            return boardString;
+        }
+
+        public static int[,] createBoardFromString(string boardString)
+        {
+            int[,] internalBoard = new int[9, 9];
+            int counter = 0-1;
+
+            for (int scannerY = 1; scannerY <= 8; scannerY++)
+            {
+                for (int scannerX = 1; scannerX <= 8; scannerX++)
+                {
+                    counter += 1;
+
+                    string tester = "5555555";
+                    
+                    Debug.WriteLine(boardString[counter]);
+
+                    switch (boardString[counter])
+                    {
+                        case '1':
+                            internalBoard[scannerX, scannerY] = 1;
+                            break;
+                        case '2':
+                            internalBoard[scannerX, scannerY] = 2;
+                            break;
+                        case '3':
+                            internalBoard[scannerX, scannerY] = 3;
+                            break;
+                        case '4':
+                            internalBoard[scannerX, scannerY] = 4;
+                            break;
+                        case '5':
+                            internalBoard[scannerX, scannerY] = 5;
+                            break;
+                        case '6':
+                            internalBoard[scannerX, scannerY] = 6;
+                            break;
+                        case '7':
+                            internalBoard[scannerX, scannerY] = 7;
+                            break;
+                        case '8':
+                            internalBoard[scannerX, scannerY] = 8;
+                            break;
+                        case '9':
+                            internalBoard[scannerX, scannerY] = 9;
+                            break;
+                        case 'a':
+                            internalBoard[scannerX, scannerY] = 10;
+                            break;
+                        case 'b':
+                            internalBoard[scannerX, scannerY] = 11;
+                            break;
+                        case 'c':
+                            internalBoard[scannerX, scannerY] = 12;
+                            break;
+                    }
+
+
+                    }
+
+            }
+            return internalBoard;
+        }
 
 
         public static void send(string sendString)

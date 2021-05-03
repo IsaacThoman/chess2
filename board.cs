@@ -25,11 +25,11 @@ namespace chess2
 
             for (int peener = 1; peener < 9; peener++)
             {
-                boardSquare[peener,2] = 1;
+                boardSquare[peener, 2] = 1;
                 boardSquare[peener, 7] = 7;
             }
 
-                boardSquare[1, 1] = 4;
+            boardSquare[1, 1] = 4;
             boardSquare[8, 1] = 4;
             //black rooks
             boardSquare[1, 8] = 10;
@@ -171,6 +171,8 @@ namespace chess2
             return -1;
 
         }
+
+        
 
     }
 
