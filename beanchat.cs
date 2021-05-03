@@ -175,7 +175,7 @@ namespace chess2
 
         public static void pushBoard()
         {
-            beanchat.send(beanchat.createBoardString(board.boardSquare, Interface.whitesMove), 1);
+            beanchat.send(beanchat.createBoardString(board.boardSquare, Interface.whitesMove), channelSet);
 
         }
 
@@ -183,7 +183,7 @@ namespace chess2
         {
 
             //board.boardSquare = beanchat.createBoardFromString(textBox1.Text);
-            string recieved = beanchat.recieve(1);
+            string recieved = beanchat.recieve(channelSet);
             board.boardSquare = beanchat.createBoardFromString(recieved);
             Interface.whitesMove = beanchat.whitesMoveRecieved;
         }

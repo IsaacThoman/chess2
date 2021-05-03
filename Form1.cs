@@ -76,23 +76,40 @@ namespace chess2
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            textBox1.Text = beanchat.createBoardString(board.boardSquare,Interface.whitesMove);
-            beanchat.send(beanchat.createBoardString(board.boardSquare, Interface.whitesMove), 1);
+            textBox1.Text = beanchat.createBoardString(board.boardSquare, Interface.whitesMove);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //board.boardSquare = beanchat.createBoardFromString(textBox1.Text);
-            string recieved = beanchat.recieve(1);
-            board.boardSquare = beanchat.createBoardFromString(recieved);
+            board.boardSquare=beanchat.createBoardFromString(textBox1.Text);
             Interface.whitesMove = beanchat.whitesMoveRecieved;
-            textBox1.Text = recieved;
+            renderer.render(panel1);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             beanchat.pullBoard();
+
+            renderer.render(panel1);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            beanchat.channelSet = (int)numericUpDown1.Value;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+
+            if (Interface.againstOnline)
+            {
+                beanchat.send("w43256234111111110000000000000000000000000000000077777777a98bc89aSTOP", beanchat.channelSet);
+            }
+            else
+            {
+                board.resetBoard();
+            }
             renderer.render(panel1);
         }
     }
