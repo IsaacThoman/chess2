@@ -56,6 +56,10 @@ namespace chess2
             Interface.againstLocal = true;
             Interface.againstOnline = false;
             timer1.Enabled = false;
+            onlineSettingsGroup.Visible = false;
+            board.resetBoard();
+            renderer.render(panel1);
+
         }
 
         private void radioComputer_CheckedChanged(object sender, EventArgs e)
@@ -64,6 +68,9 @@ namespace chess2
             Interface.againstLocal = false;
             Interface.againstOnline = false;
             timer1.Enabled = false;
+            onlineSettingsGroup.Visible = false;
+            board.resetBoard();
+            renderer.render(panel1);
         }
 
         private void radioOnline_CheckedChanged(object sender, EventArgs e)
@@ -72,6 +79,9 @@ namespace chess2
             Interface.againstLocal = false;
             Interface.againstOnline = true;
             timer1.Enabled = true;
+            onlineSettingsGroup.Visible = true;
+            beanchat.pullBoard();
+            renderer.render(panel1);
         }
 
         private void button1_Click(object sender, EventArgs e)
