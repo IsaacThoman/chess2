@@ -83,15 +83,16 @@ namespace chess2
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            board.boardSquare = beanchat.createBoardFromString(textBox1.Text);
+            //board.boardSquare = beanchat.createBoardFromString(textBox1.Text);
+            string recieved = beanchat.recieve(1);
+            board.boardSquare = beanchat.createBoardFromString(recieved);
             Interface.whitesMove = beanchat.whitesMoveRecieved;
-            renderer.render(panel1);
+            textBox1.Text = recieved;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox1.Text = beanchat.createBoardString(board.boardSquare,Interface.whitesMove);
+            beanchat.pullBoard();
             renderer.render(panel1);
         }
     }
