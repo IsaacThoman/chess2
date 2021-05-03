@@ -55,6 +55,7 @@ namespace chess2
             Interface.againstBot = false;
             Interface.againstLocal = true;
             Interface.againstOnline = false;
+            timer1.Enabled = false;
         }
 
         private void radioComputer_CheckedChanged(object sender, EventArgs e)
@@ -62,6 +63,7 @@ namespace chess2
             Interface.againstBot = true;
             Interface.againstLocal = false;
             Interface.againstOnline = false;
+            timer1.Enabled = false;
         }
 
         private void radioOnline_CheckedChanged(object sender, EventArgs e)
@@ -69,17 +71,28 @@ namespace chess2
             Interface.againstBot = false;
             Interface.againstLocal = false;
             Interface.againstOnline = true;
+            timer1.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = beanchat.createBoardString(board.boardSquare);
 
+            textBox1.Text = beanchat.createBoardString(board.boardSquare,Interface.whitesMove);
+            beanchat.send(beanchat.createBoardString(board.boardSquare, Interface.whitesMove), 1);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             board.boardSquare = beanchat.createBoardFromString(textBox1.Text);
+            Interface.whitesMove = beanchat.whitesMoveRecieved;
+            renderer.render(panel1);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            textBox1.Text = beanchat.createBoardString(board.boardSquare,Interface.whitesMove);
+            renderer.render(panel1);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace chess2
         private static int intselX = 0;
         private static int intselY = 0;
         private static bool firstSel = true;
-        private static bool whitesMove = true;
+        public static bool whitesMove = true;
         public static bool againstBot = false;
         public static bool againstLocal = false;
         public static bool againstOnline = false;
@@ -47,6 +47,7 @@ namespace chess2
 
 
 
+
                     if (whitesMove)
                     {
                         whitesMove = false;
@@ -76,6 +77,10 @@ namespace chess2
                         whitesMove = true;
                     }
 
+                    if (againstOnline)
+                    {
+                        beanchat.pushBoard();
+                    }
 
                     //Debug.WriteLine(whitesMove);
 

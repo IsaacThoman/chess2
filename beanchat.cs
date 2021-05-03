@@ -13,11 +13,21 @@ namespace chess2
     class beanchat
     {
 
-       
+        public static bool whitesMoveRecieved = false;
+        public static int channelSet = 1;
 
-        public static string createBoardString(int[,] boardToUse)
+        public static string createBoardString(int[,] boardToUse, bool whitesMove)
         {
             string boardString = "";
+            if (whitesMove)
+            {
+                boardString = "w";
+            }
+            else
+            {
+                boardString = "b";
+            }
+
             for (int scannerY = 1; scannerY <= 8; scannerY++)
             {
                 for (int scannerX = 1; scannerX <= 8; scannerX++)
@@ -51,7 +61,16 @@ namespace chess2
         public static int[,] createBoardFromString(string boardString)
         {
             int[,] internalBoard = new int[9, 9];
-            int counter = 0-1;
+            int counter = 0;
+
+            if (boardString[0]=='w')
+            {
+                whitesMoveRecieved = true;
+            }
+            else
+            {
+                whitesMoveRecieved = false;
+            }
 
             for (int scannerY = 1; scannerY <= 8; scannerY++)
             {
@@ -111,10 +130,10 @@ namespace chess2
         }
 
 
-        public static void send(string sendString)
+        public static void send(string sendString, int channel)
         {
 
-            var url1 = "https://api.isaacthoman.me/api/App?message=" + sendString;
+            var url1 = "https://api.isaacthoman.me/api/Chess?message=" + sendString + "&channel=" + channel ;
 
             var httpRequest1 = (HttpWebRequest)WebRequest.Create(url1);
             httpRequest1.Method = "POST";
@@ -135,10 +154,10 @@ namespace chess2
 
         }
 
-        public static string recieve()
+        public static string recieve(int channel)
         {
 
-            var url = "https://api.isaacthoman.me/api/App";
+            var url = "https://api.isaacthoman.me/api/Chess?channel="+ channel;
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
@@ -152,6 +171,21 @@ namespace chess2
             }
 
 
+        }
+
+        public static void pushBoard()
+        {
+            beanchat.send(beanchat.createBoardString(board.boardSquare, Interface.whitesMove), 1);
+
+        }
+
+        public static void pullBoard()
+        {
+
+            //board.boardSquare = beanchat.createBoardFromString(textBox1.Text);
+            string recieved = beanchat.recieve(1);
+            board.boardSquare = beanchat.createBoardFromString(recieved);
+            Interface.whitesMove = beanchat.whitesMoveRecieved;
         }
 
     }
