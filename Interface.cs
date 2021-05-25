@@ -36,8 +36,18 @@ namespace chess2
             {
                 int fromSquareValue = board.boardSquare[intselX, intselY];
                 int toSquareValue = board.boardSquare[x, y];
+                bool moveLegalityThing = false;
 
-                if (rulebook.checkLegality(intselX, intselY, x, y,whitesMove))
+                if (whitesMove)
+                {
+                    moveLegalityThing = rulebook.checkLegality(intselX, intselY, x, y, board.boardSquare);
+                }
+                else
+                {
+                    moveLegalityThing = rulebook.checkLegality(9-intselX, 9-intselY, 9-x, 9-y, board.boardSquareReversed);
+                }
+
+                if (moveLegalityThing)
                 {
                     if (toSquareValue != 0)
                     {
@@ -54,21 +64,10 @@ namespace chess2
                         whitesMove = false;
 
                 if(againstBot){
-                                    //do engine stuff?
-                        int[] poo = engine.findLegalMove(false);
-        int fromValue = board.boardSquare[poo[1], poo[2]];
-        int toValue = board.boardSquare[poo[3], poo[4]];
-
-                        if (toValue != 0)
-                        {
-                            toValue = 0; //I wasn't paying attention when writing this, it seems to work but it might be awful
-                        }
-    board.boardSquare[poo[1], poo[2]] = toValue;
-                        board.boardSquare[poo[3], poo[4]] = fromValue;
-                        Debug.WriteLine(poo[1]);
-                        Debug.WriteLine(poo[2]);
-                        Debug.WriteLine(poo[3]);
-                        Debug.WriteLine(poo[4]);
+                            //do engine stuff?
+                           engine.findLegalMove();
+       
+                
                         whitesMove = true;
  }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace chess2
         
 
 
-        public static int[] findLegalMove(bool whitesMove) {
+        public static void findLegalMove() {
             int[] myMap = new int[5];
 
             int counter = 0;
@@ -20,8 +21,15 @@ namespace chess2
             int[] fromY = new int[1024];
             int[] toX = new int[1024];
             int[] toY = new int[1024];
-            int bestScore = -9999;
-            int bestIndex = 0;
+            int bestScore = 1000;
+            int[] moveIndex = new int[1024];
+
+
+            int bestTemp = 0 - 9999;
+            int maxIndex = 0;
+
+
+
 
             for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
             {
@@ -31,29 +39,53 @@ namespace chess2
                     {
                         for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                         {
-                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, whitesMove))
+
+                            int[,] thingNotToBreak = new int[9, 9];
+                            for (int copyX = 1; copyX <= 8; copyX++)
                             {
-                                counter += 1;
-                                fromX[counter] = scannerSourceX;
-                                fromY[counter] = scannerSourceY;
-                                toX[counter] = scannerDestX;
-                                toY[counter] = scannerDestY;
-
-                                int[,] testingBoard = new int[9,9];
-                                testingBoard = board.boardSquareReversed;
-
-                         
-
-                                if (testingBoard[scannerDestX, scannerDestY] > 0)
+                                for (int copyY = 1; copyY <= 8; copyY++)
                                 {
-                                    testingBoard[scannerDestX, scannerDestY] = 0;
+
+                                    thingNotToBreak[copyX, copyY] = board.boardSquare[copyX, copyY];
                                 }
-                                int toPiece = testingBoard[scannerSourceX, scannerSourceY];
-                                int fromPiece = testingBoard[scannerDestX, scannerDestY];
+                            }
 
-                                engine.boardEvaluation(testingBoard);
+                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed)) //false used to be whites move, seems stupid
+                            {
 
-                                int myScore = 
+
+
+                                counter += 1;
+                                fromX[counter] = 9-scannerSourceX;
+                                fromY[counter] = 9-scannerSourceY;
+                                toX[counter] = 9-scannerDestX;
+                                toY[counter] = 9-scannerDestY;
+
+
+
+
+
+                                int myfromValue = thingNotToBreak[scannerSourceX, scannerSourceY];
+                                int mytoValue = thingNotToBreak[scannerDestX, scannerDestY];
+
+                                if (mytoValue > 0)
+                                {
+                                    mytoValue = 0;
+                                }
+
+                                thingNotToBreak[scannerDestX, scannerDestY] = myfromValue;
+                                thingNotToBreak[scannerSourceX, scannerSourceY] = mytoValue;
+
+
+                                int myScore = engine.boardEvaluation(thingNotToBreak);
+
+                                moveIndex[counter] = myScore;
+
+                                if (bestTemp < myScore)
+                                {
+                                    bestTemp = myScore;
+                                    maxIndex = counter;
+                                }
 
 
                             }
@@ -65,15 +97,32 @@ namespace chess2
 
 
 
+
+
+            
+            int fromValue = board.boardSquare[fromX[maxIndex], fromY[maxIndex]];
+            int toValue = board.boardSquare[toX[maxIndex], toY[maxIndex]];
+
+            if (toValue > 0)
+            {
+                toValue = 0;
+            }
+
+            board.boardSquare[toX[maxIndex], toY[maxIndex]] = fromValue;
+            board.boardSquare[fromX[maxIndex], fromY[maxIndex]] = toValue;
+            
+
+
+
+
             var rand = new Random();
-            int selection = rand.Next(counter);
+            //  int selection = rand.Next(counter);
+            int selection = maxIndex;
+            Debug.WriteLine("-------------------");
+            Debug.WriteLine("Best index: "+ maxIndex);
+            Debug.WriteLine("Moves checked: " + counter);
+            Debug.WriteLine("Current Score: " + engine.boardEvaluation(board.boardSquare));
 
-            myMap[1] = fromX[selection];
-            myMap[2] = fromY[selection];
-            myMap[3] = toX[selection];
-            myMap[4] = toY[selection];
-
-            return myMap;
 
 
         }

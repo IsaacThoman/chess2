@@ -9,10 +9,11 @@ namespace chess2
     class rulebook
     {
         
-        public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY, bool whitesMove)
+        public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY, int[,] boardToUse)
         {
             int[,] myInternalBoard = new int[9, 9];
 
+            /*
             if (whitesMove)
             {
                 myInternalBoard = board.boardSquare;
@@ -27,6 +28,9 @@ namespace chess2
                 destinationY = 9-destinationY;
 
             }
+            */
+
+            myInternalBoard = boardToUse;
 
 
             if(sourceX==destinationX && sourceY == destinationY)
