@@ -8,7 +8,8 @@ namespace chess2
 {
     public class board
     {
-        private static int[,] boardSquaresInternal = new int[9, 9];
+        public static int[,] boardSquaresInternal = new int[9, 9];
+
 
         public static void resetBoard()
         {
@@ -62,7 +63,8 @@ namespace chess2
         public static int[,] boardSquare
         {
             get { return boardSquaresInternal; }
-            set { boardSquaresInternal = value; }
+            set {
+                boardSquaresInternal = value; }
         }
 
         public static int[,] boardSquareReversed

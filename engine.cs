@@ -25,7 +25,7 @@ namespace chess2
             int[] moveIndex = new int[1024];
 
 
-            int bestTemp = 0 - 9999;
+            int bestTemp = 0-9999;
             int maxIndex = 0;
 
 
@@ -68,13 +68,13 @@ namespace chess2
                                 int myfromValue = thingNotToBreak[scannerSourceX, scannerSourceY];
                                 int mytoValue = thingNotToBreak[scannerDestX, scannerDestY];
 
-                                if (mytoValue > 0)
+                                if (mytoValue != 0)
                                 {
                                     mytoValue = 0;
                                 }
 
-                                thingNotToBreak[scannerDestX, scannerDestY] = myfromValue;
-                                thingNotToBreak[scannerSourceX, scannerSourceY] = mytoValue;
+                                thingNotToBreak[scannerDestX, scannerDestY] = mytoValue;
+                                thingNotToBreak[scannerSourceX, scannerSourceY] = myfromValue;
 
 
                                 int myScore = engine.boardEvaluation(thingNotToBreak);
