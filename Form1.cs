@@ -144,5 +144,19 @@ namespace chess2
             pictureBox2.Image = renderer.renderBitmap();
 
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+            var relativePoint = this.PointToClient(Cursor.Position);
+
+            int selX = (relativePoint.X - pictureBox3.Location.X) / 64 + 1;
+            int selY = 0 - (relativePoint.Y - pictureBox3.Location.Y) / 64 + 8;
+
+            Interface.setSelection(selX, selY);
+
+            pictureBox3.Image =renderer.renderBitmap();
+
+        }
     }
 }
