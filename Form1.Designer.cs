@@ -46,24 +46,20 @@ namespace chess2
             this.button3 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.animationTimer = new System.Windows.Forms.Timer(this.components);
+            this.animTestCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -105,10 +101,10 @@ namespace chess2
             this.radioOnline.AutoSize = true;
             this.radioOnline.Location = new System.Drawing.Point(7, 73);
             this.radioOnline.Name = "radioOnline";
-            this.radioOnline.Size = new System.Drawing.Size(83, 19);
+            this.radioOnline.Size = new System.Drawing.Size(276, 19);
             this.radioOnline.TabIndex = 2;
             this.radioOnline.TabStop = true;
-            this.radioOnline.Text = "Play online";
+            this.radioOnline.Text = "Play online (broken while I work on animations)";
             this.radioOnline.UseVisualStyleBackColor = true;
             this.radioOnline.CheckedChanged += new System.EventHandler(this.radioOnline_CheckedChanged);
             // 
@@ -117,10 +113,10 @@ namespace chess2
             this.radioComputer.AutoSize = true;
             this.radioComputer.Location = new System.Drawing.Point(7, 48);
             this.radioComputer.Name = "radioComputer";
-            this.radioComputer.Size = new System.Drawing.Size(193, 19);
+            this.radioComputer.Size = new System.Drawing.Size(188, 19);
             this.radioComputer.TabIndex = 1;
             this.radioComputer.TabStop = true;
-            this.radioComputer.Text = "Against computer (very broken)";
+            this.radioComputer.Text = "Against computer (still a mess)";
             this.radioComputer.UseVisualStyleBackColor = true;
             this.radioComputer.CheckedChanged += new System.EventHandler(this.radioComputer_CheckedChanged);
             // 
@@ -228,7 +224,6 @@ namespace chess2
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Location = new System.Drawing.Point(606, 130);
             this.groupBox2.Name = "groupBox2";
@@ -236,61 +231,6 @@ namespace chess2
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Settings";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radioButton7);
-            this.groupBox4.Controls.Add(this.radioButton4);
-            this.groupBox4.Controls.Add(this.radioButton5);
-            this.groupBox4.Controls.Add(this.radioButton6);
-            this.groupBox4.Location = new System.Drawing.Point(193, 22);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(180, 130);
-            this.groupBox4.TabIndex = 9;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Animation";
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(7, 74);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(81, 19);
-            this.radioButton7.TabIndex = 4;
-            this.radioButton7.Text = "Uncertain?";
-            this.radioButton7.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(7, 49);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(46, 19);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.Text = "Nay";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Checked = true;
-            this.radioButton5.Location = new System.Drawing.Point(7, 23);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(43, 19);
-            this.radioButton5.TabIndex = 2;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Yay";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(-100, 0);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(94, 19);
-            this.radioButton6.TabIndex = 1;
-            this.radioButton6.Text = "radioButton6";
-            this.radioButton6.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -355,15 +295,31 @@ namespace chess2
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
-            this.button4.Text = "rendererTests";
+            this.button4.Text = "makeAnim";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // animationTimer
+            // 
+            this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
+            // 
+            // animTestCheckBox
+            // 
+            this.animTestCheckBox.AutoSize = true;
+            this.animTestCheckBox.Location = new System.Drawing.Point(606, 543);
+            this.animTestCheckBox.Name = "animTestCheckBox";
+            this.animTestCheckBox.Size = new System.Drawing.Size(105, 19);
+            this.animTestCheckBox.TabIndex = 9;
+            this.animTestCheckBox.Text = "Play animation";
+            this.animTestCheckBox.UseVisualStyleBackColor = true;
+            this.animTestCheckBox.CheckedChanged += new System.EventHandler(this.animTestCheckBox_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 574);
+            this.Controls.Add(this.animTestCheckBox);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.pictureBox2);
@@ -389,8 +345,6 @@ namespace chess2
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -420,14 +374,11 @@ namespace chess2
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Timer animationTimer;
+        private System.Windows.Forms.CheckBox animTestCheckBox;
     }
 }
 

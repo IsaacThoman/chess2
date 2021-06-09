@@ -153,12 +153,33 @@ namespace chess2
             renderer.themeColorSelection = Color.LightYellow;
         }
 
+
+
+
+
+
+
+        public static Bitmap[] animation = new Bitmap[11];
+        public static int animationFrame = 1;
+
         private void button4_Click(object sender, EventArgs e)
         {
         //    pictureBox2.Image = renderer.renderBitmap();
-            Bitmap[] test = renderer.renderBitmapAnimation();
-            pictureBox2.Image = test[1];
+        //    Bitmap[] test = renderer.renderBitmapAnimation();
+            animation = renderer.renderBitmapAnimation();
         }
+
+        private void animationTimer_Tick(object sender, EventArgs e)
+        {
+            if (animationFrame >= 10) { animationFrame = 0; }
+            animationFrame+=1;
+            pictureBox2.Image = animation[animationFrame];
+        }
+
+
+
+
+
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
@@ -172,6 +193,19 @@ namespace chess2
 
             pictureBox3.Image =renderer.renderBitmap();
 
+        }
+
+        private void animTestCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (animTestCheckBox.Checked)
+            {
+                animationTimer.Enabled = true;
+
+            }
+            else
+            {
+                animationTimer.Enabled = false;
+            }
         }
     }
 }

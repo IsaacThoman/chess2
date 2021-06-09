@@ -23,7 +23,7 @@ namespace chess2
         {
             if (bitmapsLoaded == false)
             {
-                piece[0] = new Bitmap(chess2.Properties.Resources._12);//this *should* be useless
+                piece[0] = new Bitmap(chess2.Properties.Resources.troll);//this *should* be useless
 
                 piece[1] = new Bitmap(chess2.Properties.Resources._1);
                 piece[2] = new Bitmap(chess2.Properties.Resources._2);
@@ -215,7 +215,7 @@ namespace chess2
             for (int frame = 0; frame <= 10; frame++)
             {
 
-                Bitmap Bmp = renderFrame();
+                Bitmap Bmp = renderFrame(destX,destY,sourceX,sourceY,frame);
                 animation[frame] = Bmp;
 
             }
@@ -228,7 +228,7 @@ namespace chess2
 
         //-------------------------------------------------------------------------
 
-        public static Bitmap renderFrame()
+        public static Bitmap renderFrame(int destX,int destY, int sourceX, int sourceY, int frame)
         {
             Bitmap Bmp = new Bitmap(512, 512);
             using (Graphics gfx = Graphics.FromImage(Bmp))
@@ -242,6 +242,10 @@ namespace chess2
             checkForBitmaps();
             Rectangle[,] boardRect = new Rectangle[9, 9];
             SolidBrush DBrush = new SolidBrush(themeColorDark);
+            if (frame < 5)
+            {
+                DBrush = new SolidBrush(Color.DarkRed); //red flash to make sure it's playing
+            }
             SolidBrush LBrush = new SolidBrush(themeColorLight);
             SolidBrush YBrush = new SolidBrush(themeColorSelection);
 
@@ -255,6 +259,12 @@ namespace chess2
                 for (int fillerY = 1; fillerY < 9; fillerY++)
                 {
                     int myPiece = board.boardSquare[fillerX, fillerY];
+
+                    if(destX == fillerX && destY == fillerY)
+                    {
+                        myPiece = 0; //hide moved piece from bottom layer, it's not needed
+                    }
+
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
 
                     if ((fillerX + fillerY) % 2 == 0)
@@ -283,6 +293,21 @@ namespace chess2
 
                 }
             }
+
+            int animStartX = (destX * 64) - 64;
+            int animStartY = (destY * -64) + 512;
+            int animEndX = (sourceX * 64) - 64;
+            int animEndY = (sourceY * -64) + 512;
+
+          //  int animPieceX = (int)(animStartX + ((animEndX - animStartX) * 0.1 * frame));
+          //  int animPieceY = (int)(animStartY + ((animEndY - animStartY) * 0.1 * frame));
+
+            int animPieceX = (int)(animEndX + ((animStartX - animEndX) * 0.1 * frame));
+            int animPieceY = (int)(animEndY + ((animStartY - animEndY) * 0.1 * frame));
+
+            Rectangle animatedRect = new Rectangle(animPieceX, animPieceY, 64,64);
+
+            g.DrawImage(piece[0], animatedRect); 
 
             return Bmp;
         }
