@@ -80,7 +80,7 @@ namespace chess2
 
                     string tester = "5555555";
                     
-                    Debug.WriteLine(boardString[counter]);
+             //       Debug.WriteLine(boardString[counter]);
 
                     switch (boardString[counter])
                     {

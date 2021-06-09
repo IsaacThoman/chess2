@@ -155,9 +155,9 @@ namespace chess2
 
         private void button4_Click(object sender, EventArgs e)
         {
-            pictureBox2.Image = renderer.renderBitmap();
+        //    pictureBox2.Image = renderer.renderBitmap();
             Bitmap[] test = renderer.renderBitmapAnimation();
-
+            pictureBox2.Image = test[1];
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
