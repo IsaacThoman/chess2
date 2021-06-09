@@ -112,14 +112,8 @@ namespace chess2
             beanchat.pullBoard();
             
             animation = renderer.renderBitmapAnimation();
-            if (renderer.doAnimation)
-            {
                 animationTimer.Enabled = true;
-            }
-            else
-            {
-                gamePictureBox.Image = renderer.renderBitmap();
-            }
+
             //  renderer.render(panel1);
             //        pictureBox3.Image = renderer.renderBitmap();
 
