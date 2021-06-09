@@ -12,9 +12,17 @@ namespace chess2
 
     class renderer
     {
-        public static Color themeColorDark = Color.DarkGreen;
-        public static Color themeColorLight = Color.LightGray;
+    //    public static Color themeColorDark = Color.DarkGreen;
+    //   public static Color themeColorLight = Color.LightGray;
+    //    public static Color themeColorSelection = Color.LightYellow;
+
+
+        public static Color themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
+        public static Color themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
         public static Color themeColorSelection = Color.LightYellow;
+
+
+
         public static Bitmap[] piece = new Bitmap[13];
         public static bool bitmapsLoaded = false;
 
