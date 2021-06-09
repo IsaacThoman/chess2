@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,33 +12,46 @@ namespace chess2
 
     class renderer
     {
+        public static Color themeColorDark = Color.DarkGreen;
+        public static Color themeColorLight = Color.LightGray;
+        public static Color themeColorSelection = Color.LightYellow;
+        public static Bitmap[] piece = new Bitmap[13];
+        public static bool bitmapsLoaded = false;
 
+        public static void checkForBitmaps()
 
+        {
+            if (bitmapsLoaded == false)
+            {
+                piece[0] = new Bitmap(chess2.Properties.Resources._12);//this *should* be useless
+
+                piece[1] = new Bitmap(chess2.Properties.Resources._1);
+                piece[2] = new Bitmap(chess2.Properties.Resources._2);
+                piece[3] = new Bitmap(chess2.Properties.Resources._3);
+                piece[4] = new Bitmap(chess2.Properties.Resources._4);
+                piece[5] = new Bitmap(chess2.Properties.Resources._5);
+                piece[6] = new Bitmap(chess2.Properties.Resources._6);
+                piece[7] = new Bitmap(chess2.Properties.Resources._7);
+                piece[8] = new Bitmap(chess2.Properties.Resources._8);
+                piece[9] = new Bitmap(chess2.Properties.Resources._9);
+                piece[10] = new Bitmap(chess2.Properties.Resources._10);
+                piece[11] = new Bitmap(chess2.Properties.Resources._11);
+                piece[12] = new Bitmap(chess2.Properties.Resources._12);
+                bitmapsLoaded = true;
+            }
+        }
         public static void render(Panel panel)
         {
 
-            Bitmap[] piece = new Bitmap[13];
-            piece[0] = new Bitmap(chess2.Properties.Resources._12);//this *should* be useless
-
-            piece[1] = new Bitmap(chess2.Properties.Resources._1);
-            piece[2] = new Bitmap(chess2.Properties.Resources._2);
-            piece[3] = new Bitmap(chess2.Properties.Resources._3);
-            piece[4] = new Bitmap(chess2.Properties.Resources._4);
-            piece[5] = new Bitmap(chess2.Properties.Resources._5);
-            piece[6] = new Bitmap(chess2.Properties.Resources._6);
-           piece[7] = new Bitmap(chess2.Properties.Resources._7);
-            piece[8] = new Bitmap(chess2.Properties.Resources._8);
-           piece[9] = new Bitmap(chess2.Properties.Resources._9);
-            piece[10] = new Bitmap(chess2.Properties.Resources._10);
-            piece[11] = new Bitmap(chess2.Properties.Resources._11);
-           piece[12] = new Bitmap(chess2.Properties.Resources._12);
 
 
 
+
+            checkForBitmaps();
             Rectangle[,] boardRect = new Rectangle[9, 9];
-            SolidBrush DBrush = new SolidBrush(Color.DarkGreen);
-            SolidBrush LBrush = new SolidBrush(Color.LightGray);
-            SolidBrush YBrush = new SolidBrush(Color.LightYellow);
+            SolidBrush DBrush = new SolidBrush(themeColorDark);
+            SolidBrush LBrush = new SolidBrush(themeColorLight);
+            SolidBrush YBrush = new SolidBrush(themeColorSelection);
 
             Graphics g = panel.CreateGraphics();
             
@@ -77,6 +90,30 @@ namespace chess2
                     
                 }
             }
+
+        }
+
+
+
+        public static Bitmap renderCapturesBar()
+        {
+            Bitmap capturesBar = new Bitmap(512, 512);
+            using (Graphics gr = Graphics.FromImage(capturesBar))
+            {
+                //   gr.SmoothingMode = SmoothingMode.AntiAlias;
+
+               
+
+                Rectangle rect1 = new Rectangle(0, 0, 320, 240);
+                Rectangle rect2 = new Rectangle(320, 0, 320, 240);
+                Rectangle rect3 = new Rectangle(0, 240, 320, 240);
+
+            //    gr.DrawImage(camera1, rect1);
+
+            }
+            //    pictureBox1.Image = testBitmap;
+
+            return capturesBar;
 
         }
 

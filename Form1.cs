@@ -122,5 +122,20 @@ namespace chess2
             }
             renderer.render(panel1);
         }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
+            renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
+            renderer.themeColorSelection = Color.LightYellow;
+        }
+        
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            renderer.themeColorDark = Color.DarkGreen;
+            renderer.themeColorLight = Color.LightGray;
+            renderer.themeColorSelection = Color.LightYellow;
+        }
     }
 }
