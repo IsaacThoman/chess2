@@ -25,7 +25,7 @@ namespace chess2
         private void Form1_Load(object sender, EventArgs e)
         {
             //     renderer.render(panel1);
-            pictureBox3.Image = renderer.renderBitmap();
+            gamePictureBox.Image = renderer.renderBitmap();
 
         }
 
@@ -110,9 +110,18 @@ namespace chess2
         private void timer1_Tick(object sender, EventArgs e)
         {
             beanchat.pullBoard();
-
+            
+            animation = renderer.renderBitmapAnimation();
+            if (renderer.doAnimation)
+            {
+                animationTimer.Enabled = true;
+            }
+            else
+            {
+                gamePictureBox.Image = renderer.renderBitmap();
+            }
             //  renderer.render(panel1);
-    //        pictureBox3.Image = renderer.renderBitmap();
+            //        pictureBox3.Image = renderer.renderBitmap();
 
         }
 
@@ -171,9 +180,9 @@ namespace chess2
 
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            if (animationFrame >= 10) { animationFrame = 0; }
+            if (animationFrame >= 10) { animationFrame = 0; animationTimer.Enabled = false; return; gamePictureBox.Image = renderer.renderBitmap(); }
             animationFrame+=1;
-            pictureBox2.Image = animation[animationFrame];
+            gamePictureBox.Image = animation[animationFrame];
         }
 
 
@@ -186,12 +195,16 @@ namespace chess2
 
             var relativePoint = this.PointToClient(Cursor.Position);
 
-            int selX = (relativePoint.X - pictureBox3.Location.X) / 64 + 1;
-            int selY = 0 - (relativePoint.Y - pictureBox3.Location.Y) / 64 + 8;
+            int selX = (relativePoint.X - gamePictureBox.Location.X) / 64 + 1;
+            int selY = 0 - (relativePoint.Y - gamePictureBox.Location.Y) / 64 + 8;
 
             Interface.setSelection(selX, selY);
-
-            pictureBox3.Image =renderer.renderBitmap();
+            if (Interface.firstSel == true)
+            {
+                animation = renderer.renderBitmapAnimation();
+                animationTimer.Enabled = true;
+            }
+         //   gamePictureBox.Image =renderer.renderBitmap();
 
         }
 

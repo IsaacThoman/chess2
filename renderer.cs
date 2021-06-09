@@ -169,7 +169,15 @@ namespace chess2
 
         }
 
+
+
+
+
         public static Bitmap animationOut = new Bitmap(512,512);
+
+        public static bool doAnimation = false;
+
+
 
         public static Bitmap[] renderBitmapAnimation()
         {
@@ -210,7 +218,10 @@ namespace chess2
                 }
             }
             Debug.WriteLine(sourceX+", "+sourceY+" to "+destX+", "+destY);
-
+            if(sourceX == 0)
+            {
+                doAnimation = false;
+            }
 
             for (int frame = 0; frame <= 10; frame++)
             {
@@ -227,6 +238,7 @@ namespace chess2
 
 
         //-------------------------------------------------------------------------
+        
 
         public static Bitmap renderFrame(int destX,int destY, int sourceX, int sourceY, int frame)
         {
@@ -244,7 +256,7 @@ namespace chess2
             SolidBrush DBrush = new SolidBrush(themeColorDark);
             if (frame < 5)
             {
-                DBrush = new SolidBrush(Color.DarkRed); //red flash to make sure it's playing
+          //      DBrush = new SolidBrush(Color.DarkRed); //red flash to make sure it's playing
             }
             SolidBrush LBrush = new SolidBrush(themeColorLight);
             SolidBrush YBrush = new SolidBrush(themeColorSelection);
@@ -306,8 +318,8 @@ namespace chess2
             int animPieceY = (int)(animEndY + ((animStartY - animEndY) * 0.1 * frame));
 
             Rectangle animatedRect = new Rectangle(animPieceX, animPieceY, 64,64);
-
-            g.DrawImage(piece[0], animatedRect); 
+            int animPieceID = board.boardSquare[destX, destY];
+            g.DrawImage(piece[animPieceID], animatedRect); 
 
             return Bmp;
         }

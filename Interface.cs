@@ -11,7 +11,7 @@ namespace chess2
     {
         private static int intselX = 0;
         private static int intselY = 0;
-        private static bool firstSel = true;
+        public static bool firstSel = true;
         public static bool whitesMove = true;
         public static bool againstBot = false;
         public static bool againstLocal = false;
@@ -93,6 +93,8 @@ namespace chess2
                 intselX = 0;
                 intselY = 0;
                 firstSel = true;
+
+
 
             }
 

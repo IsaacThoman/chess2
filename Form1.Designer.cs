@@ -31,7 +31,7 @@ namespace chess2
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.gamePictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioOnline = new System.Windows.Forms.RadioButton();
             this.radioComputer = new System.Windows.Forms.RadioButton();
@@ -54,7 +54,7 @@ namespace chess2
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.animTestCheckBox = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -74,15 +74,15 @@ namespace chess2
             this.panel1.Visible = false;
             this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
-            // pictureBox3
+            // gamePictureBox
             // 
-            this.pictureBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox3.Location = new System.Drawing.Point(12, 26);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(512, 512);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.gamePictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gamePictureBox.Location = new System.Drawing.Point(12, 26);
+            this.gamePictureBox.Name = "gamePictureBox";
+            this.gamePictureBox.Size = new System.Drawing.Size(512, 512);
+            this.gamePictureBox.TabIndex = 0;
+            this.gamePictureBox.TabStop = false;
+            this.gamePictureBox.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // groupBox1
             // 
@@ -301,6 +301,7 @@ namespace chess2
             // 
             // animationTimer
             // 
+            this.animationTimer.Interval = 50;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
             // animTestCheckBox
@@ -320,7 +321,7 @@ namespace chess2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 574);
             this.Controls.Add(this.animTestCheckBox);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.gamePictureBox);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox2);
@@ -337,7 +338,7 @@ namespace chess2
             this.Text = "Chess";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.onlineSettingsGroup.ResumeLayout(false);
@@ -376,7 +377,7 @@ namespace chess2
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox gamePictureBox;
         private System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.CheckBox animTestCheckBox;
     }
