@@ -16,7 +16,9 @@ namespace chess2
         public static bool againstBot = false;
         public static bool againstLocal = false;
         public static bool againstOnline = false;
-        
+
+
+
 
         public static void setSelection(int x, int y) //kill this.
         {

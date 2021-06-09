@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace chess2
 {
 
@@ -154,12 +154,61 @@ namespace chess2
             return Bmp;
         }
 
-        public static int[,] oldBoard = board.boardSquare;
+        public static int[,] oldBoard = new int[9,9];
+        public static void copyBoard()
+        {
+            for (int scanDifX = 0; scanDifX < 9; scanDifX++)
+            {
+                for (int scanDifY = 0; scanDifY < 9; scanDifY++)
+                {
+                    oldBoard[scanDifX, scanDifY] = board.boardSquare[scanDifX, scanDifY];
+                }
+            }
+
+
+
+        }
+
 
         public static Bitmap[] renderBitmapAnimation()
         {
-            Bitmap[] animation = new Bitmap[10];
+            Bitmap[] animation = new Bitmap[11];
 
+
+            int sourceX = 0;
+            int sourceY = 0;
+            int destX = 0;
+            int destY = 0;
+
+
+            for (int scanDifX = 0; scanDifX < 9; scanDifX++)
+            {
+                for (int scanDifY = 0; scanDifY < 9; scanDifY++)
+                {
+                    if(oldBoard[scanDifX,scanDifY] == board.boardSquare[scanDifX, scanDifY])
+                    {
+                     //   Debug.WriteLine("All is good at "+scanDifX+", "+scanDifY);
+                    }
+                    else
+                    {
+                     //   Debug.WriteLine("DiffX:" + scanDifX + " DiffY:" + scanDifY);
+                        if(board.boardSquare[scanDifX,scanDifY] == 0)
+                        {
+                            sourceX = scanDifX;
+                            sourceY = scanDifY;
+                        }
+                        else
+                        {
+                            destX = scanDifX;
+                            destY = scanDifY;
+                        }
+
+
+                    }
+
+                }
+            }
+            Debug.WriteLine(sourceX+", "+sourceY+" to "+destX+", "+destY);
 
 
             for (int frame = 0; frame <= 10; frame++)
@@ -222,7 +271,7 @@ namespace chess2
                 animation[frame]= Bmp;
             }
 
-
+            copyBoard();
             return animation;
         }
 

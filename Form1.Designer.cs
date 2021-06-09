@@ -342,7 +342,7 @@ namespace chess2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(787, 455);
+            this.pictureBox2.Location = new System.Drawing.Point(768, 455);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 100);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -355,7 +355,7 @@ namespace chess2
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
-            this.button4.Text = "bitmapTest";
+            this.button4.Text = "rendererTests";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
