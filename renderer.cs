@@ -43,7 +43,7 @@ namespace chess2
         public static void render(Panel panel)
         {
 
-
+            
 
 
 
@@ -54,8 +54,8 @@ namespace chess2
             SolidBrush YBrush = new SolidBrush(themeColorSelection);
 
             Graphics g = panel.CreateGraphics();
-            
-          //  g.FillRectangle(DGBrush, 0, 0, 64, 64);
+
+            //  g.FillRectangle(DGBrush, 0, 0, 64, 64);
 
             for (int fillerX = 1; fillerX < 9; fillerX++)
             {
@@ -64,17 +64,17 @@ namespace chess2
                     int myPiece = board.boardSquare[fillerX, fillerY];
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
 
-                    if ((fillerX + fillerY) %2 == 0)
+                    if ((fillerX + fillerY) % 2 == 0)
                     {
                         g.FillRectangle(LBrush, boardRect[fillerX, fillerY]);
-                        
+
                     }
                     else
                     {
                         g.FillRectangle(DBrush, boardRect[fillerX, fillerY]);
                     }
-                    
-                    if(Interface.selX==fillerX && Interface.selY == fillerY)
+
+                    if (Interface.selX == fillerX && Interface.selY == fillerY)
                     {
 
                         g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
@@ -83,15 +83,83 @@ namespace chess2
 
                     if (myPiece > 0 && myPiece < 13)
                     {
-                        
+
                         g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);
 
                     }
-                    
+
                 }
             }
 
         }
+        //---------------------------------------------------------------------NEW STUFF
+
+
+        public static Bitmap renderBitmap()
+        {
+            Bitmap Bmp = new Bitmap(512, 512);
+            using (Graphics gfx = Graphics.FromImage(Bmp))
+            using (SolidBrush brush = new SolidBrush(Color.DarkGoldenrod))
+            {
+                gfx.FillRectangle(brush, 0, 0, 512, 512);
+            }
+
+
+
+            checkForBitmaps();
+            Rectangle[,] boardRect = new Rectangle[9, 9];
+            SolidBrush DBrush = new SolidBrush(themeColorDark);
+            SolidBrush LBrush = new SolidBrush(themeColorLight);
+            SolidBrush YBrush = new SolidBrush(themeColorSelection);
+
+
+            Graphics g = Graphics.FromImage(Bmp);
+
+            //  g.FillRectangle(DGBrush, 0, 0, 64, 64);
+
+            for (int fillerX = 1; fillerX < 9; fillerX++)
+            {
+                for (int fillerY = 1; fillerY < 9; fillerY++)
+                {
+                    int myPiece = board.boardSquare[fillerX, fillerY];
+                    boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
+
+                    if ((fillerX + fillerY) % 2 == 0)
+                    {
+                        g.FillRectangle(LBrush, boardRect[fillerX, fillerY]);
+
+                    }
+                    else
+                    {
+                        g.FillRectangle(DBrush, boardRect[fillerX, fillerY]);
+                    }
+
+                    if (Interface.selX == fillerX && Interface.selY == fillerY)
+                    {
+
+                        g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
+                    }
+
+
+                    if (myPiece > 0 && myPiece < 13)
+                    {
+
+                        g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);
+
+                    }
+
+                }
+            }
+
+            return Bmp;
+        }
+
+
+        //-------------------------------------------------------------------------
+
+
+
+
 
 
 

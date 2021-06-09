@@ -42,6 +42,7 @@ namespace chess2
             Interface.setSelection(selX, selY);
 
             renderer.render(panel1);
+
         }
 
         private void Form1_Click(object sender, EventArgs e)
@@ -136,6 +137,12 @@ namespace chess2
             renderer.themeColorDark = Color.DarkGreen;
             renderer.themeColorLight = Color.LightGray;
             renderer.themeColorSelection = Color.LightYellow;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pictureBox2.Image = renderer.renderBitmap();
+
         }
     }
 }
