@@ -101,10 +101,10 @@ namespace chess2
             this.radioOnline.AutoSize = true;
             this.radioOnline.Location = new System.Drawing.Point(7, 73);
             this.radioOnline.Name = "radioOnline";
-            this.radioOnline.Size = new System.Drawing.Size(276, 19);
+            this.radioOnline.Size = new System.Drawing.Size(83, 19);
             this.radioOnline.TabIndex = 2;
             this.radioOnline.TabStop = true;
-            this.radioOnline.Text = "Play online (broken while I work on animations)";
+            this.radioOnline.Text = "Play online";
             this.radioOnline.UseVisualStyleBackColor = true;
             this.radioOnline.CheckedChanged += new System.EventHandler(this.radioOnline_CheckedChanged);
             // 
@@ -378,8 +378,8 @@ namespace chess2
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox gamePictureBox;
-        private System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.CheckBox animTestCheckBox;
+        public System.Windows.Forms.Timer animationTimer;
     }
 }
 

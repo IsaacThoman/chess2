@@ -180,7 +180,15 @@ namespace chess2
 
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            if (animationFrame >= 10) { animationFrame = 0; animationTimer.Enabled = false; return; gamePictureBox.Image = renderer.renderBitmap(); }
+            if (animationFrame >= 10) { 
+                animationFrame = 0; 
+                animationTimer.Enabled = false;
+                
+                gamePictureBox.Image = renderer.renderBitmap();
+                return;
+            }
+
+
             animationFrame+=1;
             gamePictureBox.Image = animation[animationFrame];
         }
@@ -203,6 +211,10 @@ namespace chess2
             {
                 animation = renderer.renderBitmapAnimation();
                 animationTimer.Enabled = true;
+            }
+            else
+            {
+                gamePictureBox.Image = renderer.renderBitmap();
             }
          //   gamePictureBox.Image =renderer.renderBitmap();
 
