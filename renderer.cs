@@ -25,7 +25,7 @@ namespace chess2
             {
                 piece[0] = new Bitmap(chess2.Properties.Resources._12);//this *should* be useless
 
-                piece[1] = new Bitmap(chess2.Properties.Resources._1);
+                piece[1] = new Bitmap(chess2.Properties.Resources.troll);
                 piece[2] = new Bitmap(chess2.Properties.Resources._2);
                 piece[3] = new Bitmap(chess2.Properties.Resources._3);
                 piece[4] = new Bitmap(chess2.Properties.Resources._4);
@@ -152,6 +152,78 @@ namespace chess2
             }
 
             return Bmp;
+        }
+
+        public static int[,] oldBoard = board.boardSquare;
+
+        public static Bitmap[] renderBitmapAnimation()
+        {
+            Bitmap[] animation = new Bitmap[10];
+
+
+
+            for (int frame = 0; frame <= 10; frame++)
+            {
+
+                Bitmap Bmp = new Bitmap(512, 512);
+                using (Graphics gfx = Graphics.FromImage(Bmp))
+                using (SolidBrush brush = new SolidBrush(Color.DarkGoldenrod))
+                {
+                    gfx.FillRectangle(brush, 0, 0, 512, 512);
+                }
+
+
+
+                checkForBitmaps();
+                Rectangle[,] boardRect = new Rectangle[9, 9];
+                SolidBrush DBrush = new SolidBrush(themeColorDark);
+                SolidBrush LBrush = new SolidBrush(themeColorLight);
+                SolidBrush YBrush = new SolidBrush(themeColorSelection);
+
+
+                Graphics g = Graphics.FromImage(Bmp);
+
+                //  g.FillRectangle(DGBrush, 0, 0, 64, 64);
+
+                for (int fillerX = 1; fillerX < 9; fillerX++)
+                {
+                    for (int fillerY = 1; fillerY < 9; fillerY++)
+                    {
+                        int myPiece = board.boardSquare[fillerX, fillerY];
+                        boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
+
+                        if ((fillerX + fillerY) % 2 == 0)
+                        {
+                            g.FillRectangle(LBrush, boardRect[fillerX, fillerY]);
+
+                        }
+                        else
+                        {
+                            g.FillRectangle(DBrush, boardRect[fillerX, fillerY]);
+                        }
+
+                        if (Interface.selX == fillerX && Interface.selY == fillerY)
+                        {
+
+                            g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
+                        }
+
+
+                        if (myPiece > 0 && myPiece < 13)
+                        {
+
+                            g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);
+
+                        }
+
+                    }
+                }
+
+                animation[frame]= Bmp;
+            }
+
+
+            return animation;
         }
 
 

@@ -340,7 +340,7 @@ namespace chess2
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(787, 455);
             this.pictureBox2.Name = "pictureBox2";
@@ -363,7 +363,7 @@ namespace chess2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 600);
+            this.ClientSize = new System.Drawing.Size(1015, 574);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.pictureBox2);

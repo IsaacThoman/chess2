@@ -24,7 +24,9 @@ namespace chess2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            renderer.render(panel1);
+            //     renderer.render(panel1);
+            pictureBox3.Image = renderer.renderBitmap();
+
         }
 
 
@@ -41,7 +43,8 @@ namespace chess2
            
             Interface.setSelection(selX, selY);
 
-            renderer.render(panel1);
+            //  renderer.render(panel1);
+                 // pictureBox3.Image = renderer.renderBitmap();
 
         }
 
@@ -59,7 +62,8 @@ namespace chess2
             timer1.Enabled = false;
             onlineSettingsGroup.Visible = false;
             board.resetBoard();
-            renderer.render(panel1);
+            //     renderer.render(panel1);
+          //  pictureBox3.Image = renderer.renderBitmap();
 
         }
 
@@ -71,7 +75,9 @@ namespace chess2
             timer1.Enabled = false;
             onlineSettingsGroup.Visible = false;
             board.resetBoard();
-            renderer.render(panel1);
+            //   renderer.render(panel1);
+         //   pictureBox3.Image = renderer.renderBitmap();
+
         }
 
         private void radioOnline_CheckedChanged(object sender, EventArgs e)
@@ -82,7 +88,9 @@ namespace chess2
             timer1.Enabled = true;
             onlineSettingsGroup.Visible = true;
             beanchat.pullBoard();
-            renderer.render(panel1);
+            //  renderer.render(panel1);
+  //          pictureBox3.Image = renderer.renderBitmap();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -94,14 +102,18 @@ namespace chess2
         {
             board.boardSquare=beanchat.createBoardFromString(textBox1.Text);
             Interface.whitesMove = beanchat.whitesMoveRecieved;
-            renderer.render(panel1);
+            //  renderer.render(panel1);
+   //         pictureBox3.Image = renderer.renderBitmap();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             beanchat.pullBoard();
 
-            renderer.render(panel1);
+            //  renderer.render(panel1);
+    //        pictureBox3.Image = renderer.renderBitmap();
+
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -121,7 +133,9 @@ namespace chess2
             {
                 board.resetBoard();
             }
-            renderer.render(panel1);
+            //     renderer.render(panel1);
+ //           pictureBox3.Image = renderer.renderBitmap();
+
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
@@ -141,7 +155,7 @@ namespace chess2
 
         private void button4_Click(object sender, EventArgs e)
         {
-            pictureBox2.Image = renderer.renderBitmap();
+   //         pictureBox2.Image = renderer.renderBitmap();
 
         }
 
