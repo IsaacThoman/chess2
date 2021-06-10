@@ -25,24 +25,22 @@ namespace chess2
         private void Form1_Load(object sender, EventArgs e)
         {
             //     renderer.render(panel1);
-            
 
-            if (chess2.Properties.Settings.Default.theme == 1)
-            {
-                renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
-                renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
-                renderer.themeColorSelection = Color.LightYellow;
-                radioButton3.Checked = true;
+            renderer.setTheme(chess2.Properties.Settings.Default.theme);
 
-    }
-            if (chess2.Properties.Settings.Default.theme == 0)
+            switch (chess2.Properties.Settings.Default.theme)
             {
-                renderer.themeColorDark = Color.DarkGreen;
-                renderer.themeColorLight = Color.LightGray;
-                renderer.themeColorSelection = Color.LightYellow;
-                radioButton2.Checked = true;
+                case 0:
+                    radioButton2.Checked = true;
+                    break;
+                case 1:
+                    radioButton3.Checked = true;
+                    break;
+
             }
 
+
+                    renderer.copyBoard();
             gamePictureBox.Image = renderer.renderBitmap();
             capturedPiecesPictureBox.Image = renderer.piece[0];
         }
@@ -161,9 +159,7 @@ namespace chess2
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
-            renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
-            renderer.themeColorSelection = Color.LightYellow;
+            renderer.setTheme(1);
             chess2.Properties.Settings.Default.theme = 1;
             Properties.Settings.Default.Save();
             gamePictureBox.Image = renderer.renderBitmap();
@@ -173,9 +169,8 @@ namespace chess2
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            renderer.themeColorDark = Color.DarkGreen;
-            renderer.themeColorLight = Color.LightGray;
-            renderer.themeColorSelection = Color.LightYellow;
+
+            renderer.setTheme(0);
             chess2.Properties.Settings.Default.theme = 0;
             Properties.Settings.Default.Save();
             gamePictureBox.Image = renderer.renderBitmap();

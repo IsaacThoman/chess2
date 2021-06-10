@@ -12,9 +12,7 @@ namespace chess2
 
     class renderer
     {
-    //    public static Color themeColorDark = Color.DarkGreen;
-    //   public static Color themeColorLight = Color.LightGray;
-    //    public static Color themeColorSelection = Color.LightYellow;
+
     
 
         public static Color themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
@@ -25,7 +23,23 @@ namespace chess2
 
         public static Bitmap[] piece = new Bitmap[13];
         public static bool bitmapsLoaded = false;
+        public static void setTheme(int theme)
+        {
 
+            switch (theme)
+            {
+                case 0:
+                    renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#6E9C41");
+                    renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#dee8d5");
+                    themeColorSelection = Color.LightYellow;
+                    break;
+                case 1:
+                    renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
+                    renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
+                    renderer.themeColorSelection = Color.LightYellow;
+                    break;
+            }
+        }
         public static void checkForBitmaps()
 
         {
