@@ -15,7 +15,7 @@ namespace chess2
     //    public static Color themeColorDark = Color.DarkGreen;
     //   public static Color themeColorLight = Color.LightGray;
     //    public static Color themeColorSelection = Color.LightYellow;
-
+    
 
         public static Color themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
         public static Color themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
@@ -32,7 +32,7 @@ namespace chess2
             if (bitmapsLoaded == false)
             {
                 piece[0] = new Bitmap(chess2.Properties.Resources.troll);//this *should* be useless
-
+                
                 piece[1] = new Bitmap(chess2.Properties.Resources._1);
                 piece[2] = new Bitmap(chess2.Properties.Resources._2);
                 piece[3] = new Bitmap(chess2.Properties.Resources._3);

@@ -25,8 +25,26 @@ namespace chess2
         private void Form1_Load(object sender, EventArgs e)
         {
             //     renderer.render(panel1);
-            gamePictureBox.Image = renderer.renderBitmap();
+            
 
+            if (chess2.Properties.Settings.Default.theme == 1)
+            {
+                renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
+                renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
+                renderer.themeColorSelection = Color.LightYellow;
+                radioButton3.Checked = true;
+
+    }
+            if (chess2.Properties.Settings.Default.theme == 0)
+            {
+                renderer.themeColorDark = Color.DarkGreen;
+                renderer.themeColorLight = Color.LightGray;
+                renderer.themeColorSelection = Color.LightYellow;
+                radioButton2.Checked = true;
+            }
+
+            gamePictureBox.Image = renderer.renderBitmap();
+            capturedPiecesPictureBox.Image = renderer.piece[0];
         }
 
 
@@ -146,6 +164,10 @@ namespace chess2
             renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
             renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
             renderer.themeColorSelection = Color.LightYellow;
+            chess2.Properties.Settings.Default.theme = 1;
+            Properties.Settings.Default.Save();
+            gamePictureBox.Image = renderer.renderBitmap();
+
         }
         
 
@@ -154,6 +176,9 @@ namespace chess2
             renderer.themeColorDark = Color.DarkGreen;
             renderer.themeColorLight = Color.LightGray;
             renderer.themeColorSelection = Color.LightYellow;
+            chess2.Properties.Settings.Default.theme = 0;
+            Properties.Settings.Default.Save();
+            gamePictureBox.Image = renderer.renderBitmap();
         }
 
 
@@ -167,9 +192,10 @@ namespace chess2
 
         private void button4_Click(object sender, EventArgs e)
         {
-        //    pictureBox2.Image = renderer.renderBitmap();
-        //    Bitmap[] test = renderer.renderBitmapAnimation();
-            animation = renderer.renderBitmapAnimation();
+            animationTimer.Enabled = true;
+            //    pictureBox2.Image = renderer.renderBitmap();
+            //    Bitmap[] test = renderer.renderBitmapAnimation();
+            //   animation = renderer.renderBitmapAnimation();
         }
 
         private void animationTimer_Tick(object sender, EventArgs e)
@@ -216,15 +242,7 @@ namespace chess2
 
         private void animTestCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (animTestCheckBox.Checked)
-            {
-                animationTimer.Enabled = true;
 
-            }
-            else
-            {
-                animationTimer.Enabled = false;
-            }
         }
     }
 }

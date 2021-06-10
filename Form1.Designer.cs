@@ -44,7 +44,7 @@ namespace chess2
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button3 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.capturedPiecesPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -53,12 +53,11 @@ namespace chess2
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
-            this.animTestCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.capturedPiecesPictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -212,15 +211,15 @@ namespace chess2
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // pictureBox1
+            // capturedPiecesPictureBox
             // 
-            this.pictureBox1.Image = global::chess2.Properties.Resources.troll;
-            this.pictureBox1.Location = new System.Drawing.Point(531, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 512);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.capturedPiecesPictureBox.Image = global::chess2.Properties.Resources.troll;
+            this.capturedPiecesPictureBox.Location = new System.Drawing.Point(531, 26);
+            this.capturedPiecesPictureBox.Name = "capturedPiecesPictureBox";
+            this.capturedPiecesPictureBox.Size = new System.Drawing.Size(64, 512);
+            this.capturedPiecesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.capturedPiecesPictureBox.TabIndex = 7;
+            this.capturedPiecesPictureBox.TabStop = false;
             // 
             // groupBox2
             // 
@@ -304,29 +303,17 @@ namespace chess2
             this.animationTimer.Interval = 50;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
-            // animTestCheckBox
-            // 
-            this.animTestCheckBox.AutoSize = true;
-            this.animTestCheckBox.Location = new System.Drawing.Point(606, 543);
-            this.animTestCheckBox.Name = "animTestCheckBox";
-            this.animTestCheckBox.Size = new System.Drawing.Size(105, 19);
-            this.animTestCheckBox.TabIndex = 9;
-            this.animTestCheckBox.Text = "Play animation";
-            this.animTestCheckBox.UseVisualStyleBackColor = true;
-            this.animTestCheckBox.CheckedChanged += new System.EventHandler(this.animTestCheckBox_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 574);
-            this.Controls.Add(this.animTestCheckBox);
             this.Controls.Add(this.gamePictureBox);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.capturedPiecesPictureBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.onlineSettingsGroup);
             this.Controls.Add(this.button2);
@@ -344,7 +331,7 @@ namespace chess2
             this.onlineSettingsGroup.ResumeLayout(false);
             this.onlineSettingsGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.capturedPiecesPictureBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -369,7 +356,7 @@ namespace chess2
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox capturedPiecesPictureBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioButton3;
@@ -378,7 +365,6 @@ namespace chess2
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox gamePictureBox;
-        private System.Windows.Forms.CheckBox animTestCheckBox;
         public System.Windows.Forms.Timer animationTimer;
     }
 }
