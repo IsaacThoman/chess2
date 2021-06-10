@@ -280,10 +280,15 @@ namespace chess2
                 {
                     int myPiece = board.boardSquare[fillerX, fillerY];
 
-                    if(destX == fillerX && destY == fillerY)
+                    if (destX == fillerX && destY == fillerY)
                     {
-                        myPiece = 0; //hide moved piece from bottom layer, it's not needed
+                     //   myPiece = 0; //hide moved piece from bottom layer, it's not needed
+                        myPiece = oldBoard[destX,destY]; //render old piece underneath capturer instead
+
+
                     }
+
+
 
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
 
