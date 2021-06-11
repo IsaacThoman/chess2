@@ -31,10 +31,13 @@ namespace chess2
             switch (chess2.Properties.Settings.Default.theme)
             {
                 case 0:
-                    radioButton2.Checked = true;
+                    themeDefaultRadioBtn.Checked = true;
                     break;
                 case 1:
-                    radioButton3.Checked = true;
+                    themeGreenRadioBtn.Checked = true;
+                    break;
+                case 2:
+                    themeIcySeaRadioBtn.Checked = true;
                     break;
 
             }
@@ -159,21 +162,28 @@ namespace chess2
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            renderer.setTheme(1);
-            chess2.Properties.Settings.Default.theme = 1;
-            Properties.Settings.Default.Save();
-            gamePictureBox.Image = renderer.renderBitmap();
+            if (themeIcySeaRadioBtn.Checked)
+            {
+                renderer.setTheme(2);
+                chess2.Properties.Settings.Default.theme = 2;
+                Properties.Settings.Default.Save();
+                gamePictureBox.Image = renderer.renderBitmap();
+
+            }
 
         }
         
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            if (themeGreenRadioBtn.Checked)
+            {
+                renderer.setTheme(1);
+                chess2.Properties.Settings.Default.theme = 1;
+                Properties.Settings.Default.Save();
+                gamePictureBox.Image = renderer.renderBitmap();
+            }
 
-            renderer.setTheme(0);
-            chess2.Properties.Settings.Default.theme = 0;
-            Properties.Settings.Default.Save();
-            gamePictureBox.Image = renderer.renderBitmap();
         }
 
 
@@ -238,6 +248,17 @@ namespace chess2
         private void animTestCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void themeDefaultRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (themeDefaultRadioBtn.Checked)
+            {
+                renderer.setTheme(0);
+                chess2.Properties.Settings.Default.theme = 0;
+                Properties.Settings.Default.Save();
+                gamePictureBox.Image = renderer.renderBitmap();
+            }
         }
     }
 }

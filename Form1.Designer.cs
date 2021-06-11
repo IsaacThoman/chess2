@@ -47,8 +47,9 @@ namespace chess2
             this.capturedPiecesPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.themeDefaultRadioBtn = new System.Windows.Forms.RadioButton();
+            this.themeIcySeaRadioBtn = new System.Windows.Forms.RadioButton();
+            this.themeGreenRadioBtn = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -233,8 +234,9 @@ namespace chess2
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Controls.Add(this.themeDefaultRadioBtn);
+            this.groupBox3.Controls.Add(this.themeIcySeaRadioBtn);
+            this.groupBox3.Controls.Add(this.themeGreenRadioBtn);
             this.groupBox3.Controls.Add(this.radioButton1);
             this.groupBox3.Location = new System.Drawing.Point(7, 22);
             this.groupBox3.Name = "groupBox3";
@@ -243,29 +245,40 @@ namespace chess2
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Theme";
             // 
-            // radioButton3
+            // themeDefaultRadioBtn
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(7, 49);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(61, 19);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Icy Sea";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.themeDefaultRadioBtn.AutoSize = true;
+            this.themeDefaultRadioBtn.Location = new System.Drawing.Point(6, 22);
+            this.themeDefaultRadioBtn.Name = "themeDefaultRadioBtn";
+            this.themeDefaultRadioBtn.Size = new System.Drawing.Size(63, 19);
+            this.themeDefaultRadioBtn.TabIndex = 4;
+            this.themeDefaultRadioBtn.Text = "Default";
+            this.themeDefaultRadioBtn.UseVisualStyleBackColor = true;
+            this.themeDefaultRadioBtn.CheckedChanged += new System.EventHandler(this.themeDefaultRadioBtn_CheckedChanged);
             // 
-            // radioButton2
+            // themeIcySeaRadioBtn
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 23);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(56, 19);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.Text = "Green";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.themeIcySeaRadioBtn.AutoSize = true;
+            this.themeIcySeaRadioBtn.Checked = true;
+            this.themeIcySeaRadioBtn.Location = new System.Drawing.Point(6, 72);
+            this.themeIcySeaRadioBtn.Name = "themeIcySeaRadioBtn";
+            this.themeIcySeaRadioBtn.Size = new System.Drawing.Size(61, 19);
+            this.themeIcySeaRadioBtn.TabIndex = 3;
+            this.themeIcySeaRadioBtn.TabStop = true;
+            this.themeIcySeaRadioBtn.Text = "Icy Sea";
+            this.themeIcySeaRadioBtn.UseVisualStyleBackColor = true;
+            this.themeIcySeaRadioBtn.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // themeGreenRadioBtn
+            // 
+            this.themeGreenRadioBtn.AutoSize = true;
+            this.themeGreenRadioBtn.Location = new System.Drawing.Point(6, 47);
+            this.themeGreenRadioBtn.Name = "themeGreenRadioBtn";
+            this.themeGreenRadioBtn.Size = new System.Drawing.Size(56, 19);
+            this.themeGreenRadioBtn.TabIndex = 2;
+            this.themeGreenRadioBtn.Text = "Green";
+            this.themeGreenRadioBtn.UseVisualStyleBackColor = true;
+            this.themeGreenRadioBtn.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -359,13 +372,14 @@ namespace chess2
         private System.Windows.Forms.PictureBox capturedPiecesPictureBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton themeIcySeaRadioBtn;
+        private System.Windows.Forms.RadioButton themeGreenRadioBtn;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox gamePictureBox;
         public System.Windows.Forms.Timer animationTimer;
+        private System.Windows.Forms.RadioButton themeDefaultRadioBtn;
     }
 }
 

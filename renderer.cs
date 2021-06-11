@@ -29,11 +29,16 @@ namespace chess2
             switch (theme)
             {
                 case 0:
+                    renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#856730");
+                    renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#e0d9cc");
+                    themeColorSelection = Color.LightYellow;
+                    break;
+                case 1:
                     renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#6E9C41");
                     renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#dee8d5");
                     themeColorSelection = Color.LightYellow;
                     break;
-                case 1:
+                case 2:
                     renderer.themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
                     renderer.themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
                     renderer.themeColorSelection = Color.LightYellow;
