@@ -91,7 +91,7 @@ namespace chess2
                     int myPiece = board.boardSquare[fillerX, fillerY];
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
 
-                    if ((fillerX + fillerY) % 2 == 0)
+                    if ((fillerX + fillerY) % 2 == 1)
                     {
                         g.FillRectangle(LBrush, boardRect[fillerX, fillerY]);
 
@@ -150,7 +150,7 @@ namespace chess2
                     int myPiece = board.boardSquare[fillerX, fillerY];
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
 
-                    if ((fillerX + fillerY) % 2 == 0)
+                    if ((fillerX + fillerY) % 2 == 1)
                     {
                         g.FillRectangle(LBrush, boardRect[fillerX, fillerY]);
 
@@ -310,7 +310,7 @@ namespace chess2
 
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
 
-                    if ((fillerX + fillerY) % 2 == 0)
+                    if ((fillerX + fillerY) % 2 == 1)
                     {
                         g.FillRectangle(LBrush, boardRect[fillerX, fillerY]);
 

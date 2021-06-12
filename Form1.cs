@@ -139,6 +139,7 @@ namespace chess2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            beanchat.channelSet = (int)numericUpDown1.Value;
             beanchat.pullBoard();
             
             animation = renderer.renderBitmapAnimation();
@@ -301,6 +302,9 @@ namespace chess2
             renderer.piece[10] = renderer.piece[0];
             renderer.piece[11] = renderer.piece[0];
             renderer.piece[12] = renderer.piece[0];
+            gamePictureBox.BackColor = Color.Red;
+            capturedPiecesPictureBox.BackColor = Color.Red;
+
         }
     }
 }
