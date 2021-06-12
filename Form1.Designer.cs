@@ -30,7 +30,6 @@ namespace chess2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.gamePictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioOnline = new System.Windows.Forms.RadioButton();
@@ -41,6 +40,7 @@ namespace chess2
             this.button2 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.onlineSettingsGroup = new System.Windows.Forms.GroupBox();
+            this.userIDLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button3 = new System.Windows.Forms.Button();
@@ -51,7 +51,6 @@ namespace chess2
             this.themeIcySeaRadioBtn = new System.Windows.Forms.RadioButton();
             this.themeGreenRadioBtn = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
@@ -61,18 +60,7 @@ namespace chess2
             ((System.ComponentModel.ISupportInitialize)(this.capturedPiecesPictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Location = new System.Drawing.Point(906, 455);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(512, 512);
-            this.panel1.TabIndex = 0;
-            this.panel1.Visible = false;
-            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // gamePictureBox
             // 
@@ -166,6 +154,7 @@ namespace chess2
             // 
             // onlineSettingsGroup
             // 
+            this.onlineSettingsGroup.Controls.Add(this.userIDLabel);
             this.onlineSettingsGroup.Controls.Add(this.label1);
             this.onlineSettingsGroup.Controls.Add(this.numericUpDown1);
             this.onlineSettingsGroup.Location = new System.Drawing.Point(606, 294);
@@ -174,6 +163,15 @@ namespace chess2
             this.onlineSettingsGroup.TabIndex = 6;
             this.onlineSettingsGroup.TabStop = false;
             this.onlineSettingsGroup.Text = "Online Settings";
+            // 
+            // userIDLabel
+            // 
+            this.userIDLabel.AutoSize = true;
+            this.userIDLabel.Location = new System.Drawing.Point(7, 72);
+            this.userIDLabel.Name = "userIDLabel";
+            this.userIDLabel.Size = new System.Drawing.Size(75, 15);
+            this.userIDLabel.TabIndex = 2;
+            this.userIDLabel.Text = "Your ID: 0000";
             // 
             // label1
             // 
@@ -221,6 +219,7 @@ namespace chess2
             this.capturedPiecesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.capturedPiecesPictureBox.TabIndex = 7;
             this.capturedPiecesPictureBox.TabStop = false;
+            this.capturedPiecesPictureBox.Click += new System.EventHandler(this.capturedPiecesPictureBox_Click);
             // 
             // groupBox2
             // 
@@ -290,17 +289,6 @@ namespace chess2
             this.radioButton1.Text = "radioButton1";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(768, 455);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(687, 455);
@@ -323,9 +311,7 @@ namespace chess2
             this.ClientSize = new System.Drawing.Size(1015, 574);
             this.Controls.Add(this.gamePictureBox);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.capturedPiecesPictureBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.onlineSettingsGroup);
@@ -348,15 +334,12 @@ namespace chess2
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioOnline;
         private System.Windows.Forms.RadioButton radioComputer;
@@ -375,11 +358,11 @@ namespace chess2
         private System.Windows.Forms.RadioButton themeIcySeaRadioBtn;
         private System.Windows.Forms.RadioButton themeGreenRadioBtn;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox gamePictureBox;
         public System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.RadioButton themeDefaultRadioBtn;
+        private System.Windows.Forms.Label userIDLabel;
     }
 }
 

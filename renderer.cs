@@ -103,7 +103,6 @@ namespace chess2
 
                     if (Interface.selX == fillerX && Interface.selY == fillerY)
                     {
-
                         g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
                     }
 
@@ -362,25 +361,91 @@ namespace chess2
 
         public static Bitmap renderCapturesBar()
         {
-            Bitmap capturesBar = new Bitmap(512, 512);
+            Bitmap capturesBar = new Bitmap(64, 512);
             using (Graphics gr = Graphics.FromImage(capturesBar))
             {
-                //   gr.SmoothingMode = SmoothingMode.AntiAlias;
+                Rectangle backRect = new Rectangle(0, 0, 64, 512);
+                SolidBrush bg = new SolidBrush(renderer.themeColorLight);
+                SolidBrush darkBrush = new SolidBrush(renderer.themeColorDark);
+                gr.FillRectangle(bg, backRect);
 
-               
+                int[] piecesCaptured = new int[13];
+                int[] piecesSupposedToBeThere = new int[13];
+                int totalPiecesCaptured = 32;
+                piecesCaptured[1] = 0;
+                piecesCaptured[2] = 0;
+                piecesCaptured[3] = 0;
+                piecesCaptured[4] = 0;
+                piecesCaptured[5] = 0;
+                piecesCaptured[6] = 0;
+                piecesCaptured[7] = 0;
+                piecesCaptured[8] = 0;
+                piecesCaptured[9] = 0;
+                piecesCaptured[10] = 0;
+                piecesCaptured[11] = 0;
+                piecesCaptured[12] = 0;
 
-                Rectangle rect1 = new Rectangle(0, 0, 320, 240);
-                Rectangle rect2 = new Rectangle(320, 0, 320, 240);
-                Rectangle rect3 = new Rectangle(0, 240, 320, 240);
 
-            //    gr.DrawImage(camera1, rect1);
+                piecesSupposedToBeThere[1] = 8;
+                piecesSupposedToBeThere[2] = 2;
+                piecesSupposedToBeThere[3] = 2;
+                piecesSupposedToBeThere[4] = 2;
+                piecesSupposedToBeThere[5] = 1;
+                piecesSupposedToBeThere[6] = 1;
+                piecesSupposedToBeThere[7] = 8;
+                piecesSupposedToBeThere[8] = 2;
+                piecesSupposedToBeThere[9] =2;
+                piecesSupposedToBeThere[10] = 2;
+                piecesSupposedToBeThere[11] = 1;
+                piecesSupposedToBeThere[12] = 1;
 
-            }
-            //    pictureBox1.Image = testBitmap;
+
+                for (int fillerX = 1; fillerX < 9; fillerX++)
+                {
+                    for (int fillerY = 1; fillerY < 9; fillerY++)
+                    {
+                        if (board.boardSquare[fillerX, fillerY] > 0)
+                        {
+
+                            piecesCaptured[board.boardSquare[fillerX, fillerY]] += 1;
+                            totalPiecesCaptured += 0-1;
+                        }
+                    }
+                    
+                }
+                for (int scanLoop = 1; scanLoop < 13; scanLoop++)
+                {
+                    piecesCaptured[scanLoop] = piecesSupposedToBeThere[scanLoop] - piecesCaptured[scanLoop];
+                    Debug.WriteLine("missing: " + piecesCaptured[scanLoop]);
+                }
+
+                for (int renderPiece = 1; renderPiece <= (totalPiecesCaptured); renderPiece++)
+                {
+                    int rectPosition = ((512 / (totalPiecesCaptured+1))*renderPiece)-32;
+                    Rectangle pieceRect = new Rectangle(0,rectPosition,64,64);
+                   int pieceToRender = 0;
+                    for (int scanLoop = 1; scanLoop < 13; scanLoop++)
+                    {
+                        if (piecesCaptured[scanLoop]>0)
+                        {
+                            pieceToRender = scanLoop;
+                        }
+                    }
+                    piecesCaptured[pieceToRender] += 0 - 1;
+
+                    //    gr.FillRectangle(darkBrush, pieceRect);
+                    gr.DrawImage(piece[pieceToRender], pieceRect);
+                }
+
+
+                }
 
             return capturesBar;
 
         }
+
+       
+
 
         public int test1()
         {

@@ -13,6 +13,8 @@ namespace chess2
     class beanchat
     {
 
+        public static int userID = chess2.Properties.Settings.Default.userid;
+
         public static bool whitesMoveRecieved = false;
         public static int channelSet = 1;
 

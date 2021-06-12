@@ -24,6 +24,15 @@ namespace chess2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (chess2.Properties.Settings.Default.userid == 1111)
+            {
+                Random r2 = new Random();
+                int rInt2 = r2.Next(1000, 9999);
+                chess2.Properties.Settings.Default.userid = rInt2;
+                Properties.Settings.Default.Save();
+            }
+            beanchat.userID = chess2.Properties.Settings.Default.userid;
+            userIDLabel.Text = "Your ID: "+beanchat.userID.ToString();
             //     renderer.render(panel1);
 
             renderer.setTheme(chess2.Properties.Settings.Default.theme);
@@ -45,7 +54,8 @@ namespace chess2
 
                     renderer.copyBoard();
             gamePictureBox.Image = renderer.renderBitmap();
-            capturedPiecesPictureBox.Image = renderer.piece[0];
+            capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+           // capturedPiecesPictureBox.Image = renderer.piece[0];
         }
 
 
@@ -55,12 +65,12 @@ namespace chess2
 
             
 
-            var relativePoint = this.PointToClient(Cursor.Position);
+       //     var relativePoint = this.PointToClient(Cursor.Position);
 
-            int selX =  (relativePoint.X-panel1.Location.X) / 64 + 1;
-            int selY = 0 - (relativePoint.Y - panel1.Location.Y) / 64 + 8;
+        //    int selX =  (relativePoint.X-panel1.Location.X) / 64 + 1;
+          //  int selY = 0 - (relativePoint.Y - panel1.Location.Y) / 64 + 8;
            
-            Interface.setSelection(selX, selY);
+         //   Interface.setSelection(selX, selY);
 
             //  renderer.render(panel1);
                  // pictureBox3.Image = renderer.renderBitmap();
@@ -168,6 +178,7 @@ namespace chess2
                 chess2.Properties.Settings.Default.theme = 2;
                 Properties.Settings.Default.Save();
                 gamePictureBox.Image = renderer.renderBitmap();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
 
             }
 
@@ -182,6 +193,7 @@ namespace chess2
                 chess2.Properties.Settings.Default.theme = 1;
                 Properties.Settings.Default.Save();
                 gamePictureBox.Image = renderer.renderBitmap();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
             }
 
         }
@@ -210,12 +222,14 @@ namespace chess2
                 animationTimer.Enabled = false;
                 
                 gamePictureBox.Image = renderer.renderBitmap();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
                 return;
             }
 
 
             animationFrame+=1;
             gamePictureBox.Image = animation[animationFrame];
+          //  capturedPiecesPictureBox.Image = renderer.renderCapturesBar();   that's stupid
         }
 
 
@@ -240,6 +254,7 @@ namespace chess2
             else
             {
                 gamePictureBox.Image = renderer.renderBitmap();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
             }
          //   gamePictureBox.Image =renderer.renderBitmap();
 
@@ -258,7 +273,13 @@ namespace chess2
                 chess2.Properties.Settings.Default.theme = 0;
                 Properties.Settings.Default.Save();
                 gamePictureBox.Image = renderer.renderBitmap();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
             }
+        }
+
+        private void capturedPiecesPictureBox_Click(object sender, EventArgs e)
+        {
+            capturedPiecesPictureBox.Image =  renderer.renderCapturesBar();
         }
     }
 }

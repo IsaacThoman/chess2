@@ -34,5 +34,17 @@ namespace chess2.Properties {
                 this["theme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1111")]
+        public int userid {
+            get {
+                return ((int)(this["userid"]));
+            }
+            set {
+                this["userid"] = value;
+            }
+        }
     }
 }
