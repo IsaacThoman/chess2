@@ -75,12 +75,12 @@ namespace chess2
 
         public Bitmap fileDialog()
         {
-         
+
             var filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-               // openFileDialog.InitialDirectory = "c:\\";
+                // openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "Image Files(*.PNG;*.BMP;*.JPG)|*.PNG;*.BMP;*.JPG";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
@@ -91,8 +91,12 @@ namespace chess2
                     filePath = openFileDialog.FileName;
                 }
             }
-
-            Bitmap bitmap = (Bitmap)System.Drawing.Image.FromFile(filePath);
+            Bitmap bitmap = renderer.piece[0];
+            if (filePath.Length > 1)
+            {
+                bitmap = (Bitmap)System.Drawing.Image.FromFile(filePath);
+            }
+            
             return bitmap;
         }
 
@@ -244,6 +248,25 @@ namespace chess2
             renderer.piece[10] = renderer.piece[0];
             renderer.piece[11] = renderer.piece[0];
             renderer.piece[12] = renderer.piece[0];
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Bitmap batchImg = fileDialog();
+            renderer.piece[0] = batchImg;
+            renderer.piece[1] = batchImg;
+            renderer.piece[2] = batchImg;
+            renderer.piece[3] = batchImg;
+            renderer.piece[4] = batchImg;
+            renderer.piece[5] = batchImg;
+            renderer.piece[6] = batchImg;
+            renderer.piece[7] = batchImg;
+            renderer.piece[8] = batchImg;
+            renderer.piece[9] = batchImg;
+            renderer.piece[10] = batchImg;
+            renderer.piece[11] = batchImg;
+            renderer.piece[12] = batchImg;
+
         }
     }
 }
