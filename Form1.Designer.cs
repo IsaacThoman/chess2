@@ -53,7 +53,8 @@ namespace chess2
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
-            this.trollfacelolhaBtn = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.designBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -61,6 +62,7 @@ namespace chess2
             ((System.ComponentModel.ISupportInitialize)(this.capturedPiecesPictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // gamePictureBox
@@ -123,7 +125,7 @@ namespace chess2
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(606, 484);
+            this.button1.Location = new System.Drawing.Point(6, 51);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -133,14 +135,14 @@ namespace chess2
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(606, 513);
+            this.textBox1.Location = new System.Drawing.Point(6, 80);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 4;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(687, 484);
+            this.button2.Location = new System.Drawing.Point(87, 51);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -160,7 +162,7 @@ namespace chess2
             this.onlineSettingsGroup.Controls.Add(this.numericUpDown1);
             this.onlineSettingsGroup.Location = new System.Drawing.Point(606, 294);
             this.onlineSettingsGroup.Name = "onlineSettingsGroup";
-            this.onlineSettingsGroup.Size = new System.Drawing.Size(397, 155);
+            this.onlineSettingsGroup.Size = new System.Drawing.Size(397, 106);
             this.onlineSettingsGroup.TabIndex = 6;
             this.onlineSettingsGroup.TabStop = false;
             this.onlineSettingsGroup.Text = "Online Settings";
@@ -203,7 +205,7 @@ namespace chess2
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(606, 455);
+            this.button3.Location = new System.Drawing.Point(6, 22);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
@@ -292,7 +294,7 @@ namespace chess2
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(687, 455);
+            this.button4.Location = new System.Drawing.Point(87, 22);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 8;
@@ -305,31 +307,41 @@ namespace chess2
             this.animationTimer.Interval = 50;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
-            // trollfacelolhaBtn
+            // groupBox4
             // 
-            this.trollfacelolhaBtn.Location = new System.Drawing.Point(768, 455);
-            this.trollfacelolhaBtn.Name = "trollfacelolhaBtn";
-            this.trollfacelolhaBtn.Size = new System.Drawing.Size(75, 23);
-            this.trollfacelolhaBtn.TabIndex = 9;
-            this.trollfacelolhaBtn.Text = "a funny joke";
-            this.trollfacelolhaBtn.UseVisualStyleBackColor = true;
-            this.trollfacelolhaBtn.Click += new System.EventHandler(this.trollfacelolhaBtn_Click);
+            this.groupBox4.Controls.Add(this.designBtn);
+            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Location = new System.Drawing.Point(606, 406);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(397, 132);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Debug Options";
+            // 
+            // designBtn
+            // 
+            this.designBtn.Location = new System.Drawing.Point(168, 22);
+            this.designBtn.Name = "designBtn";
+            this.designBtn.Size = new System.Drawing.Size(75, 23);
+            this.designBtn.TabIndex = 10;
+            this.designBtn.Text = "Designer";
+            this.designBtn.UseVisualStyleBackColor = true;
+            this.designBtn.Click += new System.EventHandler(this.designBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 554);
-            this.Controls.Add(this.trollfacelolhaBtn);
+            this.ClientSize = new System.Drawing.Size(1015, 552);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.gamePictureBox);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.capturedPiecesPictureBox);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.onlineSettingsGroup);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.ShowIcon = false;
@@ -346,8 +358,9 @@ namespace chess2
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -375,7 +388,8 @@ namespace chess2
         public System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.RadioButton themeDefaultRadioBtn;
         private System.Windows.Forms.Label userIDLabel;
-        private System.Windows.Forms.Button trollfacelolhaBtn;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button designBtn;
     }
 }
 

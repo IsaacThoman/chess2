@@ -284,27 +284,16 @@ namespace chess2
             capturedPiecesPictureBox.Image =  renderer.renderCapturesBar();
         }
 
-        private void trollfacelolhaBtn_Click(object sender, EventArgs e)
+      
+        public static Form firstForm = Form1.ActiveForm;
+
+        private void designBtn_Click(object sender, EventArgs e)
         {
-            gamePictureBox.Image = renderer.piece[0];
-            capturedPiecesPictureBox.Image = renderer.piece[0];
-            gamePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            renderer.piece[1] = renderer.piece[0];
-            renderer.piece[2] = renderer.piece[0];
-            renderer.piece[3] = renderer.piece[0];
-            renderer.piece[4] = renderer.piece[0];
-            renderer.piece[5] = renderer.piece[0];
-            renderer.piece[6] = renderer.piece[0];
-            renderer.piece[7] = renderer.piece[0];
-            renderer.piece[8] = renderer.piece[0];
-            renderer.piece[9] = renderer.piece[0];
-            renderer.piece[10] = renderer.piece[0];
-            renderer.piece[11] = renderer.piece[0];
-            renderer.piece[12] = renderer.piece[0];
-            gamePictureBox.BackColor = Color.Red;
-            capturedPiecesPictureBox.BackColor = Color.Red;
-
+            Form form2 = new designer();
+            
+            firstForm.Hide();
+            form2.Show();
+            
         }
     }
 }
