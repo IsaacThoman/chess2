@@ -91,9 +91,10 @@ namespace chess2
             timer1.Enabled = false;
             onlineSettingsGroup.Visible = false;
             board.resetBoard();
+            
             //     renderer.render(panel1);
-          //  pictureBox3.Image = renderer.renderBitmap();
-
+            gamePictureBox.Image = renderer.renderBitmap();
+            capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
         }
 
         private void radioComputer_CheckedChanged(object sender, EventArgs e)
@@ -203,7 +204,7 @@ namespace chess2
 
 
 
-
+        //
         public static Bitmap[] animation = new Bitmap[11];
         public static int animationFrame = 1;
 
@@ -280,6 +281,26 @@ namespace chess2
         private void capturedPiecesPictureBox_Click(object sender, EventArgs e)
         {
             capturedPiecesPictureBox.Image =  renderer.renderCapturesBar();
+        }
+
+        private void trollfacelolhaBtn_Click(object sender, EventArgs e)
+        {
+            gamePictureBox.Image = renderer.piece[0];
+            capturedPiecesPictureBox.Image = renderer.piece[0];
+            gamePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            renderer.piece[1] = renderer.piece[0];
+            renderer.piece[2] = renderer.piece[0];
+            renderer.piece[3] = renderer.piece[0];
+            renderer.piece[4] = renderer.piece[0];
+            renderer.piece[5] = renderer.piece[0];
+            renderer.piece[6] = renderer.piece[0];
+            renderer.piece[7] = renderer.piece[0];
+            renderer.piece[8] = renderer.piece[0];
+            renderer.piece[9] = renderer.piece[0];
+            renderer.piece[10] = renderer.piece[0];
+            renderer.piece[11] = renderer.piece[0];
+            renderer.piece[12] = renderer.piece[0];
         }
     }
 }

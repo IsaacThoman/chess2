@@ -53,6 +53,7 @@ namespace chess2
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
+            this.trollfacelolhaBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -304,11 +305,22 @@ namespace chess2
             this.animationTimer.Interval = 50;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
+            // trollfacelolhaBtn
+            // 
+            this.trollfacelolhaBtn.Location = new System.Drawing.Point(768, 455);
+            this.trollfacelolhaBtn.Name = "trollfacelolhaBtn";
+            this.trollfacelolhaBtn.Size = new System.Drawing.Size(75, 23);
+            this.trollfacelolhaBtn.TabIndex = 9;
+            this.trollfacelolhaBtn.Text = "a funny joke";
+            this.trollfacelolhaBtn.UseVisualStyleBackColor = true;
+            this.trollfacelolhaBtn.Click += new System.EventHandler(this.trollfacelolhaBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 574);
+            this.ClientSize = new System.Drawing.Size(1015, 554);
+            this.Controls.Add(this.trollfacelolhaBtn);
             this.Controls.Add(this.gamePictureBox);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox2);
@@ -363,6 +375,7 @@ namespace chess2
         public System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.RadioButton themeDefaultRadioBtn;
         private System.Windows.Forms.Label userIDLabel;
+        private System.Windows.Forms.Button trollfacelolhaBtn;
     }
 }
 
