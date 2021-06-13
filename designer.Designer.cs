@@ -81,6 +81,7 @@ namespace chess2
             this.designPictureBox.Location = new System.Drawing.Point(25, 25);
             this.designPictureBox.Name = "designPictureBox";
             this.designPictureBox.Size = new System.Drawing.Size(512, 512);
+            this.designPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.designPictureBox.TabIndex = 0;
             this.designPictureBox.TabStop = false;
             this.designPictureBox.Click += new System.EventHandler(this.designPictureBox_Click);

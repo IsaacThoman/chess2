@@ -289,7 +289,7 @@ namespace chess2
 
         private void designBtn_Click(object sender, EventArgs e)
         {
-            AACheckBox.Checked = false;
+           // AACheckBox.Checked = false;
             Form form2 = new designer();
             
             firstForm.Hide();
