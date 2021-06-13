@@ -289,6 +289,7 @@ namespace chess2
 
         private void designBtn_Click(object sender, EventArgs e)
         {
+            AACheckBox.Checked = false;
             Form form2 = new designer();
             
             firstForm.Hide();
@@ -309,8 +310,14 @@ namespace chess2
         }
         void setSize(int newRes)
         {
-            
-            renderer.resolution = newRes;
+            if (AACheckBox.Checked) {
+                renderer.resolution = (int)(newRes*1.5);
+            }
+            else
+            {
+                renderer.resolution = newRes;
+            }
+
             gamePictureBox.Width = newRes;
             gamePictureBox.Height = newRes;
             gamePictureBox.Image = renderer.renderBitmap();
@@ -361,6 +368,19 @@ namespace chess2
                 autoWindowSize();
             }
 
+        }
+
+        private void AACheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (AACheckBox.Checked)
+            {
+                renderer.resolution = (int)(gamePictureBox.Width*1.5);
+            }
+            else
+            {
+                renderer.resolution = gamePictureBox.Width;
+            }
+            gamePictureBox.Image = renderer.renderBitmap();
         }
     }
 }

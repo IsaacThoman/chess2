@@ -61,8 +61,8 @@ namespace chess2
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.designBtn = new System.Windows.Forms.Button();
+            this.AACheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -420,7 +420,7 @@ namespace chess2
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button5);
+            this.groupBox4.Controls.Add(this.AACheckBox);
             this.groupBox4.Controls.Add(this.designBtn);
             this.groupBox4.Controls.Add(this.button3);
             this.groupBox4.Controls.Add(this.button4);
@@ -429,20 +429,10 @@ namespace chess2
             this.groupBox4.Controls.Add(this.button2);
             this.groupBox4.Location = new System.Drawing.Point(600, 420);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(397, 132);
+            this.groupBox4.Size = new System.Drawing.Size(397, 118);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Debug Options";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(112, 80);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(279, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Help find Mr. Trollface somewhere to live!";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // designBtn
             // 
@@ -453,6 +443,19 @@ namespace chess2
             this.designBtn.Text = "Designer";
             this.designBtn.UseVisualStyleBackColor = true;
             this.designBtn.Click += new System.EventHandler(this.designBtn_Click);
+            // 
+            // AACheckBox
+            // 
+            this.AACheckBox.AutoSize = true;
+            this.AACheckBox.Checked = true;
+            this.AACheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AACheckBox.Location = new System.Drawing.Point(168, 51);
+            this.AACheckBox.Name = "AACheckBox";
+            this.AACheckBox.Size = new System.Drawing.Size(93, 19);
+            this.AACheckBox.TabIndex = 11;
+            this.AACheckBox.Text = "Anti-aliasing";
+            this.AACheckBox.UseVisualStyleBackColor = true;
+            this.AACheckBox.CheckedChanged += new System.EventHandler(this.AACheckBox_CheckedChanged);
             // 
             // Form1
             // 
@@ -515,7 +518,6 @@ namespace chess2
         private System.Windows.Forms.Label userIDLabel;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button designBtn;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.RadioButton radioButton6;
@@ -523,6 +525,7 @@ namespace chess2
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.CheckBox AACheckBox;
     }
 }
 
