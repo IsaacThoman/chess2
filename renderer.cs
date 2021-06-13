@@ -19,7 +19,7 @@ namespace chess2
         public static Color themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
         public static Color themeColorSelection = Color.LightYellow;
 
-        public static int resolution = 768;
+        public static int resolution = 1024;
 
 
 

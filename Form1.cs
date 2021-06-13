@@ -295,5 +295,72 @@ namespace chess2
             form2.Show();
             
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            autoWindowSize();
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            setSize((int)numericUpDown2.Value);
+            autoWindowSize();
+        }
+        void setSize(int newRes)
+        {
+            
+            renderer.resolution = newRes;
+            gamePictureBox.Width = newRes;
+            gamePictureBox.Height = newRes;
+            gamePictureBox.Image = renderer.renderBitmap();
+        }
+
+         void autoWindowSize()
+        {
+            capturedPiecesPictureBox.Location = new Point(18 + gamePictureBox.Width, 26);
+            int groupBoxX = capturedPiecesPictureBox.Location.X + capturedPiecesPictureBox.Width + 8;
+            groupBox1.Location = new Point(groupBoxX, 26);
+            groupBox2.Location = new Point(groupBoxX, 144);
+            groupBox4.Location = new Point(groupBoxX, 420);
+            onlineSettingsGroup.Location = new Point(groupBoxX, 308);
+            int formHeight = (int)((gamePictureBox.Height + gamePictureBox.Location.Y) * 1.1);
+            if(formHeight< capturedPiecesPictureBox.Height) { formHeight = (int)(capturedPiecesPictureBox.Height * 1.2); }
+            int formWidth = (int)((gamePictureBox.Width + capturedPiecesPictureBox.Width + groupBox1.Width) * 1.1);
+            this.Size = new Size(formWidth, formHeight);
+        }
+
+        private void radioButton3_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                numericUpDown2.Visible = true;
+                button6.Visible = true;
+            }
+            else
+            {
+                numericUpDown2.Visible = false;
+                button6.Visible = false;
+            }
+        }
+
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton6.Checked)
+            {
+                setSize(512);
+                autoWindowSize();
+            }
+
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked) {
+                setSize(768);
+                autoWindowSize();
+            }
+
+        }
     }
 }
