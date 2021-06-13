@@ -308,10 +308,12 @@ namespace chess2
             setSize((int)numericUpDown2.Value);
             autoWindowSize();
         }
+        public static int baseResolution = 512;
         void setSize(int newRes)
         {
+            baseResolution = newRes;
             if (AACheckBox.Checked) {
-                renderer.resolution = (int)(newRes*1.5);
+                renderer.resolution = (int)(newRes*AArenderScale);
             }
             else
             {
@@ -369,16 +371,30 @@ namespace chess2
             }
 
         }
-
+        public static decimal AArenderScale = 1.5M;
         private void AACheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (AACheckBox.Checked)
             {
-                renderer.resolution = (int)(gamePictureBox.Width*1.5);
+                renderer.resolution = (int)(gamePictureBox.Width*AArenderScale);
             }
             else
             {
                 renderer.resolution = gamePictureBox.Width;
+            }
+            gamePictureBox.Image = renderer.renderBitmap();
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            AArenderScale = numericUpDown3.Value;
+            if (AACheckBox.Checked)
+            {
+                renderer.resolution = (int)(baseResolution * AArenderScale);
+            }
+            else
+            {
+                renderer.resolution = baseResolution;
             }
             gamePictureBox.Image = renderer.renderBitmap();
         }
