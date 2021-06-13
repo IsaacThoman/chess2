@@ -70,7 +70,8 @@ namespace chess2
             this.gamePictureBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.gamePictureBox.Location = new System.Drawing.Point(12, 26);
             this.gamePictureBox.Name = "gamePictureBox";
-            this.gamePictureBox.Size = new System.Drawing.Size(512, 512);
+            this.gamePictureBox.Size = new System.Drawing.Size(768, 768);
+            this.gamePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gamePictureBox.TabIndex = 0;
             this.gamePictureBox.TabStop = false;
             this.gamePictureBox.Click += new System.EventHandler(this.pictureBox3_Click);
@@ -80,7 +81,7 @@ namespace chess2
             this.groupBox1.Controls.Add(this.radioOnline);
             this.groupBox1.Controls.Add(this.radioComputer);
             this.groupBox1.Controls.Add(this.radioLocal);
-            this.groupBox1.Location = new System.Drawing.Point(606, 12);
+            this.groupBox1.Location = new System.Drawing.Point(865, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(397, 112);
             this.groupBox1.TabIndex = 1;
@@ -160,7 +161,7 @@ namespace chess2
             this.onlineSettingsGroup.Controls.Add(this.userIDLabel);
             this.onlineSettingsGroup.Controls.Add(this.label1);
             this.onlineSettingsGroup.Controls.Add(this.numericUpDown1);
-            this.onlineSettingsGroup.Location = new System.Drawing.Point(606, 294);
+            this.onlineSettingsGroup.Location = new System.Drawing.Point(865, 308);
             this.onlineSettingsGroup.Name = "onlineSettingsGroup";
             this.onlineSettingsGroup.Size = new System.Drawing.Size(397, 106);
             this.onlineSettingsGroup.TabIndex = 6;
@@ -216,7 +217,7 @@ namespace chess2
             // capturedPiecesPictureBox
             // 
             this.capturedPiecesPictureBox.Image = global::chess2.Properties.Resources.troll;
-            this.capturedPiecesPictureBox.Location = new System.Drawing.Point(531, 26);
+            this.capturedPiecesPictureBox.Location = new System.Drawing.Point(795, 26);
             this.capturedPiecesPictureBox.Name = "capturedPiecesPictureBox";
             this.capturedPiecesPictureBox.Size = new System.Drawing.Size(64, 512);
             this.capturedPiecesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -227,7 +228,7 @@ namespace chess2
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Location = new System.Drawing.Point(606, 130);
+            this.groupBox2.Location = new System.Drawing.Point(865, 144);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(397, 158);
             this.groupBox2.TabIndex = 3;
@@ -315,7 +316,7 @@ namespace chess2
             this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.textBox1);
             this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Location = new System.Drawing.Point(606, 406);
+            this.groupBox4.Location = new System.Drawing.Point(865, 420);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(397, 132);
             this.groupBox4.TabIndex = 7;
@@ -336,7 +337,7 @@ namespace chess2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 552);
+            this.ClientSize = new System.Drawing.Size(1396, 837);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.gamePictureBox);
             this.Controls.Add(this.groupBox2);

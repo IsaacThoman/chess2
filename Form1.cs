@@ -244,9 +244,9 @@ namespace chess2
 
             var relativePoint = this.PointToClient(Cursor.Position);
 
-            int selX = (relativePoint.X - gamePictureBox.Location.X) / 64 + 1;
-            int selY = 0 - (relativePoint.Y - gamePictureBox.Location.Y) / 64 + 8;
-
+            int selX = (relativePoint.X - gamePictureBox.Location.X) / (gamePictureBox.Width / 8) + 1;
+            int selY = 0 - (relativePoint.Y - gamePictureBox.Location.Y) / (gamePictureBox.Height / 8) + 8;
+            
             Interface.setSelection(selX, selY);
             if (Interface.firstSel == true)
             {

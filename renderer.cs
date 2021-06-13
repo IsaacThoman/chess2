@@ -19,6 +19,8 @@ namespace chess2
         public static Color themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
         public static Color themeColorSelection = Color.LightYellow;
 
+        public static int resolution = 768;
+
 
 
         public static Bitmap[] piece = new Bitmap[13];
@@ -123,11 +125,11 @@ namespace chess2
 
         public static Bitmap renderBitmap()
         {
-            Bitmap Bmp = new Bitmap(512, 512);
+            Bitmap Bmp = new Bitmap(resolution, resolution);
             using (Graphics gfx = Graphics.FromImage(Bmp))
             using (SolidBrush brush = new SolidBrush(Color.DarkGoldenrod))
             {
-                gfx.FillRectangle(brush, 0, 0, 512, 512);
+                gfx.FillRectangle(brush, 0, 0, resolution, resolution);
             }
 
 
@@ -140,7 +142,7 @@ namespace chess2
 
 
             Graphics g = Graphics.FromImage(Bmp);
-
+           
             //  g.FillRectangle(DGBrush, 0, 0, 64, 64);
 
             for (int fillerX = 1; fillerX < 9; fillerX++)
@@ -148,7 +150,7 @@ namespace chess2
                 for (int fillerY = 1; fillerY < 9; fillerY++)
                 {
                     int myPiece = board.boardSquare[fillerX, fillerY];
-                    boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
+                    boardRect[fillerX, fillerY] = new Rectangle((fillerX * (resolution/8)) - (resolution/8), (fillerY * -(resolution/8)) + resolution, (resolution/8), (resolution/8));
 
                     if ((fillerX + fillerY) % 2 == 1)
                     {
@@ -268,13 +270,13 @@ namespace chess2
 
         public static Bitmap renderFrame(int destX,int destY, int sourceX, int sourceY, int frame)
         {
-            Bitmap Bmp = new Bitmap(512, 512);
+            Bitmap Bmp = new Bitmap(resolution, resolution);
             using (Graphics gfx = Graphics.FromImage(Bmp))
             using (SolidBrush brush = new SolidBrush(Color.DarkGoldenrod))
             {
-                gfx.FillRectangle(brush, 0, 0, 512, 512);
+                gfx.FillRectangle(brush, 0, 0, resolution, resolution);
             }
-
+            
 
 
             checkForBitmaps();
@@ -308,7 +310,7 @@ namespace chess2
 
 
 
-                    boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
+                    boardRect[fillerX, fillerY] = new Rectangle((fillerX * (resolution / 8)) - (resolution / 8), (fillerY * -(resolution / 8)) + resolution, (resolution / 8), (resolution / 8));
 
                     if ((fillerX + fillerY) % 2 == 1)
                     {
@@ -336,11 +338,11 @@ namespace chess2
 
                 }
             }
-
-            int animStartX = (destX * 64) - 64;
-            int animStartY = (destY * -64) + 512;
-            int animEndX = (sourceX * 64) - 64;
-            int animEndY = (sourceY * -64) + 512;
+            
+            int animStartX = (destX * (resolution / 8)) - (resolution / 8);
+            int animStartY = (destY * -(resolution / 8)) + resolution;
+            int animEndX = (sourceX * (resolution / 8)) - (resolution / 8);
+            int animEndY = (sourceY * -(resolution / 8)) + resolution;
 
           //  int animPieceX = (int)(animStartX + ((animEndX - animStartX) * 0.1 * frame));
           //  int animPieceY = (int)(animStartY + ((animEndY - animStartY) * 0.1 * frame));
@@ -348,7 +350,7 @@ namespace chess2
             int animPieceX = (int)(animEndX + ((animStartX - animEndX) * 0.1 * frame));
             int animPieceY = (int)(animEndY + ((animStartY - animEndY) * 0.1 * frame));
 
-            Rectangle animatedRect = new Rectangle(animPieceX, animPieceY, 64,64);
+            Rectangle animatedRect = new Rectangle(animPieceX, animPieceY, (resolution / 8), (resolution / 8));
             int animPieceID = board.boardSquare[destX, destY];
             g.DrawImage(piece[animPieceID], animatedRect); 
 
