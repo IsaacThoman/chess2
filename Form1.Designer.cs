@@ -30,6 +30,7 @@ namespace chess2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gamePictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioOnline = new System.Windows.Forms.RadioButton();
@@ -61,10 +62,10 @@ namespace chess2
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.AACheckBox = new System.Windows.Forms.CheckBox();
             this.designBtn = new System.Windows.Forms.Button();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -439,28 +440,14 @@ namespace chess2
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Debug Options";
             // 
-            // AACheckBox
+            // label2
             // 
-            this.AACheckBox.AutoSize = true;
-            this.AACheckBox.Checked = true;
-            this.AACheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AACheckBox.Location = new System.Drawing.Point(168, 51);
-            this.AACheckBox.Name = "AACheckBox";
-            this.AACheckBox.Size = new System.Drawing.Size(93, 19);
-            this.AACheckBox.TabIndex = 11;
-            this.AACheckBox.Text = "Anti-aliasing";
-            this.AACheckBox.UseVisualStyleBackColor = true;
-            this.AACheckBox.CheckedChanged += new System.EventHandler(this.AACheckBox_CheckedChanged);
-            // 
-            // designBtn
-            // 
-            this.designBtn.Location = new System.Drawing.Point(168, 22);
-            this.designBtn.Name = "designBtn";
-            this.designBtn.Size = new System.Drawing.Size(75, 23);
-            this.designBtn.TabIndex = 10;
-            this.designBtn.Text = "Designer";
-            this.designBtn.UseVisualStyleBackColor = true;
-            this.designBtn.Click += new System.EventHandler(this.designBtn_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(131, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 15);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "AA Scale:";
             // 
             // numericUpDown3
             // 
@@ -491,14 +478,28 @@ namespace chess2
             65536});
             this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
-            // label2
+            // AACheckBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(131, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 15);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "AA Scale:";
+            this.AACheckBox.AutoSize = true;
+            this.AACheckBox.Checked = true;
+            this.AACheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AACheckBox.Location = new System.Drawing.Point(168, 51);
+            this.AACheckBox.Name = "AACheckBox";
+            this.AACheckBox.Size = new System.Drawing.Size(93, 19);
+            this.AACheckBox.TabIndex = 11;
+            this.AACheckBox.Text = "Anti-aliasing";
+            this.AACheckBox.UseVisualStyleBackColor = true;
+            this.AACheckBox.CheckedChanged += new System.EventHandler(this.AACheckBox_CheckedChanged);
+            // 
+            // designBtn
+            // 
+            this.designBtn.Location = new System.Drawing.Point(168, 22);
+            this.designBtn.Name = "designBtn";
+            this.designBtn.Size = new System.Drawing.Size(75, 23);
+            this.designBtn.TabIndex = 10;
+            this.designBtn.Text = "Designer";
+            this.designBtn.UseVisualStyleBackColor = true;
+            this.designBtn.Click += new System.EventHandler(this.designBtn_Click);
             // 
             // Form1
             // 
@@ -511,8 +512,8 @@ namespace chess2
             this.Controls.Add(this.capturedPiecesPictureBox);
             this.Controls.Add(this.onlineSettingsGroup);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.ShowIcon = false;
             this.Text = "Chess";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);

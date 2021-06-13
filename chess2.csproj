@@ -9,6 +9,7 @@
     <Product>Chess</Product>
     <PackageProjectUrl>https://isaacthoman.me</PackageProjectUrl>
     <SignAssembly>false</SignAssembly>
+    <ApplicationIcon>1.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
