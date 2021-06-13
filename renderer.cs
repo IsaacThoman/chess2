@@ -19,7 +19,7 @@ namespace chess2
         public static Color themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
         public static Color themeColorSelection = Color.LightYellow;
 
-        public static int resolution = 1024;
+        public static int resolution = 768;
 
 
 
@@ -363,10 +363,10 @@ namespace chess2
 
         public static Bitmap renderCapturesBar()
         {
-            Bitmap capturesBar = new Bitmap(64, 512);
+            Bitmap capturesBar = new Bitmap((resolution/8), resolution);
             using (Graphics gr = Graphics.FromImage(capturesBar))
             {
-                Rectangle backRect = new Rectangle(0, 0, 64, 512);
+                Rectangle backRect = new Rectangle(0, 0, (resolution / 8), resolution);
                 SolidBrush bg = new SolidBrush(renderer.themeColorLight);
                 SolidBrush darkBrush = new SolidBrush(renderer.themeColorDark);
                 gr.FillRectangle(bg, backRect);
@@ -423,8 +423,8 @@ namespace chess2
 
                 for (int renderPiece = 1; renderPiece <= (totalPiecesCaptured); renderPiece++)
                 {
-                    int rectPosition = ((512 / (totalPiecesCaptured+1))*renderPiece)-32;
-                    Rectangle pieceRect = new Rectangle(0,rectPosition,64,64);
+                    int rectPosition = ((resolution / (totalPiecesCaptured+1))*renderPiece)-((resolution / 16));
+                    Rectangle pieceRect = new Rectangle(0,rectPosition, (resolution / 8), (resolution / 8));
                    int pieceToRender = 0;
                     for (int scanLoop = 1; scanLoop < 13; scanLoop++)
                     {

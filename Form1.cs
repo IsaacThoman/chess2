@@ -322,6 +322,8 @@ namespace chess2
 
             gamePictureBox.Width = newRes;
             gamePictureBox.Height = newRes;
+            capturedPiecesPictureBox.Width = (int)(newRes / 8);
+            capturedPiecesPictureBox.Height = newRes;
             gamePictureBox.Image = renderer.renderBitmap();
         }
 
@@ -383,6 +385,7 @@ namespace chess2
                 renderer.resolution = gamePictureBox.Width;
             }
             gamePictureBox.Image = renderer.renderBitmap();
+            
         }
 
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
