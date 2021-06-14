@@ -368,6 +368,10 @@ namespace chess2
             {
                 Rectangle backRect = new Rectangle(0, 0, (resolution / 8), resolution);
                 SolidBrush bg = new SolidBrush(renderer.themeColorLight);
+                if (chess2.Properties.Settings.Default.darkMode)
+                {
+                    bg = new SolidBrush(renderer.themeColorDark);
+                }
                 SolidBrush darkBrush = new SolidBrush(renderer.themeColorDark);
                 gr.FillRectangle(bg, backRect);
 

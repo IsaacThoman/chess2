@@ -50,6 +50,18 @@ namespace chess2
                     break;
 
             }
+            if (chess2.Properties.Settings.Default.darkMode)
+            {
+                darkThemeRadio.Checked = true;
+                setWindowTheme(System.Drawing.ColorTranslator.FromHtml("#2b2c38"), SystemColors.Control);
+
+            }
+            else
+            {
+                setWindowTheme(SystemColors.Control, SystemColors.ControlText);
+                lightThemeRadio.Checked = true;
+
+            }
 
 
                     renderer.copyBoard();
@@ -85,41 +97,60 @@ namespace chess2
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            Interface.againstBot = false;
-            Interface.againstLocal = true;
-            Interface.againstOnline = false;
-            timer1.Enabled = false;
-            onlineSettingsGroup.Visible = false;
-            board.resetBoard();
-            
-            //     renderer.render(panel1);
-            gamePictureBox.Image = renderer.renderBitmap();
-            capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+            if (radioLocal.Checked)
+            {
+                Interface.againstBot = false;
+                Interface.againstLocal = true;
+                Interface.againstOnline = false;
+                timer1.Enabled = false;
+                onlineSettingsGroup.Visible = false;
+                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, 459);
+                debugGroupBox.Location = new Point(debugGroupBox.Location.X, 347);
+
+                board.resetBoard();
+
+                //     renderer.render(panel1);
+                gamePictureBox.Image = renderer.renderBitmap();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+            }
+
         }
 
         private void radioComputer_CheckedChanged(object sender, EventArgs e)
         {
-            Interface.againstBot = true;
-            Interface.againstLocal = false;
-            Interface.againstOnline = false;
-            timer1.Enabled = false;
-            onlineSettingsGroup.Visible = false;
-            board.resetBoard();
-            //   renderer.render(panel1);
-         //   pictureBox3.Image = renderer.renderBitmap();
+            if (radioComputer.Checked)
+            {
+
+                Interface.againstBot = true;
+                Interface.againstLocal = false;
+                Interface.againstOnline = false;
+                timer1.Enabled = false;
+                onlineSettingsGroup.Visible = false;
+                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, 459);
+                debugGroupBox.Location = new Point(debugGroupBox.Location.X, 347);
+                board.resetBoard();
+                //   renderer.render(panel1);
+                //   pictureBox3.Image = renderer.renderBitmap();
+            }
+
 
         }
 
         private void radioOnline_CheckedChanged(object sender, EventArgs e)
         {
-            Interface.againstBot = false;
-            Interface.againstLocal = false;
-            Interface.againstOnline = true;
-            timer1.Enabled = true;
-            onlineSettingsGroup.Visible = true;
-            beanchat.pullBoard();
-            //  renderer.render(panel1);
-  //          pictureBox3.Image = renderer.renderBitmap();
+            if (radioOnline.Checked) {
+                Interface.againstBot = false;
+                Interface.againstLocal = false;
+                Interface.againstOnline = true;
+                timer1.Enabled = true;
+                onlineSettingsGroup.Visible = true;
+                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, 347);
+                debugGroupBox.Location = new Point(debugGroupBox.Location.X, 459);
+                beanchat.pullBoard();
+                //  renderer.render(panel1);
+                //          pictureBox3.Image = renderer.renderBitmap();
+            }
+
 
         }
 
@@ -331,10 +362,15 @@ namespace chess2
         {
             capturedPiecesPictureBox.Location = new Point(18 + gamePictureBox.Width, 26);
             int groupBoxX = capturedPiecesPictureBox.Location.X + capturedPiecesPictureBox.Width + 8;
-            groupBox1.Location = new Point(groupBoxX, 26);
-            groupBox2.Location = new Point(groupBoxX, 144);
-            groupBox4.Location = new Point(groupBoxX, 420);
-            onlineSettingsGroup.Location = new Point(groupBoxX, 308);
+            //   groupBox1.Location = new Point(groupBoxX, 26);
+            //   groupBox2.Location = new Point(groupBoxX, 144);
+            //   groupBox4.Location = new Point(groupBoxX, 420);
+            //   onlineSettingsGroup.Location = new Point(groupBoxX, 308);
+            groupBox1.Location = new Point(groupBoxX, groupBox1.Location.Y);
+            groupBox2.Location = new Point(groupBoxX, groupBox2.Location.Y);
+            debugGroupBox.Location = new Point(groupBoxX, debugGroupBox.Location.Y);
+            onlineSettingsGroup.Location = new Point(groupBoxX, onlineSettingsGroup.Location.Y);
+
             int formHeight = (int)((gamePictureBox.Height + gamePictureBox.Location.Y) * 1.1);
             if(formHeight< capturedPiecesPictureBox.Height) { formHeight = (int)(capturedPiecesPictureBox.Height * 1.2); }
             int formWidth = (int)((gamePictureBox.Width + capturedPiecesPictureBox.Width + groupBox1.Width) * 1.1);
@@ -401,5 +437,39 @@ namespace chess2
             }
             gamePictureBox.Image = renderer.renderBitmap();
         }
+
+        private void radioButton2_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (lightThemeRadio.Checked)
+            {
+                setWindowTheme(SystemColors.Control,SystemColors.ControlText);
+                chess2.Properties.Settings.Default.darkMode = false;
+                Properties.Settings.Default.Save();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+            }
+        }
+
+        private void radioButton7_CheckedChanged(object sender, EventArgs e)
+        {
+            if (darkThemeRadio.Checked)
+            {
+                setWindowTheme(System.Drawing.ColorTranslator.FromHtml("#2b2c38"), SystemColors.Control);
+                chess2.Properties.Settings.Default.darkMode = true;
+                Properties.Settings.Default.Save();
+                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+            }
+        }
+        void setWindowTheme(Color backColor, Color foreground1)
+        {
+            this.BackColor = backColor;
+            groupBox1.ForeColor = foreground1;
+            groupBox2.ForeColor = foreground1;
+            groupBox3.ForeColor = foreground1;
+            groupBox6.ForeColor = foreground1;
+            groupBox5.ForeColor = foreground1;
+            onlineSettingsGroup.ForeColor = foreground1;
+            debugGroupBox.ForeColor = foreground1;
+        }
+
     }
 }

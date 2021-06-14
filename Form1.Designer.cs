@@ -47,6 +47,13 @@ namespace chess2
             this.button3 = new System.Windows.Forms.Button();
             this.capturedPiecesPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.designBtn = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.darkThemeRadio = new System.Windows.Forms.RadioButton();
+            this.lightThemeRadio = new System.Windows.Forms.RadioButton();
+            this.AACheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.button6 = new System.Windows.Forms.Button();
@@ -61,22 +68,19 @@ namespace chess2
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.AACheckBox = new System.Windows.Forms.CheckBox();
-            this.designBtn = new System.Windows.Forms.Button();
+            this.debugGroupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.capturedPiecesPictureBox)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.debugGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // gamePictureBox
@@ -95,6 +99,7 @@ namespace chess2
             this.groupBox1.Controls.Add(this.radioOnline);
             this.groupBox1.Controls.Add(this.radioComputer);
             this.groupBox1.Controls.Add(this.radioLocal);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox1.Location = new System.Drawing.Point(600, 26);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(397, 112);
@@ -140,6 +145,7 @@ namespace chess2
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button1.Location = new System.Drawing.Point(6, 51);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -150,6 +156,7 @@ namespace chess2
             // 
             // textBox1
             // 
+            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox1.Location = new System.Drawing.Point(6, 80);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
@@ -157,6 +164,7 @@ namespace chess2
             // 
             // button2
             // 
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button2.Location = new System.Drawing.Point(87, 51);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -175,7 +183,8 @@ namespace chess2
             this.onlineSettingsGroup.Controls.Add(this.userIDLabel);
             this.onlineSettingsGroup.Controls.Add(this.label1);
             this.onlineSettingsGroup.Controls.Add(this.numericUpDown1);
-            this.onlineSettingsGroup.Location = new System.Drawing.Point(600, 308);
+            this.onlineSettingsGroup.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.onlineSettingsGroup.Location = new System.Drawing.Point(600, 347);
             this.onlineSettingsGroup.Name = "onlineSettingsGroup";
             this.onlineSettingsGroup.Size = new System.Drawing.Size(397, 106);
             this.onlineSettingsGroup.TabIndex = 6;
@@ -220,6 +229,7 @@ namespace chess2
             // 
             // button3
             // 
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button3.Location = new System.Drawing.Point(6, 22);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -241,14 +251,118 @@ namespace chess2
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.numericUpDown3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.designBtn);
+            this.groupBox2.Controls.Add(this.groupBox6);
+            this.groupBox2.Controls.Add(this.AACheckBox);
             this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox3);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox2.Location = new System.Drawing.Point(600, 144);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(397, 158);
+            this.groupBox2.Size = new System.Drawing.Size(397, 192);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Settings";
+            this.groupBox2.Text = "Interface Settings";
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.DecimalPlaces = 1;
+            this.numericUpDown3.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown3.Location = new System.Drawing.Point(173, 162);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(61, 23);
+            this.numericUpDown3.TabIndex = 12;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            65536});
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(115, 164);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 15);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "AA Scale:";
+            // 
+            // designBtn
+            // 
+            this.designBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.designBtn.Location = new System.Drawing.Point(316, 160);
+            this.designBtn.Name = "designBtn";
+            this.designBtn.Size = new System.Drawing.Size(75, 23);
+            this.designBtn.TabIndex = 10;
+            this.designBtn.Text = "Customize";
+            this.designBtn.UseVisualStyleBackColor = true;
+            this.designBtn.Click += new System.EventHandler(this.designBtn_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.darkThemeRadio);
+            this.groupBox6.Controls.Add(this.lightThemeRadio);
+            this.groupBox6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.groupBox6.Location = new System.Drawing.Point(112, 22);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(108, 130);
+            this.groupBox6.TabIndex = 10;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Interface Colors";
+            // 
+            // darkThemeRadio
+            // 
+            this.darkThemeRadio.AutoSize = true;
+            this.darkThemeRadio.Location = new System.Drawing.Point(6, 46);
+            this.darkThemeRadio.Name = "darkThemeRadio";
+            this.darkThemeRadio.Size = new System.Drawing.Size(49, 19);
+            this.darkThemeRadio.TabIndex = 1;
+            this.darkThemeRadio.Text = "Dark";
+            this.darkThemeRadio.UseVisualStyleBackColor = true;
+            this.darkThemeRadio.CheckedChanged += new System.EventHandler(this.radioButton7_CheckedChanged);
+            // 
+            // lightThemeRadio
+            // 
+            this.lightThemeRadio.AutoSize = true;
+            this.lightThemeRadio.Checked = true;
+            this.lightThemeRadio.Location = new System.Drawing.Point(7, 21);
+            this.lightThemeRadio.Name = "lightThemeRadio";
+            this.lightThemeRadio.Size = new System.Drawing.Size(52, 19);
+            this.lightThemeRadio.TabIndex = 0;
+            this.lightThemeRadio.TabStop = true;
+            this.lightThemeRadio.Text = "Light";
+            this.lightThemeRadio.UseVisualStyleBackColor = true;
+            this.lightThemeRadio.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged_1);
+            // 
+            // AACheckBox
+            // 
+            this.AACheckBox.AutoSize = true;
+            this.AACheckBox.Checked = true;
+            this.AACheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AACheckBox.Location = new System.Drawing.Point(7, 163);
+            this.AACheckBox.Name = "AACheckBox";
+            this.AACheckBox.Size = new System.Drawing.Size(93, 19);
+            this.AACheckBox.TabIndex = 11;
+            this.AACheckBox.Text = "Anti-aliasing";
+            this.AACheckBox.UseVisualStyleBackColor = true;
+            this.AACheckBox.CheckedChanged += new System.EventHandler(this.AACheckBox_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -258,9 +372,10 @@ namespace chess2
             this.groupBox5.Controls.Add(this.radioButton3);
             this.groupBox5.Controls.Add(this.radioButton4);
             this.groupBox5.Controls.Add(this.radioButton5);
-            this.groupBox5.Location = new System.Drawing.Point(193, 22);
+            this.groupBox5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.groupBox5.Location = new System.Drawing.Point(226, 22);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(180, 130);
+            this.groupBox5.Size = new System.Drawing.Size(165, 130);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Board Size";
@@ -284,7 +399,7 @@ namespace chess2
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(104, 23);
+            this.numericUpDown2.Size = new System.Drawing.Size(77, 23);
             this.numericUpDown2.TabIndex = 8;
             this.numericUpDown2.Value = new decimal(new int[] {
             512,
@@ -295,7 +410,8 @@ namespace chess2
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(112, 98);
+            this.button6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button6.Location = new System.Drawing.Point(89, 97);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(62, 23);
             this.button6.TabIndex = 7;
@@ -355,12 +471,13 @@ namespace chess2
             this.groupBox3.Controls.Add(this.themeIcySeaRadioBtn);
             this.groupBox3.Controls.Add(this.themeGreenRadioBtn);
             this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox3.Location = new System.Drawing.Point(7, 22);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(180, 130);
+            this.groupBox3.Size = new System.Drawing.Size(99, 130);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Theme";
+            this.groupBox3.Text = "Board Colors";
             // 
             // themeDefaultRadioBtn
             // 
@@ -409,6 +526,7 @@ namespace chess2
             // 
             // button4
             // 
+            this.button4.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button4.Location = new System.Drawing.Point(87, 22);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
@@ -422,96 +540,34 @@ namespace chess2
             this.animationTimer.Interval = 50;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
-            // groupBox4
+            // debugGroupBox
             // 
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.numericUpDown3);
-            this.groupBox4.Controls.Add(this.AACheckBox);
-            this.groupBox4.Controls.Add(this.designBtn);
-            this.groupBox4.Controls.Add(this.button3);
-            this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Location = new System.Drawing.Point(600, 420);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(397, 118);
-            this.groupBox4.TabIndex = 7;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Debug Options";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(131, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 15);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "AA Scale:";
-            // 
-            // numericUpDown3
-            // 
-            this.numericUpDown3.DecimalPlaces = 1;
-            this.numericUpDown3.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown3.Location = new System.Drawing.Point(193, 80);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.numericUpDown3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(61, 23);
-            this.numericUpDown3.TabIndex = 12;
-            this.numericUpDown3.Value = new decimal(new int[] {
-            15,
-            0,
-            0,
-            65536});
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
-            // 
-            // AACheckBox
-            // 
-            this.AACheckBox.AutoSize = true;
-            this.AACheckBox.Checked = true;
-            this.AACheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AACheckBox.Location = new System.Drawing.Point(168, 51);
-            this.AACheckBox.Name = "AACheckBox";
-            this.AACheckBox.Size = new System.Drawing.Size(93, 19);
-            this.AACheckBox.TabIndex = 11;
-            this.AACheckBox.Text = "Anti-aliasing";
-            this.AACheckBox.UseVisualStyleBackColor = true;
-            this.AACheckBox.CheckedChanged += new System.EventHandler(this.AACheckBox_CheckedChanged);
-            // 
-            // designBtn
-            // 
-            this.designBtn.Location = new System.Drawing.Point(168, 22);
-            this.designBtn.Name = "designBtn";
-            this.designBtn.Size = new System.Drawing.Size(75, 23);
-            this.designBtn.TabIndex = 10;
-            this.designBtn.Text = "Designer";
-            this.designBtn.UseVisualStyleBackColor = true;
-            this.designBtn.Click += new System.EventHandler(this.designBtn_Click);
+            this.debugGroupBox.Controls.Add(this.button3);
+            this.debugGroupBox.Controls.Add(this.button4);
+            this.debugGroupBox.Controls.Add(this.button1);
+            this.debugGroupBox.Controls.Add(this.textBox1);
+            this.debugGroupBox.Controls.Add(this.button2);
+            this.debugGroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.debugGroupBox.Location = new System.Drawing.Point(600, 459);
+            this.debugGroupBox.Name = "debugGroupBox";
+            this.debugGroupBox.Size = new System.Drawing.Size(397, 118);
+            this.debugGroupBox.TabIndex = 7;
+            this.debugGroupBox.TabStop = false;
+            this.debugGroupBox.Text = "Debug Options";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1022, 574);
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.debugGroupBox);
             this.Controls.Add(this.gamePictureBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.capturedPiecesPictureBox);
             this.Controls.Add(this.onlineSettingsGroup);
             this.Controls.Add(this.groupBox1);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Chess";
@@ -525,14 +581,17 @@ namespace chess2
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.capturedPiecesPictureBox)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            this.debugGroupBox.ResumeLayout(false);
+            this.debugGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -561,7 +620,7 @@ namespace chess2
         public System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.RadioButton themeDefaultRadioBtn;
         private System.Windows.Forms.Label userIDLabel;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox debugGroupBox;
         private System.Windows.Forms.Button designBtn;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button6;
@@ -573,6 +632,9 @@ namespace chess2
         private System.Windows.Forms.CheckBox AACheckBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.RadioButton lightThemeRadio;
+        private System.Windows.Forms.RadioButton darkThemeRadio;
     }
 }
 
