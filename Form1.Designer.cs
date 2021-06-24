@@ -354,8 +354,6 @@ namespace chess2
             // AACheckBox
             // 
             this.AACheckBox.AutoSize = true;
-            this.AACheckBox.Checked = true;
-            this.AACheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.AACheckBox.Location = new System.Drawing.Point(7, 163);
             this.AACheckBox.Name = "AACheckBox";
             this.AACheckBox.Size = new System.Drawing.Size(93, 19);

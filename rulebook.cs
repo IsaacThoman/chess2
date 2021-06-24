@@ -11,6 +11,7 @@ namespace chess2
         
         public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY, int[,] boardToUse)
         {
+
             int[,] myInternalBoard = new int[9, 9];
 
             /*
@@ -60,7 +61,7 @@ namespace chess2
 
                 }
 
-                if(sourceX==destinationX && 4 == destinationY)
+                if(sourceX==destinationX && 4 == destinationY&&sourceY==2)
                 {
                     if (myInternalBoard[destinationX, sourceY + 2] == 0 && myInternalBoard[destinationX, sourceY + 1] == 0)
                     {

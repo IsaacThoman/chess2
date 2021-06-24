@@ -13,17 +13,18 @@ namespace chess2
     class renderer
     {
 
-    
+
 
         public static Color themeColorDark = System.Drawing.ColorTranslator.FromHtml("#779AAF");
         public static Color themeColorLight = System.Drawing.ColorTranslator.FromHtml("#d5E1E5");
         public static Color themeColorSelection = Color.LightYellow;
-
+        public static bool showLegalMoves = true;
         public static int resolution = 768;
 
 
 
-        public static Bitmap[] piece = new Bitmap[13];
+        public static Bitmap[] piece = new Bitmap[16];
+
         public static bool bitmapsLoaded = false;
         public static void setTheme(int theme)
         {
@@ -66,6 +67,11 @@ namespace chess2
                 piece[10] = new Bitmap(chess2.Properties.Resources._10);
                 piece[11] = new Bitmap(chess2.Properties.Resources._11);
                 piece[12] = new Bitmap(chess2.Properties.Resources._12);
+
+                piece[13] = new Bitmap(chess2.Properties.Resources.sword); //sword
+                piece[14] = new Bitmap(chess2.Properties.Resources.legalMoveDot); //legal move dot
+                piece[15] = new Bitmap(chess2.Properties.Resources.redDot); //red attack dot
+
                 bitmapsLoaded = true;
             }
         }
@@ -155,7 +161,7 @@ namespace chess2
                     if ((fillerX + fillerY) % 2 == 1)
                     {
                         g.FillRectangle(LBrush, boardRect[fillerX, fillerY]);
-
+                       
                     }
                     else
                     {
@@ -167,14 +173,45 @@ namespace chess2
 
                         g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
                     }
+                    bool legalSquare = false;
+                    if (!Interface.firstSel)
+                    {
+                        if (Interface.whitesMove)
+                        {
+                            if (rulebook.checkLegality(Interface.selX, Interface.selY, fillerX, fillerY, board.boardSquare))
+                            {
+                                legalSquare = true; 
+                            }
 
+                        }
+                        else
+                        {
+                            if (rulebook.checkLegality(9-Interface.selX, 9-Interface.selY, 9-fillerX, 9-fillerY, board.boardSquareReversed))
+                            {
+                                legalSquare = true;
+                            }
+                        }
+
+
+
+                    }
+                    if (legalSquare && showLegalMoves && myPiece == 0)
+                    {
+                        g.DrawImage(piece[14], boardRect[fillerX, fillerY]);
+                    }
 
                     if (myPiece > 0 && myPiece < 13)
                     {
 
                         g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);
-
+                        if(legalSquare && showLegalMoves)
+                        {
+                            g.DrawImage(piece[15], boardRect[fillerX, fillerY]);
+                            g.DrawImage(piece[13], boardRect[fillerX, fillerY]);
+                        }
                     }
+
+
 
                 }
             }
