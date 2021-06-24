@@ -379,12 +379,54 @@ namespace chess2
                         g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
                     }
 
+                    bool legalSquare = false;
+                    if (!Interface.firstSel)
+                    {
+                        if (Interface.whitesMove)
+                        {
+                            if (rulebook.checkLegality(Interface.selX, Interface.selY, fillerX, fillerY, board.boardSquare))
+                            {
+                                legalSquare = true;
+                            }
+
+                        }
+                        else
+                        {
+                            if (rulebook.checkLegality(9 - Interface.selX, 9 - Interface.selY, 9 - fillerX, 9 - fillerY, board.boardSquareReversed))
+                            {
+                                legalSquare = true;
+                            }
+                        }
+
+
+
+                    }
+                    if (legalSquare && showLegalMoves && myPiece == 0)
+                    {
+                        g.DrawImage(piece[14], boardRect[fillerX, fillerY]);
+                    }
 
                     if (myPiece > 0 && myPiece < 13)
                     {
 
-                        g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);
 
+                        if (legalSquare && showLegalMoves)
+                        {
+                            g.DrawImage(piece[15], boardRect[fillerX, fillerY]); //draw dot behind piece
+                        }
+                        g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);//draw piece
+                        if (legalSquare && showLegalMoves)
+                        {
+                            if (myPiece > 6)
+                            {
+                                g.DrawImage(piece[13], boardRect[fillerX, fillerY]);//draw sword
+                            }
+                            else
+                            {
+                                g.DrawImage(piece[16], boardRect[fillerX, fillerY]);//draw sword
+                            }
+
+                        }
                     }
 
                 }
