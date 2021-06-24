@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -360,7 +361,7 @@ namespace chess2
         {
             baseResolution = newRes;
             if (AACheckBox.Checked) {
-                renderer.resolution = (int)(newRes*AArenderScale);
+                renderer.resolution = (int)(AArenderScale);
             }
             else
             {
@@ -376,6 +377,15 @@ namespace chess2
 
          void autoWindowSize()
         {
+
+            autoControlPositions();
+            int formHeight = (int)((gamePictureBox.Height + gamePictureBox.Location.Y) * 1.1);
+            if(formHeight< capturedPiecesPictureBox.Height) { formHeight = (int)(capturedPiecesPictureBox.Height * 1.2); }
+            int formWidth = (int)((gamePictureBox.Width + capturedPiecesPictureBox.Width + groupBox1.Width) * 1.1);
+            this.Size = new Size(formWidth, formHeight);
+        }
+        void autoControlPositions()
+        {
             capturedPiecesPictureBox.Location = new Point(18 + gamePictureBox.Width, 26);
             int groupBoxX = capturedPiecesPictureBox.Location.X + capturedPiecesPictureBox.Width + 8;
             //   groupBox1.Location = new Point(groupBoxX, 26);
@@ -386,11 +396,6 @@ namespace chess2
             groupBox2.Location = new Point(groupBoxX, groupBox2.Location.Y);
             debugGroupBox.Location = new Point(groupBoxX, debugGroupBox.Location.Y);
             onlineSettingsGroup.Location = new Point(groupBoxX, onlineSettingsGroup.Location.Y);
-
-            int formHeight = (int)((gamePictureBox.Height + gamePictureBox.Location.Y) * 1.1);
-            if(formHeight< capturedPiecesPictureBox.Height) { formHeight = (int)(capturedPiecesPictureBox.Height * 1.2); }
-            int formWidth = (int)((gamePictureBox.Width + capturedPiecesPictureBox.Width + groupBox1.Width) * 1.1);
-            this.Size = new Size(formWidth, formHeight);
         }
 
         private void radioButton3_CheckedChanged_1(object sender, EventArgs e)
@@ -425,12 +430,12 @@ namespace chess2
             }
 
         }
-        public static decimal AArenderScale = 1.5M;
+        public static int AArenderScale = 768;
         private void AACheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (AACheckBox.Checked)
             {
-                renderer.resolution = (int)(gamePictureBox.Width*AArenderScale);
+                renderer.resolution = (int)(AArenderScale);
             }
             else
             {
@@ -442,10 +447,10 @@ namespace chess2
 
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
-            AArenderScale = numericUpDown3.Value;
+            AArenderScale = (int)numericUpDown3.Value;
             if (AACheckBox.Checked)
             {
-                renderer.resolution = (int)(baseResolution * AArenderScale);
+                renderer.resolution = (int)(AArenderScale);
             }
             else
             {
@@ -493,6 +498,31 @@ namespace chess2
             renderer.showLegalMoves = showLegalMovesRadio.Checked;
             gamePictureBox.Image = renderer.renderBitmap();
             Properties.Settings.Default.Save();
+        }
+
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+
+        }
+        public int oldBoardSize = 512;
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+                
+             if(this.WindowState == FormWindowState.Maximized)
+            {
+                oldBoardSize = gamePictureBox.Width;
+                int test = (int)(this.Height*0.9 - (gamePictureBox.Location.Y-20));
+                setSize(test);
+                autoControlPositions();
+            }
+            else
+            {
+            
+                setSize(oldBoardSize);
+                autoControlPositions();
+            }
+
+
         }
     }
 }
