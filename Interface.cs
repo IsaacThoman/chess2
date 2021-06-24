@@ -55,6 +55,18 @@ namespace chess2
                     {
                         toSquareValue = 0; //I wasn't paying attention when writing this, it seems to work but it might be awful
                     }
+
+                    //lazy promotion
+                    if (y == 8 && fromSquareValue == 1)
+                    {
+                        fromSquareValue = 5;
+                    }
+                    if (y == 1 && fromSquareValue == 7)
+                    {
+                        fromSquareValue = 11;
+                    }
+
+
                     board.boardSquare[intselX, intselY] = toSquareValue;
                     board.boardSquare[x, y] = fromSquareValue;
 
