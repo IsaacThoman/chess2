@@ -58,5 +58,17 @@ namespace chess2.Properties {
                 this["darkMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showMoves {
+            get {
+                return ((bool)(this["showMoves"]));
+            }
+            set {
+                this["showMoves"] = value;
+            }
+        }
     }
 }

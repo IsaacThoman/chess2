@@ -21,9 +21,17 @@ namespace chess2
             board.resetBoard();
 
         }
+        public static int groupBox1Y = 0;
+        public static int groupBox2Y = 0;
+        public static int groupBox3Y = 0;
+        public static int groupBox4Y = 0;
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            groupBox1Y = onlineSettingsGroup.Location.Y;
+            groupBox2Y = debugGroupBox.Location.Y;
+
+
             if (chess2.Properties.Settings.Default.userid == 1111)
             {
                 Random r2 = new Random();
@@ -62,9 +70,17 @@ namespace chess2
                 lightThemeRadio.Checked = true;
 
             }
+            if (chess2.Properties.Settings.Default.showMoves)
+            {
+                showLegalMovesRadio.Checked = true;
+            }
+            else
+            {
+                showLegalMovesRadio.Checked = false;
+            }
+            renderer.showLegalMoves = chess2.Properties.Settings.Default.showMoves;
 
-
-                    renderer.copyBoard();
+                renderer.copyBoard();
             gamePictureBox.Image = renderer.renderBitmap();
             capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
            // capturedPiecesPictureBox.Image = renderer.piece[0];
@@ -104,8 +120,8 @@ namespace chess2
                 Interface.againstOnline = false;
                 timer1.Enabled = false;
                 onlineSettingsGroup.Visible = false;
-                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, 459);
-                debugGroupBox.Location = new Point(debugGroupBox.Location.X, 347);
+                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, groupBox2Y);
+                debugGroupBox.Location = new Point(debugGroupBox.Location.X, groupBox1Y);
 
                 board.resetBoard();
 
@@ -126,8 +142,8 @@ namespace chess2
                 Interface.againstOnline = false;
                 timer1.Enabled = false;
                 onlineSettingsGroup.Visible = false;
-                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, 459);
-                debugGroupBox.Location = new Point(debugGroupBox.Location.X, 347);
+                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, groupBox2Y);
+                debugGroupBox.Location = new Point(debugGroupBox.Location.X, groupBox1Y);
                 board.resetBoard();
                 //   renderer.render(panel1);
                 //   pictureBox3.Image = renderer.renderBitmap();
@@ -144,8 +160,8 @@ namespace chess2
                 Interface.againstOnline = true;
                 timer1.Enabled = true;
                 onlineSettingsGroup.Visible = true;
-                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, 347);
-                debugGroupBox.Location = new Point(debugGroupBox.Location.X, 459);
+                onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, groupBox1Y);
+                debugGroupBox.Location = new Point(debugGroupBox.Location.X, groupBox2Y);
                 beanchat.pullBoard();
                 //  renderer.render(panel1);
                 //          pictureBox3.Image = renderer.renderBitmap();
@@ -471,5 +487,12 @@ namespace chess2
             debugGroupBox.ForeColor = foreground1;
         }
 
+        private void showLegalMovesRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            chess2.Properties.Settings.Default.showMoves = showLegalMovesRadio.Checked;
+            renderer.showLegalMoves = showLegalMovesRadio.Checked;
+            gamePictureBox.Image = renderer.renderBitmap();
+            Properties.Settings.Default.Save();
+        }
     }
 }

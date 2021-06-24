@@ -69,6 +69,7 @@ namespace chess2
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.debugGroupBox = new System.Windows.Forms.GroupBox();
+            this.showLegalMovesRadio = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -184,7 +185,7 @@ namespace chess2
             this.onlineSettingsGroup.Controls.Add(this.label1);
             this.onlineSettingsGroup.Controls.Add(this.numericUpDown1);
             this.onlineSettingsGroup.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.onlineSettingsGroup.Location = new System.Drawing.Point(600, 347);
+            this.onlineSettingsGroup.Location = new System.Drawing.Point(600, 372);
             this.onlineSettingsGroup.Name = "onlineSettingsGroup";
             this.onlineSettingsGroup.Size = new System.Drawing.Size(397, 106);
             this.onlineSettingsGroup.TabIndex = 6;
@@ -251,6 +252,7 @@ namespace chess2
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.showLegalMovesRadio);
             this.groupBox2.Controls.Add(this.numericUpDown3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.designBtn);
@@ -261,7 +263,7 @@ namespace chess2
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox2.Location = new System.Drawing.Point(600, 144);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(397, 192);
+            this.groupBox2.Size = new System.Drawing.Size(397, 222);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Interface Settings";
@@ -546,19 +548,30 @@ namespace chess2
             this.debugGroupBox.Controls.Add(this.textBox1);
             this.debugGroupBox.Controls.Add(this.button2);
             this.debugGroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.debugGroupBox.Location = new System.Drawing.Point(600, 459);
+            this.debugGroupBox.Location = new System.Drawing.Point(600, 484);
             this.debugGroupBox.Name = "debugGroupBox";
             this.debugGroupBox.Size = new System.Drawing.Size(397, 118);
             this.debugGroupBox.TabIndex = 7;
             this.debugGroupBox.TabStop = false;
             this.debugGroupBox.Text = "Debug Options";
             // 
+            // showLegalMovesRadio
+            // 
+            this.showLegalMovesRadio.AutoSize = true;
+            this.showLegalMovesRadio.Location = new System.Drawing.Point(7, 188);
+            this.showLegalMovesRadio.Name = "showLegalMovesRadio";
+            this.showLegalMovesRadio.Size = new System.Drawing.Size(121, 19);
+            this.showLegalMovesRadio.TabIndex = 14;
+            this.showLegalMovesRadio.Text = "Show legal moves";
+            this.showLegalMovesRadio.UseVisualStyleBackColor = true;
+            this.showLegalMovesRadio.CheckedChanged += new System.EventHandler(this.showLegalMovesRadio_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1022, 574);
+            this.ClientSize = new System.Drawing.Size(1022, 614);
             this.Controls.Add(this.debugGroupBox);
             this.Controls.Add(this.gamePictureBox);
             this.Controls.Add(this.groupBox2);
@@ -633,6 +646,7 @@ namespace chess2
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton lightThemeRadio;
         private System.Windows.Forms.RadioButton darkThemeRadio;
+        private System.Windows.Forms.CheckBox showLegalMovesRadio;
     }
 }
 

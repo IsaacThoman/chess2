@@ -23,7 +23,7 @@ namespace chess2
 
 
 
-        public static Bitmap[] piece = new Bitmap[16];
+        public static Bitmap[] piece = new Bitmap[17];
 
         public static bool bitmapsLoaded = false;
         public static void setTheme(int theme)
@@ -69,6 +69,8 @@ namespace chess2
                 piece[12] = new Bitmap(chess2.Properties.Resources._12);
 
                 piece[13] = new Bitmap(chess2.Properties.Resources.sword); //sword
+                piece[16] = new Bitmap(chess2.Properties.Resources.sword_b); //sword_b
+
                 piece[14] = new Bitmap(chess2.Properties.Resources.legalMoveDot); //legal move dot
                 piece[15] = new Bitmap(chess2.Properties.Resources.redDot); //red attack dot
 
@@ -203,11 +205,23 @@ namespace chess2
                     if (myPiece > 0 && myPiece < 13)
                     {
 
-                        g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);
+                        
                         if(legalSquare && showLegalMoves)
                         {
-                            g.DrawImage(piece[15], boardRect[fillerX, fillerY]);
-                            g.DrawImage(piece[13], boardRect[fillerX, fillerY]);
+                            g.DrawImage(piece[15], boardRect[fillerX, fillerY]); //draw dot behind piece
+                        }
+                        g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);//draw piece
+                        if (legalSquare && showLegalMoves)
+                        {
+                            if (myPiece > 6)
+                            {
+                                g.DrawImage(piece[13], boardRect[fillerX, fillerY]);//draw sword
+                            }
+                            else
+                            {
+                                g.DrawImage(piece[16], boardRect[fillerX, fillerY]);//draw sword
+                            }
+                            
                         }
                     }
 
