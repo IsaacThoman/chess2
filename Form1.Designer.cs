@@ -47,8 +47,8 @@ namespace chess2
             this.button3 = new System.Windows.Forms.Button();
             this.capturedPiecesPictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.showLegalMovesRadio = new System.Windows.Forms.CheckBox();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             this.designBtn = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.darkThemeRadio = new System.Windows.Forms.RadioButton();
@@ -69,7 +69,6 @@ namespace chess2
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.debugGroupBox = new System.Windows.Forms.GroupBox();
-            this.showLegalMovesRadio = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -254,7 +253,6 @@ namespace chess2
             // 
             this.groupBox2.Controls.Add(this.showLegalMovesRadio);
             this.groupBox2.Controls.Add(this.numericUpDown3);
-            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.designBtn);
             this.groupBox2.Controls.Add(this.groupBox6);
             this.groupBox2.Controls.Add(this.AACheckBox);
@@ -268,43 +266,44 @@ namespace chess2
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Interface Settings";
             // 
+            // showLegalMovesRadio
+            // 
+            this.showLegalMovesRadio.AutoSize = true;
+            this.showLegalMovesRadio.Location = new System.Drawing.Point(7, 188);
+            this.showLegalMovesRadio.Name = "showLegalMovesRadio";
+            this.showLegalMovesRadio.Size = new System.Drawing.Size(121, 19);
+            this.showLegalMovesRadio.TabIndex = 14;
+            this.showLegalMovesRadio.Text = "Show legal moves";
+            this.showLegalMovesRadio.UseVisualStyleBackColor = true;
+            this.showLegalMovesRadio.CheckedChanged += new System.EventHandler(this.showLegalMovesRadio_CheckedChanged);
+            // 
             // numericUpDown3
             // 
-            this.numericUpDown3.DecimalPlaces = 1;
             this.numericUpDown3.Increment = new decimal(new int[] {
-            1,
+            64,
             0,
             0,
-            65536});
-            this.numericUpDown3.Location = new System.Drawing.Point(173, 162);
+            0});
+            this.numericUpDown3.Location = new System.Drawing.Point(110, 162);
             this.numericUpDown3.Maximum = new decimal(new int[] {
-            4,
+            2096,
             0,
             0,
             0});
             this.numericUpDown3.Minimum = new decimal(new int[] {
-            1,
+            64,
             0,
             0,
-            65536});
+            0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(61, 23);
             this.numericUpDown3.TabIndex = 12;
             this.numericUpDown3.Value = new decimal(new int[] {
-            15,
+            768,
             0,
             0,
-            65536});
+            0});
             this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(115, 164);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 15);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "AA Scale:";
             // 
             // designBtn
             // 
@@ -356,11 +355,13 @@ namespace chess2
             // AACheckBox
             // 
             this.AACheckBox.AutoSize = true;
+            this.AACheckBox.Checked = true;
+            this.AACheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.AACheckBox.Location = new System.Drawing.Point(7, 163);
             this.AACheckBox.Name = "AACheckBox";
-            this.AACheckBox.Size = new System.Drawing.Size(93, 19);
+            this.AACheckBox.Size = new System.Drawing.Size(103, 19);
             this.AACheckBox.TabIndex = 11;
-            this.AACheckBox.Text = "Anti-aliasing";
+            this.AACheckBox.Text = "NN Resolution";
             this.AACheckBox.UseVisualStyleBackColor = true;
             this.AACheckBox.CheckedChanged += new System.EventHandler(this.AACheckBox_CheckedChanged);
             // 
@@ -438,9 +439,9 @@ namespace chess2
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(6, 72);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(126, 19);
+            this.radioButton3.Size = new System.Drawing.Size(90, 19);
             this.radioButton3.TabIndex = 3;
-            this.radioButton3.Text = "Custom Resolution";
+            this.radioButton3.Text = "Custom Size";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged_1);
             // 
@@ -555,17 +556,6 @@ namespace chess2
             this.debugGroupBox.TabStop = false;
             this.debugGroupBox.Text = "Debug Options";
             // 
-            // showLegalMovesRadio
-            // 
-            this.showLegalMovesRadio.AutoSize = true;
-            this.showLegalMovesRadio.Location = new System.Drawing.Point(7, 188);
-            this.showLegalMovesRadio.Name = "showLegalMovesRadio";
-            this.showLegalMovesRadio.Size = new System.Drawing.Size(121, 19);
-            this.showLegalMovesRadio.TabIndex = 14;
-            this.showLegalMovesRadio.Text = "Show legal moves";
-            this.showLegalMovesRadio.UseVisualStyleBackColor = true;
-            this.showLegalMovesRadio.CheckedChanged += new System.EventHandler(this.showLegalMovesRadio_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -641,7 +631,6 @@ namespace chess2
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.CheckBox AACheckBox;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton lightThemeRadio;
