@@ -338,8 +338,8 @@ namespace chess2
         {
            // AACheckBox.Checked = false;
             Form form2 = new designer();
-            
-            firstForm.Hide();
+            firstForm = Form1.ActiveForm;
+            Form1.ActiveForm.Hide();
             form2.Show();
             
         }
