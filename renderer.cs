@@ -296,7 +296,7 @@ namespace chess2
 
                 }
             }
-            Debug.WriteLine(sourceX+", "+sourceY+" to "+destX+", "+destY);
+       //     Debug.WriteLine(sourceX+", "+sourceY+" to "+destX+", "+destY);
             if(sourceX == 0)
             {
                 doAnimation = false;
@@ -515,7 +515,7 @@ namespace chess2
                 for (int scanLoop = 1; scanLoop < 13; scanLoop++)
                 {
                     piecesCaptured[scanLoop] = piecesSupposedToBeThere[scanLoop] - piecesCaptured[scanLoop];
-                    Debug.WriteLine("missing: " + piecesCaptured[scanLoop]);
+             //       Debug.WriteLine("missing: " + piecesCaptured[scanLoop]);
                 }
 
                 for (int renderPiece = 1; renderPiece <= (totalPiecesCaptured); renderPiece++)
