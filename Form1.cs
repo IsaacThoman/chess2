@@ -30,7 +30,7 @@ namespace chess2
         {
             groupBox1Y = onlineSettingsGroup.Location.Y;
             groupBox2Y = debugGroupBox.Location.Y;
-
+            rpc.setRPC("Playing locally", "", "1", "❤️");
 
             if (chess2.Properties.Settings.Default.userid == 1111)
             {
@@ -113,8 +113,10 @@ namespace chess2
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            
             if (radioLocal.Checked)
             {
+                rpc.setDetails("Playing locally");
                 Interface.againstBot = false;
                 Interface.againstLocal = true;
                 Interface.againstOnline = false;
@@ -136,7 +138,7 @@ namespace chess2
         {
             if (radioComputer.Checked)
             {
-
+                rpc.setDetails("Playing against computer");
                 Interface.againstBot = true;
                 Interface.againstLocal = false;
                 Interface.againstOnline = false;
@@ -155,6 +157,7 @@ namespace chess2
         private void radioOnline_CheckedChanged(object sender, EventArgs e)
         {
             if (radioOnline.Checked) {
+                rpc.setDetails("Playing online");
                 Interface.againstBot = false;
                 Interface.againstLocal = false;
                 Interface.againstOnline = true;

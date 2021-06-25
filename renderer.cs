@@ -456,6 +456,24 @@ namespace chess2
 
         public static Bitmap renderCapturesBar()
         {
+            int currentScore = engine.boardEvaluation(board.boardSquare);
+            if (currentScore > 0)
+            {
+                rpc.setState("White is winning by +"+Math.Abs(currentScore));
+                rpc.setImage("5");
+            }
+            if (currentScore < 0)
+            {
+                rpc.setState("Black is winning by +" + Math.Abs(currentScore));
+                rpc.setImage("11");
+            }
+            if (currentScore == 0)
+            {
+                rpc.setState("The game is tied.");
+                rpc.setImage("1");
+            }
+
+
             Bitmap capturesBar = new Bitmap((resolution/8), resolution);
             using (Graphics gr = Graphics.FromImage(capturesBar))
             {
