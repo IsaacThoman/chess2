@@ -34,13 +34,17 @@ namespace chess2
             myInternalBoard = boardToUse;
 
 
-            if(sourceX==destinationX && sourceY == destinationY)
+            if (sourceX == destinationX && sourceY == destinationY)
             {
                 return false;
 
             }
+            if (myInternalBoard[sourceX, sourceY] == 0)//pawns
+            {
+                return false;
+            }
 
-            if (myInternalBoard[sourceX,sourceY] == 1)//pawns
+                if (myInternalBoard[sourceX,sourceY] == 1)//pawns
             {
             if((sourceX+1==destinationX^ sourceX - 1 == destinationX) &&sourceY+1 == destinationY) //pawn diagonal move
                 {

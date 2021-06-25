@@ -21,7 +21,7 @@ namespace chess2
             int fromY = 5;
             int toX = 6;
             int toY = 6;
-            int bestScore = 0;
+            int bestScore = 100;
             int[] moveIndex = new int[1024];
 
 
@@ -42,32 +42,15 @@ namespace chess2
 
                             if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed))
                             {//testing code
-                                int[,] tester = board.boardSquareReversed;
 
-                                int fromValuetest = tester[9 - fromX, 9 - fromY];
-                                int toValuetest = tester[9 - toX, 9 - toY];
-
-                                if (toValuetest > 0)
+                                if (bestScore >= testMove(fromX, fromY, toX, toY, board.boardSquareReversed))
                                 {
-                                    toValuetest = 0;
-                                }
-
-                                tester[9 - toX, 9 - toY] = fromValuetest;
-                                tester[9 - fromX, 9 - fromY] = toValuetest;
-                                //bacf
-                                if (engine.boardEvaluation(tester) <= bestScore)
-                                {
-                                    
-                                    bestScore = (int)(engine.boardEvaluation(tester));
-                                    Debug.WriteLine("Found new best: " + fromX + "," + fromY + "," + toX + "," + toY + " Score: " + bestScore);
-                                    if (bestScore < 0)
-                                    {
-                                        fromX = scannerSourceX;
+                                    bestScore = (int)testMove(fromX, fromY, toX, toY, board.boardSquareReversed);
+                                    fromX = scannerSourceX;
                                         fromY = scannerSourceY;
                                         toX = scannerDestX;
                                         toY = scannerDestY;
-                                    }
-
+                                    Debug.WriteLine("Decided on "+bestScore);
                                 }
 
                             }
@@ -94,7 +77,7 @@ namespace chess2
 
             board.boardSquare[9-toX, 9-toY] = fromValue;
             board.boardSquare[9-fromX, 9-fromY] = toValue;
-            
+            Debug.WriteLine("move " + (9-fromX) + "," + (9-fromY)+"to " + (9-toX) + "," + (9-toY));
 
 
 
@@ -110,7 +93,29 @@ namespace chess2
 
 
         }
+        public static int testMove(int fromX,int fromY, int toX, int toY, int[,] boardToUse)
+        {
+            int[,] clearlyINeverLearnedC = new int[9, 9];
+            for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
+            {
+                for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
+                {
+                    clearlyINeverLearnedC[scannerSourceX, scannerSourceY] = boardToUse[scannerSourceX, scannerSourceY];
+                }
+            }
+                    int fromValue = clearlyINeverLearnedC[ fromX, fromY];
+            int toValue = clearlyINeverLearnedC[ toX,  toY];
 
+            if (toValue > 0)
+            {
+                toValue = 0;
+            }
+
+            clearlyINeverLearnedC[ toX,  toY] = fromValue;
+            clearlyINeverLearnedC[ fromX,  fromY] = toValue;
+
+            return (boardEvaluation(clearlyINeverLearnedC));
+        }
 
         public static int boardEvaluation(int[,] board)
         {
