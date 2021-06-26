@@ -21,7 +21,7 @@ namespace chess2
             int fromY = 5;
             int toX = 6;
             int toY = 6;
-            int bestScore = 100;
+            int bestScore = -10000;
             int[] moveIndex = new int[1024];
 
 
@@ -42,15 +42,15 @@ namespace chess2
 
                             if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare)))
                             {//testing code
-
-                                if (bestScore >= testMove(fromX, fromY, toX, toY, board.boardSquareReversed(board.boardSquare)))
+                                int thisMoveScore = getMoveTree(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare));
+                                if (bestScore <= thisMoveScore)
                                 {
-                                    bestScore = (int)testMove(fromX, fromY, toX, toY, board.boardSquareReversed(board.boardSquare));
+                                    bestScore = thisMoveScore;
                                     fromX = scannerSourceX;
                                         fromY = scannerSourceY;
                                         toX = scannerDestX;
                                         toY = scannerDestY;
-                                    Debug.WriteLine("Difference seen??"+(bestScore - testMove(fromX, fromY, toX, toY, board.boardSquareReversed(board.boardSquare))));
+                                    Debug.WriteLine("Difference seen??"+ thisMoveScore);
                                 }
 
                             }
@@ -98,17 +98,29 @@ namespace chess2
         {
             int treeScore = 0;
 
-
-            for (int currentDepth = 1; currentDepth <= 3; currentDepth++)
+            int[,] thisBranchBoard = new int[9, 9];
+            for (int copyX = 1; copyX <= 8; copyX++)
             {
-                int[,] thisBranchBoard = new int[9, 9];
-                for (int copyX = 1; copyX <= 8; copyX++)
+                for (int copyY = 1; copyY <= 8; copyY++)
                 {
-                    for (int copyY = 1; copyY <= 8; copyY++)
-                    {
-                        thisBranchBoard[copyX, copyY] = inputBoard[copyX, copyY];
-                    }
+                    thisBranchBoard[copyX, copyY] = inputBoard[copyX, copyY];
                 }
+            }
+            int fromValue2 = thisBranchBoard[sourceX, SourceY];
+            int toValue2 = thisBranchBoard[destX, destY];
+
+            if (toValue2 > 0)
+            {
+                toValue2 = 0;
+            }
+
+            thisBranchBoard[destX, destY] = fromValue2;
+            thisBranchBoard[sourceX, SourceY] = toValue2;
+
+
+
+            for (int currentDepth = 1; currentDepth <= 25; currentDepth++)
+            {
 
                 for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
                 {
@@ -118,13 +130,43 @@ namespace chess2
                         {
                             for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                             {
-                                if (currentDepth % 2 == 1)
+                                if (currentDepth % 2 == 0)
                                 {
-                                      treeScore += testMove(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, inputBoard);
+                                    if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, thisBranchBoard))
+                                    {
+                                        int fromValue = thisBranchBoard[scannerSourceX, scannerSourceY];
+                                        int toValue = thisBranchBoard[scannerDestX, scannerDestY];
+
+                                        if (toValue > 0)
+                                        {
+                                            toValue = 0;
+                                        }
+
+                                        thisBranchBoard[scannerDestX, scannerDestY] = fromValue;
+                                        thisBranchBoard[scannerSourceX, scannerSourceY] = toValue;
+                                       // if (currentDepth == 25) { treeScore += engine.boardEvaluation(thisBranchBoard); }
+                                       // Debug.WriteLine("white Moves" + scannerSourceX + "," + scannerSourceY + "to " + scannerDestX + "," + scannerDestY);
+
+                                    }
                                 }
                                 else
                                 {
-                                    treeScore += testMove(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(inputBoard));
+
+                                    if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(thisBranchBoard)))
+                                    {
+                                        int fromValue = thisBranchBoard[9-scannerSourceX, 9-scannerSourceY];
+                                        int toValue = thisBranchBoard[9-scannerDestX, 9-scannerDestY];
+
+                                        if (toValue > 0)
+                                        {
+                                            toValue = 0;
+                                        }
+
+                                        thisBranchBoard[9-scannerDestX, 9-scannerDestY] = fromValue;
+                                        thisBranchBoard[9-scannerSourceX, 9-scannerSourceY] = toValue;
+                                        if (currentDepth == 25) { treeScore += engine.boardEvaluation(thisBranchBoard); }
+                                     //   Debug.WriteLine("black Moves" + scannerSourceX + "," + scannerSourceY + "to " + scannerDestX + "," + scannerDestY);
+                                    }
                                 }
                             }
                         }
