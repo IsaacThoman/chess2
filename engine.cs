@@ -101,9 +101,14 @@ namespace chess2
 
             for (int currentDepth = 1; currentDepth <= 3; currentDepth++)
             {
-
-                if(currentDepth % 2 == 1)
+                int[,] thisBranchBoard = new int[9, 9];
+                for (int copyX = 1; copyX <= 8; copyX++)
                 {
+                    for (int copyY = 1; copyY <= 8; copyY++)
+                    {
+                        thisBranchBoard[copyX, copyY] = inputBoard[copyX, copyY];
+                    }
+                }
 
                 for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
                 {
@@ -113,25 +118,36 @@ namespace chess2
                         {
                             for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                             {
-                                    treeScore += testMove(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquare);
-
+                                if (currentDepth % 2 == 1)
+                                {
+                                      treeScore += testMove(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, inputBoard);
+                                }
+                                else
+                                {
+                                    treeScore += testMove(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(inputBoard));
+                                }
                             }
                         }
                     }
-                }
-                }
-                else
-                {
+
+
+
 
                 }
+
 
 
 
 
 
             }
-                            return 0;
+                            return treeScore;
         }
+
+
+
+
+
 
         public static int testMove(int fromX,int fromY, int toX, int toY, int[,] boardToUse)
         {
@@ -156,6 +172,11 @@ namespace chess2
 
             return (boardEvaluation(clearlyINeverLearnedC));
         }
+
+
+
+
+
 
         public static int boardEvaluation(int[,] board)
         {
