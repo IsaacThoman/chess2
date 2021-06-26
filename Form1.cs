@@ -120,6 +120,7 @@ namespace chess2
                 Interface.againstBot = false;
                 Interface.againstLocal = true;
                 Interface.againstOnline = false;
+                Interface.whitesMove = true;
                 timer1.Enabled = false;
                 onlineSettingsGroup.Visible = false;
                 onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, groupBox2Y);
@@ -142,6 +143,7 @@ namespace chess2
                 Interface.againstBot = true;
                 Interface.againstLocal = false;
                 Interface.againstOnline = false;
+                Interface.whitesMove = true;
                 timer1.Enabled = false;
                 onlineSettingsGroup.Visible = false;
                 onlineSettingsGroup.Location = new Point(onlineSettingsGroup.Location.X, groupBox2Y);
@@ -207,7 +209,7 @@ namespace chess2
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Interface.whitesMove = true;
 
             if (Interface.againstOnline)
             {
@@ -296,18 +298,38 @@ namespace chess2
 
             int selX = (relativePoint.X - gamePictureBox.Location.X) / (gamePictureBox.Width / 8) + 1;
             int selY = 0 - (relativePoint.Y - gamePictureBox.Location.Y) / (gamePictureBox.Height / 8) + 8;
-            
-            Interface.setSelection(selX, selY);
-            if (Interface.firstSel == true)
+            if (Interface.againstBot)
             {
-                animation = renderer.renderBitmapAnimation();
-                animationTimer.Enabled = true;
+                Interface.setSelection(selX, selY);
+                if (Interface.firstSel == true)
+                {
+                    
+                    animationTimer.Enabled = true;
+
+                }
+                else
+                {
+                    gamePictureBox.Image = renderer.renderBitmap();
+                    capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+                }
+                
             }
             else
             {
-                gamePictureBox.Image = renderer.renderBitmap();
-                capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+                Interface.setSelection(selX, selY);
+                if (Interface.firstSel == true)
+                {
+                    animation = renderer.renderBitmapAnimation();
+                    animationTimer.Enabled = true;
+                }
+                else
+                {
+                    gamePictureBox.Image = renderer.renderBitmap();
+                    capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+                }
             }
+
+            
          //   gamePictureBox.Image =renderer.renderBitmap();
 
         }

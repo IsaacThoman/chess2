@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,11 +79,29 @@ namespace chess2
                         whitesMove = false;
 
                 if(againstBot){
-                            //do engine stuff?
+                            Bitmap[] playerAnimation = renderer.renderBitmapAnimation();
                            engine.findLegalMove();
-       
-                
-                        whitesMove = true;
+                            Bitmap[] botAnimation = renderer.renderBitmapAnimation();
+
+                            Bitmap[] finalAnim = new Bitmap[11];
+
+                            finalAnim[0] = playerAnimation[1];
+                            finalAnim[1] = playerAnimation[1];
+                            finalAnim[2] = playerAnimation[3];
+                            finalAnim[3] = playerAnimation[5];
+                            finalAnim[4] = playerAnimation[7];
+                            finalAnim[5] = playerAnimation[9];
+
+                            finalAnim[6] = botAnimation[2];
+                            finalAnim[7] = botAnimation[4];
+                            finalAnim[8] = botAnimation[6];
+                            finalAnim[9] = botAnimation[8];
+                            finalAnim[10] = botAnimation[10];
+
+                                Form1.animation = finalAnim;
+                         
+                            
+                            whitesMove = true;
  }
 
                     }

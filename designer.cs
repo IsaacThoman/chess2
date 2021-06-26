@@ -248,6 +248,7 @@ namespace chess2
             renderer.piece[10] = renderer.piece[0];
             renderer.piece[11] = renderer.piece[0];
             renderer.piece[12] = renderer.piece[0];
+            rpc.setRPC("Playing TrollChess", "Doing a little trolling", "troll", ";chesstrollface");
         }
 
         private void button3_Click(object sender, EventArgs e)
