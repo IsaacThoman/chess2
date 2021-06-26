@@ -18,7 +18,7 @@ namespace chess2
         public static bool againstLocal = false;
         public static bool againstOnline = false;
 
-
+        public static bool newAnimation = false;
 
 
         public static void setSelection(int x, int y) //kill this.
@@ -99,7 +99,7 @@ namespace chess2
                             finalAnim[10] = botAnimation[10];
 
                                 Form1.animation = finalAnim;
-                         
+                            newAnimation = true;
                             
                             whitesMove = true;
  }

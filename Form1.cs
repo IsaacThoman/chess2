@@ -303,8 +303,26 @@ namespace chess2
                 Interface.setSelection(selX, selY);
                 if (Interface.firstSel == true)
                 {
+                    if (Interface.againstBot)
+                    {
+                        if (Interface.newAnimation)
+                        {
+                            animationTimer.Enabled = true;
+                            Interface.newAnimation = false;
+                        }
+                        else
+                        {
+                            gamePictureBox.Image = renderer.renderBitmap();
+                            capturedPiecesPictureBox.Image = renderer.renderCapturesBar();
+                        }
+                    }
+                    else
+                    {
+                        animationTimer.Enabled = true;
+                    }
+                        
+
                     
-                    animationTimer.Enabled = true;
 
                 }
                 else
