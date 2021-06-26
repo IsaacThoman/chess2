@@ -40,17 +40,17 @@ namespace chess2
                         for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                         {
 
-                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed))
+                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed()))
                             {//testing code
 
-                                if (bestScore >= testMove(fromX, fromY, toX, toY, board.boardSquareReversed))
+                                if (bestScore >= testMove(fromX, fromY, toX, toY, board.boardSquareReversed()))
                                 {
-                                    bestScore = (int)testMove(fromX, fromY, toX, toY, board.boardSquareReversed);
+                                    bestScore = (int)testMove(fromX, fromY, toX, toY, board.boardSquareReversed());
                                     fromX = scannerSourceX;
                                         fromY = scannerSourceY;
                                         toX = scannerDestX;
                                         toY = scannerDestY;
-                                    Debug.WriteLine("Decided on "+bestScore);
+                                    Debug.WriteLine("Difference seen??"+(bestScore - testMove(fromX, fromY, toX, toY, board.boardSquareReversed())));
                                 }
 
                             }
@@ -93,6 +93,46 @@ namespace chess2
 
 
         }
+
+        public static int getMoveTree(int sourceX,int SourceY, int destX, int destY, int[,]inputBoard)
+        {
+            int treeScore = 0;
+
+
+            for (int currentDepth = 1; currentDepth <= 3; currentDepth++)
+            {
+
+                if(currentDepth % 2 == 1)
+                {
+
+                for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
+                {
+                    for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
+                    {
+                        for (int scannerDestX = 1; scannerDestX <= 8; scannerDestX++)
+                        {
+                            for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
+                            {
+                                    treeScore += testMove(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquare);
+
+                            }
+                        }
+                    }
+                }
+                }
+                else
+                {
+
+                }
+
+
+
+
+
+            }
+                            return 0;
+        }
+
         public static int testMove(int fromX,int fromY, int toX, int toY, int[,] boardToUse)
         {
             int[,] clearlyINeverLearnedC = new int[9, 9];

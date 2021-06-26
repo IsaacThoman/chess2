@@ -67,9 +67,9 @@ namespace chess2
                 boardSquaresInternal = value; }
         }
 
-        public static int[,] boardSquareReversed
+        public static int[,] boardSquareReversed()
         {
-            get {
+          
                 int[,] horizontalTransferFlippyThing = new int[9, 9];
 
                 for (int fillerX = 1; fillerX < 9; fillerX++)
@@ -160,13 +160,13 @@ namespace chess2
 
 
                         return allFlipped; 
-            }
+            
 
 
 
 
 
-            set { boardSquaresInternal = value; }
+           
         }
         public static int points()
         {

@@ -47,7 +47,7 @@ namespace chess2
                 }
                 else
                 {
-                    moveLegalityThing = rulebook.checkLegality(9-intselX, 9-intselY, 9-x, 9-y, board.boardSquareReversed);
+                    moveLegalityThing = rulebook.checkLegality(9-intselX, 9-intselY, 9-x, 9-y, board.boardSquareReversed());
                 }
 
                 if (moveLegalityThing)
@@ -85,12 +85,12 @@ namespace chess2
 
                             Bitmap[] finalAnim = new Bitmap[11];
 
-                            finalAnim[0] = playerAnimation[1];
-                            finalAnim[1] = playerAnimation[1];
-                            finalAnim[2] = playerAnimation[3];
-                            finalAnim[3] = playerAnimation[5];
-                            finalAnim[4] = playerAnimation[7];
-                            finalAnim[5] = playerAnimation[9];
+                            finalAnim[0] = playerAnimation[1];  //creates an animation before calculating next move,
+                            finalAnim[1] = playerAnimation[2];  //jankily combines that with the animation created after
+                            finalAnim[2] = playerAnimation[4];
+                            finalAnim[3] = playerAnimation[6];
+                            finalAnim[4] = playerAnimation[8];
+                            finalAnim[5] = playerAnimation[10]; 
 
                             finalAnim[6] = botAnimation[2];
                             finalAnim[7] = botAnimation[4];
