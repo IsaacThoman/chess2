@@ -21,7 +21,7 @@ namespace chess2
             int fromY = 5;
             int toX = 6;
             int toY = 6;
-            int bestScore = -10000;
+            int bestScore = -100000;
             int[] moveIndex = new int[1024];
 
 
@@ -119,18 +119,19 @@ namespace chess2
 
 
 
-            for (int currentDepth = 1; currentDepth <= 25; currentDepth++)
+            for (int currentDepth = 1; currentDepth <= 7; currentDepth++)
             {
 
-                for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
+
+                if (currentDepth % 2 == 0)
                 {
-                    for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
+                    for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
                     {
-                        for (int scannerDestX = 1; scannerDestX <= 8; scannerDestX++)
+                        for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
                         {
-                            for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
+                            for (int scannerDestX = 1; scannerDestX <= 8; scannerDestX++)
                             {
-                                if (currentDepth % 2 == 0)
+                                for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                                 {
                                     if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, thisBranchBoard))
                                     {
@@ -144,28 +145,45 @@ namespace chess2
 
                                         thisBranchBoard[scannerDestX, scannerDestY] = fromValue;
                                         thisBranchBoard[scannerSourceX, scannerSourceY] = toValue;
-                                       // if (currentDepth == 25) { treeScore += engine.boardEvaluation(thisBranchBoard); }
-                                       // Debug.WriteLine("white Moves" + scannerSourceX + "," + scannerSourceY + "to " + scannerDestX + "," + scannerDestY);
+                                     //   if (currentDepth == 3) { treeScore += engine.boardEvaluation(thisBranchBoard); }
+                                        //    treeScore += engine.boardEvaluation(thisBranchBoard);
+                                        // Debug.WriteLine("white Moves" + scannerSourceX + "," + scannerSourceY + "to " + scannerDestX + "," + scannerDestY);
 
                                     }
+                                //    Debug.WriteLine("whitemove");
                                 }
-                                else
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
+                    {
+                        for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
+                        {
+                            for (int scannerDestX = 1; scannerDestX <= 8; scannerDestX++)
+                            {
+                                for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                                 {
 
+                                 //   Debug.WriteLine("blackmove");
                                     if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(thisBranchBoard)))
                                     {
-                                        int fromValue = thisBranchBoard[9-scannerSourceX, 9-scannerSourceY];
-                                        int toValue = thisBranchBoard[9-scannerDestX, 9-scannerDestY];
+                                        int fromValue = thisBranchBoard[9 - scannerSourceX, 9 - scannerSourceY];
+                                        int toValue = thisBranchBoard[9 - scannerDestX, 9 - scannerDestY];
 
                                         if (toValue > 0)
                                         {
                                             toValue = 0;
                                         }
 
-                                        thisBranchBoard[9-scannerDestX, 9-scannerDestY] = fromValue;
-                                        thisBranchBoard[9-scannerSourceX, 9-scannerSourceY] = toValue;
-                                        if (currentDepth == 25) { treeScore += engine.boardEvaluation(thisBranchBoard); }
-                                     //   Debug.WriteLine("black Moves" + scannerSourceX + "," + scannerSourceY + "to " + scannerDestX + "," + scannerDestY);
+                                        thisBranchBoard[9 - scannerDestX, 9 - scannerDestY] = fromValue;
+                                        thisBranchBoard[9 - scannerSourceX, 9 - scannerSourceY] = toValue;
+                                    //    if (currentDepth == 3) { treeScore += engine.boardEvaluation(thisBranchBoard); }
+                                        //treeScore += engine.boardEvaluation(thisBranchBoard);
+                                        //   Debug.WriteLine("black Moves" + scannerSourceX + "," + scannerSourceY + "to " + scannerDestX + "," + scannerDestY);
                                     }
                                 }
                             }
@@ -174,9 +192,8 @@ namespace chess2
 
 
 
-
                 }
-
+                treeScore += engine.boardEvaluation(thisBranchBoard);
 
 
 
@@ -249,7 +266,7 @@ namespace chess2
                     }
                     if (board[scannerSourceX, scannerSourceY] == 6)
                     {
-                        counted += 100;
+                        counted += 1000000;
                     }
                     //black
                     if (board[scannerSourceX, scannerSourceY] == 7)
@@ -274,7 +291,7 @@ namespace chess2
                     }
                     if (board[scannerSourceX, scannerSourceY] == 12)
                     {
-                        counted += 0 - 100;
+                        counted += 0 - 1000000;
                     }
 
                 }
