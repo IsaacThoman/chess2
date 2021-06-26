@@ -67,7 +67,7 @@ namespace chess2
                 boardSquaresInternal = value; }
         }
 
-        public static int[,] boardSquareReversed()
+        public static int[,] boardSquareReversed(int[,] inputBoard)
         {
           
                 int[,] horizontalTransferFlippyThing = new int[9, 9];
@@ -76,7 +76,7 @@ namespace chess2
                 {
                     for (int fillerY = 1; fillerY < 9; fillerY++)
                     {
-                        horizontalTransferFlippyThing[fillerX, fillerY] = boardSquaresInternal[9 - fillerX, fillerY];
+                        horizontalTransferFlippyThing[fillerX, fillerY] = inputBoard[9 - fillerX, fillerY];
 
                     }
 

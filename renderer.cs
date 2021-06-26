@@ -188,7 +188,7 @@ namespace chess2
                         }
                         else
                         {
-                            if (rulebook.checkLegality(9-Interface.selX, 9-Interface.selY, 9-fillerX, 9-fillerY, board.boardSquareReversed()))
+                            if (rulebook.checkLegality(9-Interface.selX, 9-Interface.selY, 9-fillerX, 9-fillerY, board.boardSquareReversed(board.boardSquare)))
                             {
                                 legalSquare = true;
                             }
@@ -392,7 +392,7 @@ namespace chess2
                         }
                         else
                         {
-                            if (rulebook.checkLegality(9 - Interface.selX, 9 - Interface.selY, 9 - fillerX, 9 - fillerY, board.boardSquareReversed()))
+                            if (rulebook.checkLegality(9 - Interface.selX, 9 - Interface.selY, 9 - fillerX, 9 - fillerY, board.boardSquareReversed(board.boardSquare)))
                             {
                                 legalSquare = true;
                             }

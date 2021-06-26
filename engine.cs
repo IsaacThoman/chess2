@@ -40,17 +40,17 @@ namespace chess2
                         for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                         {
 
-                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed()))
+                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare)))
                             {//testing code
 
-                                if (bestScore >= testMove(fromX, fromY, toX, toY, board.boardSquareReversed()))
+                                if (bestScore >= testMove(fromX, fromY, toX, toY, board.boardSquareReversed(board.boardSquare)))
                                 {
-                                    bestScore = (int)testMove(fromX, fromY, toX, toY, board.boardSquareReversed());
+                                    bestScore = (int)testMove(fromX, fromY, toX, toY, board.boardSquareReversed(board.boardSquare));
                                     fromX = scannerSourceX;
                                         fromY = scannerSourceY;
                                         toX = scannerDestX;
                                         toY = scannerDestY;
-                                    Debug.WriteLine("Difference seen??"+(bestScore - testMove(fromX, fromY, toX, toY, board.boardSquareReversed())));
+                                    Debug.WriteLine("Difference seen??"+(bestScore - testMove(fromX, fromY, toX, toY, board.boardSquareReversed(board.boardSquare))));
                                 }
 
                             }

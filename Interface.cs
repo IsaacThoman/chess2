@@ -47,7 +47,7 @@ namespace chess2
                 }
                 else
                 {
-                    moveLegalityThing = rulebook.checkLegality(9-intselX, 9-intselY, 9-x, 9-y, board.boardSquareReversed());
+                    moveLegalityThing = rulebook.checkLegality(9-intselX, 9-intselY, 9-x, 9-y, board.boardSquareReversed(board.boardSquare));
                 }
 
                 if (moveLegalityThing)
