@@ -40,7 +40,7 @@ namespace chess2
                         for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                         {
 
-                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare)))
+                            if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare),false))
                             {//testing code
                                 int thisMoveScore = getMoveTree(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare));
                                 if (bestScore <= thisMoveScore)
@@ -119,7 +119,7 @@ namespace chess2
 
 
 
-            for (int currentDepth = 1; currentDepth <= 7; currentDepth++)
+            for (int currentDepth = 1; currentDepth <= 4; currentDepth++)
             {
 
 
@@ -133,7 +133,7 @@ namespace chess2
                             {
                                 for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                                 {
-                                    if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, thisBranchBoard))
+                                    if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, thisBranchBoard, false))
                                     {
                                         int fromValue = thisBranchBoard[scannerSourceX, scannerSourceY];
                                         int toValue = thisBranchBoard[scannerDestX, scannerDestY];
@@ -169,7 +169,7 @@ namespace chess2
                                 {
 
                                  //   Debug.WriteLine("blackmove");
-                                    if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(thisBranchBoard)))
+                                    if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(thisBranchBoard), false))
                                     {
                                         int fromValue = thisBranchBoard[9 - scannerSourceX, 9 - scannerSourceY];
                                         int toValue = thisBranchBoard[9 - scannerDestX, 9 - scannerDestY];

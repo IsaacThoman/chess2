@@ -43,11 +43,11 @@ namespace chess2
 
                 if (whitesMove)
                 {
-                    moveLegalityThing = rulebook.checkLegality(intselX, intselY, x, y, board.boardSquare);
+                    moveLegalityThing = rulebook.checkLegality(intselX, intselY, x, y, board.boardSquare,false);
                 }
                 else
                 {
-                    moveLegalityThing = rulebook.checkLegality(9-intselX, 9-intselY, 9-x, 9-y, board.boardSquareReversed(board.boardSquare));
+                    moveLegalityThing = rulebook.checkLegality(9-intselX, 9-intselY, 9-x, 9-y, board.boardSquareReversed(board.boardSquare), false);
                 }
 
                 if (moveLegalityThing)
