@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,61 @@ namespace chess2
 {
     class rulebook
     {
-        
-        public static bool checkLegality(int sourceX, int sourceY, int destinationX,int destinationY, int[,] boardToUse)
-        {
 
+        public static bool checkLegality(int sourceX, int sourceY, int destinationX, int destinationY, int[,] boardToUse,bool checkDetection)
+        {
+            if (checkDetection)
+            {
+                int[,] thisBranchBoard = new int[9, 9];
+                for (int copyX = 1; copyX <= 8; copyX++)
+                {
+                    for (int copyY = 1; copyY <= 8; copyY++)
+                    {
+                        thisBranchBoard[copyX, copyY] = boardToUse[copyX, copyY];
+                    }
+                }
+                int fromValue2 = thisBranchBoard[sourceX, sourceY];
+                int toValue2 = thisBranchBoard[destinationX, destinationY];
+
+                if (toValue2 > 0)
+                {
+                    toValue2 = 0;
+                }
+
+                thisBranchBoard[destinationX, destinationY] = fromValue2;
+                thisBranchBoard[sourceX, sourceY] = toValue2;
+
+                for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
+                {
+                    for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
+                    {
+                        for (int scannerDestX = 1; scannerDestX <= 8; scannerDestX++)
+                        {
+                            for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
+                            {
+                                if (rulebook.checkOtherLegalities(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(thisBranchBoard)))
+                                {
+                                    if (thisBranchBoard[9 - scannerDestX, 9 - scannerDestY] == 6)
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+                                if (checkOtherLegalities(sourceX, sourceY, destinationX, destinationY, boardToUse))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public static bool checkOtherLegalities(int sourceX, int sourceY, int destinationX, int destinationY, int[,] boardToUse)
+        {
             int[,] myInternalBoard = new int[9, 9];
 
             /*
@@ -44,11 +96,11 @@ namespace chess2
                 return false;
             }
 
-                if (myInternalBoard[sourceX,sourceY] == 1)//pawns
+            if (myInternalBoard[sourceX, sourceY] == 1)//pawns
             {
-            if((sourceX+1==destinationX^ sourceX - 1 == destinationX) &&sourceY+1 == destinationY) //pawn diagonal move
+                if ((sourceX + 1 == destinationX ^ sourceX - 1 == destinationX) && sourceY + 1 == destinationY) //pawn diagonal move
                 {
-                    if (myInternalBoard[destinationX, destinationY]>6)
+                    if (myInternalBoard[destinationX, destinationY] > 6)
                     {
 
                         return true;
@@ -65,7 +117,7 @@ namespace chess2
 
                 }
 
-                if(sourceX==destinationX && 4 == destinationY&&sourceY==2)
+                if (sourceX == destinationX && 4 == destinationY && sourceY == 2)
                 {
                     if (myInternalBoard[destinationX, sourceY + 2] == 0 && myInternalBoard[destinationX, sourceY + 1] == 0)
                     {
@@ -82,7 +134,7 @@ namespace chess2
                 int scanDirX = 0;
                 int scanDirY = 0;
 
-                if(Math.Abs(sourceX-destinationX) != Math.Abs(sourceY - destinationY))
+                if (Math.Abs(sourceX - destinationX) != Math.Abs(sourceY - destinationY))
                 {
                     return false;
 
@@ -116,23 +168,23 @@ namespace chess2
 
                 }
 
-                if(myInternalBoard[destinationX,destinationY]==0 | myInternalBoard[destinationX, destinationY] > 6)
+                if (myInternalBoard[destinationX, destinationY] == 0 | myInternalBoard[destinationX, destinationY] > 6)
                 {
                     return true;
 
                 }
 
 
-                    
+
             }//close bishops
 
             if (myInternalBoard[sourceX, sourceY] == 6) //le king
             {
-                if(Math.Abs(sourceX-destinationX)>1 | Math.Abs(sourceY - destinationY) > 1)
+                if (Math.Abs(sourceX - destinationX) > 1 | Math.Abs(sourceY - destinationY) > 1)
                 {
                     return false;
                 }
-                if(myInternalBoard[destinationX,destinationY]>0 && myInternalBoard[destinationX, destinationY] < 7)
+                if (myInternalBoard[destinationX, destinationY] > 0 && myInternalBoard[destinationX, destinationY] < 7)
                 {
                     return false;
                 }
@@ -147,7 +199,7 @@ namespace chess2
                 int scanDirY = 0;
                 int distance = (Math.Abs(sourceX - destinationX) + Math.Abs(sourceY - destinationY));
 
-                if (sourceX != destinationX&&sourceY!=destinationY)
+                if (sourceX != destinationX && sourceY != destinationY)
                 {
                     return false;
                 }
@@ -156,7 +208,7 @@ namespace chess2
                 {
                     scanDirX = 0 - 1;
                 }
-                if(sourceX < destinationX)
+                if (sourceX < destinationX)
                 {
                     scanDirX = 1;
                 }
@@ -180,13 +232,13 @@ namespace chess2
                     }
 
                 }
-                if (myInternalBoard[destinationX, destinationY] > 6 | myInternalBoard[destinationX, destinationY] <1)
+                if (myInternalBoard[destinationX, destinationY] > 6 | myInternalBoard[destinationX, destinationY] < 1)
                 {
                     return true;
                 }
 
-                
-               // return true;
+
+                // return true;
             }
             if (myInternalBoard[sourceX, sourceY] == 5) //le queen
             {
@@ -240,7 +292,7 @@ namespace chess2
                     //close rook
                 }
 
-                if(Math.Abs(sourceX-destinationX)== Math.Abs(sourceY - destinationY))
+                if (Math.Abs(sourceX - destinationX) == Math.Abs(sourceY - destinationY))
                 {
                     //bishop
                     int distance = Math.Abs(sourceX - destinationX);
@@ -286,12 +338,12 @@ namespace chess2
                         return true;
 
                     }
-//close bishop inside queen
+                    //close bishop inside queen
                 }
 
 
 
-                    return false;
+                return false;
             }//close queen
 
 
@@ -302,7 +354,7 @@ namespace chess2
 
                 if ((changeX == 1 && changeY == 2) | (changeX == 2 && changeY == 1))
                 {
-                    if (myInternalBoard[destinationX, destinationY] > 6 | myInternalBoard[destinationX, destinationY] ==0)
+                    if (myInternalBoard[destinationX, destinationY] > 6 | myInternalBoard[destinationX, destinationY] == 0)
                     {
                         return true;
 
@@ -318,7 +370,7 @@ namespace chess2
 
             return false;
         }
-
+    }
 
     }
-}
+
