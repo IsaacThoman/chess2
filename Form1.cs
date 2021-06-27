@@ -537,5 +537,11 @@ namespace chess2
             gamePictureBox.Image = renderer.renderBitmap();
             Properties.Settings.Default.Save();
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            rulebook.checkDetectionEnabled = checkBox1.Checked;
+            gamePictureBox.Image = renderer.renderBitmap();
+        }
     }
 }

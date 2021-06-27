@@ -69,6 +69,7 @@ namespace chess2
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.debugGroupBox = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -251,6 +252,7 @@ namespace chess2
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.showLegalMovesRadio);
             this.groupBox2.Controls.Add(this.numericUpDown3);
             this.groupBox2.Controls.Add(this.designBtn);
@@ -556,6 +558,17 @@ namespace chess2
             this.debugGroupBox.TabStop = false;
             this.debugGroupBox.Text = "Debug Options";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(134, 188);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(203, 19);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "Check Detection (incredibly slow)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -636,6 +649,7 @@ namespace chess2
         private System.Windows.Forms.RadioButton lightThemeRadio;
         private System.Windows.Forms.RadioButton darkThemeRadio;
         private System.Windows.Forms.CheckBox showLegalMovesRadio;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

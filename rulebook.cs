@@ -9,10 +9,10 @@ namespace chess2
 {
     class rulebook
     {
-
+        public static bool checkDetectionEnabled = false;
         public static bool checkLegality(int sourceX, int sourceY, int destinationX, int destinationY, int[,] boardToUse,bool checkDetection)
         {
-            if (checkDetection)
+            if (checkDetection&&checkDetectionEnabled)
             {
                 int[,] thisBranchBoard = new int[9, 9];
                 for (int copyX = 1; copyX <= 8; copyX++)
