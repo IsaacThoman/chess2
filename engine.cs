@@ -29,7 +29,7 @@ namespace chess2
             int maxIndex = 0;
 
 
-
+            decimal lastLeafAverage = 0;
 
             for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
             {
@@ -39,19 +39,125 @@ namespace chess2
                     {
                         for (int scannerDestY = 1; scannerDestY <= 8; scannerDestY++)
                         {
+                            int leafCount = 0;
+                            int leafTotal = 0;
+                            decimal leafAverage = 0;
 
                             if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare)))
                             {//testing code
-                                int thisMoveScore = getMoveTree(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare));
-                                if (bestScore <= thisMoveScore)
+
+                                int[,] boardLevel1 = new int[9, 9]; //------------------------------------creating board 1
+                                for (int copyX = 1; copyX <= 8; copyX++)
                                 {
-                                    bestScore = thisMoveScore;
-                                    fromX = scannerSourceX;
-                                        fromY = scannerSourceY;
-                                        toX = scannerDestX;
-                                        toY = scannerDestY;
-                                    Debug.WriteLine("Difference seen??"+ thisMoveScore);
+                                    for (int copyY = 1; copyY <= 8; copyY++)
+                                    {
+                                        boardLevel1[copyX, copyY] = board.boardSquare[copyX, copyY];
+                                    }
                                 }
+
+                                //make top change to board 1
+                                int fromValue2 = boardLevel1[9-scannerSourceX, 9-scannerSourceY];
+                                int toValue2 = boardLevel1[9-scannerDestX, 9-scannerDestY];
+
+                                if (toValue2 > 0)
+                                {
+                                    toValue2 = 0;
+                                }
+
+                                boardLevel1[9-scannerDestX, 9-scannerDestY] = fromValue2;
+                                boardLevel1[9-scannerSourceX, 9-scannerSourceY] = toValue2;
+
+
+
+                                for (int scannerSourceXw1 = 1; scannerSourceXw1 <= 8; scannerSourceXw1++)//------------------------------------for every white move
+                                {
+                                    for (int scannerSourceYw1 = 1; scannerSourceYw1 <= 8; scannerSourceYw1++)
+                                    {
+                                        for (int scannerDestXw1 = 1; scannerDestXw1 <= 8; scannerDestXw1++)
+                                        {
+                                            for (int scannerDestYw1 = 1; scannerDestYw1 <= 8; scannerDestYw1++)
+                                            {
+
+                                                if (rulebook.checkLegality(scannerSourceXw1, scannerSourceYw1, scannerDestXw1, scannerDestYw1, boardLevel1))
+                                                {
+                                                    int[,] boardLevel2 = new int[9, 9]; //------------------------------------creating board 1
+                                                    for (int copyX = 1; copyX <= 8; copyX++)
+                                                    {
+                                                        for (int copyY = 1; copyY <= 8; copyY++)
+                                                        {
+                                                            boardLevel2[copyX, copyY] = board.boardSquare[copyX, copyY];
+                                                        }
+                                                    }
+
+                                                    fromValue2 = boardLevel2[ scannerSourceX,  scannerSourceY];
+                                                     toValue2 = boardLevel2[ scannerDestX,  scannerDestY];
+
+                                                    if (toValue2 > 0)
+                                                    {
+                                                        toValue2 = 0;
+                                                    }
+
+                                                    boardLevel2[scannerDestX,  scannerDestY] = fromValue2;
+                                                    boardLevel2[ scannerSourceX,  scannerSourceY] = toValue2;
+
+
+                                                    for (int scannerSourceXb1 = 1; scannerSourceXb1 <= 8; scannerSourceXb1++)//------------------------------------for every white move
+                                                    {
+                                                        for (int scannerSourceYb1 = 1; scannerSourceYb1 <= 8; scannerSourceYb1++)
+                                                        {
+                                                            for (int scannerDestXb1 = 1; scannerDestXb1 <= 8; scannerDestXb1++)
+                                                            {
+                                                                for (int scannerDestYb1 = 1; scannerDestYb1 <= 8; scannerDestYb1++)
+                                                                {
+
+                                                                    if (rulebook.checkLegality(scannerSourceXw1, scannerSourceYw1, scannerDestXw1, scannerDestYw1, board.boardSquareReversed(boardLevel2)))
+                                                                    {
+                                                                        int[,] boardLevel3 = new int[9, 9]; //------------------------------------creating board 1
+                                                                        for (int copyX = 1; copyX <= 8; copyX++)
+                                                                        {
+                                                                            for (int copyY = 1; copyY <= 8; copyY++)
+                                                                            {
+                                                                                boardLevel3[copyX, copyY] = board.boardSquare[copyX, copyY];
+                                                                            }
+                                                                        }
+
+                                                                        fromValue2 = boardLevel3[9-scannerSourceX, 9-scannerSourceY];
+                                                                        toValue2 = boardLevel3[9-scannerDestX, 9-scannerDestY];
+
+                                                                        if (toValue2 > 0)
+                                                                        {
+                                                                            toValue2 = 0;
+                                                                        }
+
+                                                                        boardLevel3[9-scannerDestX,9- scannerDestY] = fromValue2;
+                                                                        boardLevel3[9-scannerSourceX, 9-scannerSourceY] = toValue2;
+
+                                                                        leafCount += 1;
+                                                                        leafTotal += engine.boardEvaluation(boardLevel3);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+
+                                //the end
+                                Debug.WriteLine("Leaf Avg:" + leafTotal / (leafCount + 1));
+                                if ( leafTotal / (leafCount + 1) <= lastLeafAverage)
+                                {
+                                    lastLeafAverage  = leafTotal / (leafCount + 1);
+                                    fromX = scannerSourceX;
+                                    fromY = scannerSourceY;
+                                    toX = scannerDestX;
+                                    toY = scannerDestY;
+                                }
+
 
                             }
 
@@ -266,7 +372,7 @@ namespace chess2
                     }
                     if (board[scannerSourceX, scannerSourceY] == 6)
                     {
-                        counted += 1000000;
+                        counted += 100;
                     }
                     //black
                     if (board[scannerSourceX, scannerSourceY] == 7)
@@ -291,7 +397,7 @@ namespace chess2
                     }
                     if (board[scannerSourceX, scannerSourceY] == 12)
                     {
-                        counted += 0 - 1000000;
+                        counted += 0 - 100;
                     }
 
                 }
