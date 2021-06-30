@@ -69,6 +69,7 @@ namespace chess2
             this.button4 = new System.Windows.Forms.Button();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.debugGroupBox = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gamePictureBox)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.onlineSettingsGroup.SuspendLayout();
@@ -543,6 +544,7 @@ namespace chess2
             // 
             // debugGroupBox
             // 
+            this.debugGroupBox.Controls.Add(this.checkBox1);
             this.debugGroupBox.Controls.Add(this.button3);
             this.debugGroupBox.Controls.Add(this.button4);
             this.debugGroupBox.Controls.Add(this.button1);
@@ -555,6 +557,17 @@ namespace chess2
             this.debugGroupBox.TabIndex = 7;
             this.debugGroupBox.TabStop = false;
             this.debugGroupBox.Text = "Debug Options";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(169, 22);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(112, 19);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Reverse, reverse!";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
@@ -636,6 +649,7 @@ namespace chess2
         private System.Windows.Forms.RadioButton lightThemeRadio;
         private System.Windows.Forms.RadioButton darkThemeRadio;
         private System.Windows.Forms.CheckBox showLegalMovesRadio;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

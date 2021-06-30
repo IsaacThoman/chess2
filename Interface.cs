@@ -20,6 +20,7 @@ namespace chess2
 
         public static bool newAnimation = false;
 
+        public static bool reverseForBlackPlayer = false;
 
         public static void setSelection(int x, int y) //kill this.
         {

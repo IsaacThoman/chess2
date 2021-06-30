@@ -98,7 +98,14 @@ namespace chess2
             {
                 for (int fillerY = 1; fillerY < 9; fillerY++)
                 {
+
                     int myPiece = board.boardSquare[fillerX, fillerY];
+                    if (Interface.reverseForBlackPlayer)
+                    {
+                        myPiece = board.boardSquareReversed(board.boardSquare)[fillerX, fillerY];
+                    }
+
+                    
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * 64) - 64, (fillerY * -64) + 512, 64, 64);
 
                     if ((fillerX + fillerY) % 2 == 1)
@@ -158,6 +165,11 @@ namespace chess2
                 for (int fillerY = 1; fillerY < 9; fillerY++)
                 {
                     int myPiece = board.boardSquare[fillerX, fillerY];
+                    if (Interface.reverseForBlackPlayer)
+                    {
+                        myPiece = board.boardSquare[9 - fillerX, 9 - fillerY];
+                    }
+
                     boardRect[fillerX, fillerY] = new Rectangle((fillerX * (resolution/8)) - (resolution/8), (fillerY * -(resolution/8)) + resolution, (resolution/8), (resolution/8));
 
                     if ((fillerX + fillerY) % 2 == 1)
@@ -169,34 +181,73 @@ namespace chess2
                     {
                         g.FillRectangle(DBrush, boardRect[fillerX, fillerY]);
                     }
-
-                    if (Interface.selX == fillerX && Interface.selY == fillerY)
+                    if (Interface.reverseForBlackPlayer)
                     {
+                        if (Interface.selX == 9-fillerX && Interface.selY == 9-fillerY)
+                        {
 
-                        g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
+                            g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
+                        }
                     }
+                    else
+                    {
+                        if (Interface.selX == fillerX && Interface.selY == fillerY)
+                        {
+
+                            g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
+                        }
+                    }
+
                     bool legalSquare = false;
-                    if (!Interface.firstSel)
+                    if (Interface.reverseForBlackPlayer)
                     {
-                        if (Interface.whitesMove)
+                        if (!Interface.firstSel)
                         {
-                            if (rulebook.checkLegality(Interface.selX, Interface.selY, fillerX, fillerY, board.boardSquare))
+                            if (Interface.whitesMove)
                             {
-                                legalSquare = true; 
+                                if (rulebook.checkLegality(Interface.selX, Interface.selY, 9-fillerX, 9-fillerY, board.boardSquare))
+                                {
+                                    legalSquare = true;
+                                }
+
+                            }
+                            else
+                            {
+                                if (rulebook.checkLegality( 9-Interface.selX, 9-Interface.selY,  fillerX,  fillerY, board.boardSquareReversed(board.boardSquare)))
+                                {
+                                    legalSquare = true;
+                                }
                             }
 
                         }
-                        else
-                        {
-                            if (rulebook.checkLegality(9-Interface.selX, 9-Interface.selY, 9-fillerX, 9-fillerY, board.boardSquareReversed(board.boardSquare)))
-                            {
-                                legalSquare = true;
-                            }
-                        }
-
-
-
                     }
+                    else
+                    {
+                        if (!Interface.firstSel)
+                        {
+                            if (Interface.whitesMove)
+                            {
+                                if (rulebook.checkLegality(Interface.selX, Interface.selY, fillerX, fillerY, board.boardSquare))
+                                {
+                                    legalSquare = true;
+                                }
+
+                            }
+                            else
+                            {
+                                if (rulebook.checkLegality(9 - Interface.selX, 9 - Interface.selY, 9 - fillerX, 9 - fillerY, board.boardSquareReversed(board.boardSquare)))
+                                {
+                                    legalSquare = true;
+                                }
+                            }
+
+
+
+                        }
+                    }
+
+
+                        
                     if (legalSquare && showLegalMoves && myPiece == 0)
                     {
                         g.DrawImage(piece[14], boardRect[fillerX, fillerY]);
@@ -350,6 +401,10 @@ namespace chess2
                 for (int fillerY = 1; fillerY < 9; fillerY++)
                 {
                     int myPiece = board.boardSquare[fillerX, fillerY];
+                    if (Interface.reverseForBlackPlayer)
+                    {
+                        myPiece = board.boardSquare[9 - fillerX, 9 - fillerY];
+                    }
 
                     if (destX == fillerX && destY == fillerY)
                     {
@@ -380,53 +435,13 @@ namespace chess2
                     }
 
                     bool legalSquare = false;
-                    if (!Interface.firstSel)
-                    {
-                        if (Interface.whitesMove)
-                        {
-                            if (rulebook.checkLegality(Interface.selX, Interface.selY, fillerX, fillerY, board.boardSquare))
-                            {
-                                legalSquare = true;
-                            }
 
-                        }
-                        else
-                        {
-                            if (rulebook.checkLegality(9 - Interface.selX, 9 - Interface.selY, 9 - fillerX, 9 - fillerY, board.boardSquareReversed(board.boardSquare)))
-                            {
-                                legalSquare = true;
-                            }
-                        }
-
-
-
-                    }
-                    if (legalSquare && showLegalMoves && myPiece == 0)
-                    {
-                        g.DrawImage(piece[14], boardRect[fillerX, fillerY]);
-                    }
 
                     if (myPiece > 0 && myPiece < 13)
                     {
 
-
-                        if (legalSquare && showLegalMoves)
-                        {
-                            g.DrawImage(piece[15], boardRect[fillerX, fillerY]); //draw dot behind piece
-                        }
                         g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);//draw piece
-                        if (legalSquare && showLegalMoves)
-                        {
-                            if (myPiece > 6)
-                            {
-                                g.DrawImage(piece[13], boardRect[fillerX, fillerY]);//draw sword
-                            }
-                            else
-                            {
-                                g.DrawImage(piece[16], boardRect[fillerX, fillerY]);//draw sword
-                            }
 
-                        }
                     }
 
                 }
@@ -436,6 +451,13 @@ namespace chess2
             int animStartY = (destY * -(resolution / 8)) + resolution;
             int animEndX = (sourceX * (resolution / 8)) - (resolution / 8);
             int animEndY = (sourceY * -(resolution / 8)) + resolution;
+            if (Interface.reverseForBlackPlayer)
+            {
+                 animStartX = ((9-destX) * (resolution / 8)) - (resolution / 8);
+                 animStartY = ((9-destY) * -(resolution / 8)) + resolution;
+                 animEndX = ((9-sourceX) * (resolution / 8)) - (resolution / 8);
+                 animEndY = ((9-sourceY) * -(resolution / 8)) + resolution;
+            }
 
           //  int animPieceX = (int)(animStartX + ((animEndX - animStartX) * 0.1 * frame));
           //  int animPieceY = (int)(animStartY + ((animEndY - animStartY) * 0.1 * frame));

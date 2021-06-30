@@ -298,6 +298,12 @@ namespace chess2
 
             int selX = (relativePoint.X - gamePictureBox.Location.X) / (gamePictureBox.Width / 8) + 1;
             int selY = 0 - (relativePoint.Y - gamePictureBox.Location.Y) / (gamePictureBox.Height / 8) + 8;
+            if (Interface.reverseForBlackPlayer)
+            {
+                selX = 9 - selX;
+                selY = 9 - selY;
+            }
+
             if (Interface.againstBot)
             {
                 Interface.setSelection(selX, selY);
@@ -536,6 +542,12 @@ namespace chess2
             renderer.showLegalMoves = showLegalMovesRadio.Checked;
             gamePictureBox.Image = renderer.renderBitmap();
             Properties.Settings.Default.Save();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Interface.reverseForBlackPlayer = checkBox1.Checked;
+            gamePictureBox.Image= renderer.renderBitmap();
         }
     }
 }
