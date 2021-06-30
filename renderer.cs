@@ -443,13 +443,21 @@ namespace chess2
                         g.FillRectangle(DBrush, boardRect[fillerX, fillerY]);
                     }
 
-                    if (Interface.selX == fillerX && Interface.selY == fillerY)
+                    if (Interface.reverseForBlackPlayer)
                     {
-                        if (!Interface.reverseForBlackPlayer)
+                        if (Interface.selX == 9 - fillerX && Interface.selY == 9 - fillerY)
                         {
-                            g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);//disabled because it was blinking and I'm lazy
+
+                            g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
                         }
-                        
+                    }
+                    else
+                    {
+                        if (Interface.selX == fillerX && Interface.selY == fillerY)
+                        {
+
+                            g.FillRectangle(YBrush, boardRect[fillerX, fillerY]);
+                        }
                     }
 
                     bool legalSquare = false;
@@ -507,6 +515,14 @@ namespace chess2
                         g.DrawImage(piece[14], boardRect[fillerX, fillerY]);
                     }
 
+
+                    if (myPiece > 0 && myPiece < 13)
+                    {
+
+                        g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);//draw piece
+
+                    }
+
                     if (myPiece > 0 && myPiece < 13)
                     {
 
@@ -531,12 +547,7 @@ namespace chess2
                     }
 
 
-                    if (myPiece > 0 && myPiece < 13)
-                    {
 
-                        g.DrawImage(piece[myPiece], boardRect[fillerX, fillerY]);//draw piece
-
-                    }
 
 
                 }
