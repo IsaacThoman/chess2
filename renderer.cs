@@ -403,16 +403,31 @@ namespace chess2
                     int myPiece = board.boardSquare[fillerX, fillerY];
                     if (Interface.reverseForBlackPlayer)
                     {
-                        myPiece = board.boardSquare[9 - fillerX, 9 - fillerY];
+                       myPiece = board.boardSquare[9 - fillerX, 9 - fillerY];
                     }
 
-                    if (destX == fillerX && destY == fillerY)
+
+
+                    if (Interface.reverseForBlackPlayer)
                     {
-                     //   myPiece = 0; //hide moved piece from bottom layer, it's not needed
-                        myPiece = oldBoard[destX,destY]; //render old piece underneath capturer instead
+                      //  myPiece = 0; //render old piece underneath capturer instead
+                        if (destX == 9-fillerX && destY == 9-fillerY)
+                        {
+                            myPiece = oldBoard[destX, destY]; //render old piece underneath capturer instead
+                        }
 
+                        }
+                    else
+                    {
+                        if (destX == fillerX && destY == fillerY)
+                        {
+                            //   myPiece = 0; //hide moved piece from bottom layer, it's not needed
 
+                            myPiece = oldBoard[destX, destY]; //render old piece underneath capturer instead
+                        }
+                        
                     }
+
 
 
 
