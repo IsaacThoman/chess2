@@ -31,6 +31,18 @@ namespace chess2
 
             decimal lastLeafAverage = 0;
 
+
+            int[] minValue = new int[6400];
+            int[] maxValue = new int[6400];
+            int branchCount = 0;
+
+            int[] moveArraySourceX = new int[6400];
+            int[] moveArraySourceY = new int[6400];
+
+            int[] moveArrayDestX = new int[6400];
+            int[] moveArrayDestY = new int[6400];
+
+
             for (int scannerSourceX = 1; scannerSourceX <= 8; scannerSourceX++)
             {
                 for (int scannerSourceY = 1; scannerSourceY <= 8; scannerSourceY++)
@@ -41,11 +53,13 @@ namespace chess2
                         {
                             int leafCount = 0;
                             int leafTotal = 0;
+
+                            
                             decimal leafAverage = 0;
 
                             if (rulebook.checkLegality(scannerSourceX, scannerSourceY, scannerDestX, scannerDestY, board.boardSquareReversed(board.boardSquare)))
                             {//testing code
-
+                                branchCount += 1;
                                 int[,] boardLevel1 = new int[9, 9]; //------------------------------------creating board 1
                                 for (int copyX = 1; copyX <= 8; copyX++)
                                 {
@@ -133,7 +147,22 @@ namespace chess2
                                                                         boardLevel3[9-scannerSourceX, 9-scannerSourceY] = toValue2;
 
                                                                         leafCount += 1;
-                                                                        leafTotal += engine.boardEvaluation(boardLevel3);
+                                                                        int thisBoardScore = engine.boardEvaluation(boardLevel3);
+                                                                        if (minValue[branchCount] > thisBoardScore)
+                                                                        {
+                                                                            minValue[branchCount] = thisBoardScore;
+                                                                        }
+                                                                        if (maxValue[branchCount] < thisBoardScore)
+                                                                        {
+                                                                            maxValue[branchCount] = thisBoardScore;
+                                                                        }
+                                                                        moveArraySourceX[branchCount] = scannerSourceX;
+                                                                        moveArraySourceY[branchCount] = scannerSourceY;
+                                                                        moveArrayDestX[branchCount] = scannerDestX;
+                                                                        moveArrayDestY[branchCount] = scannerDestY;
+
+
+                                                                        //leafTotal += engine.boardEvaluation(boardLevel3);
                                                                     }
                                                                 }
                                                             }
@@ -151,11 +180,11 @@ namespace chess2
                                 Debug.WriteLine("Leaf Avg:" + leafTotal / (leafCount + 1));
                                 if ( leafTotal / (leafCount + 1) <= lastLeafAverage)
                                 {
-                                    lastLeafAverage  = leafTotal / (leafCount + 1);
-                                    fromX = scannerSourceX;
-                                    fromY = scannerSourceY;
-                                    toX = scannerDestX;
-                                    toY = scannerDestY;
+                          //          lastLeafAverage  = leafTotal / (leafCount + 1);
+                          //          fromX = scannerSourceX;
+                          //          fromY = scannerSourceY;
+                           //         toX = scannerDestX;
+                          //          toY = scannerDestY;
                                 }
 
 
@@ -168,22 +197,51 @@ namespace chess2
                 }
             }
 
+            //code here
+            int bestDiff = 0;
+            for (int searcher = 1; searcher <= branchCount; searcher++)
+            {
+                int myDiff = maxValue[searcher] - minValue[searcher];
+                if (myDiff >= bestDiff)
+                {
+                    bestDiff = myDiff;
+                }
 
+            }
 
+                     fromX = moveArraySourceX[bestDiff];
+            fromY = moveArraySourceY[bestDiff];
+            toX = moveArrayDestX[bestDiff];
+            toY = moveArrayDestY[bestDiff];
 
-
-            
+            if (fromX == 0)
+            {
+                fromX = 1;
+            }
+            if (toX == 0)
+            {
+                toX = 1;
+            }
+            if (fromY == 0)
+            {
+                fromY = 1;
+            }
+            if (toY == 0)
+            {
+                toY = 1;
+            }
+            Debug.WriteLine("move " + (9 - fromX) + "," + (9 - fromY) + "to " + (9 - toX) + "," + (9 - toY));
             int fromValue = board.boardSquare[9-fromX, 9-fromY];
             int toValue = board.boardSquare[9-toX, 9-toY];
 
             if (toValue > 0)
             {
-                toValue = 0;
+               toValue = 0;
             }
 
             board.boardSquare[9-toX, 9-toY] = fromValue;
-            board.boardSquare[9-fromX, 9-fromY] = toValue;
-            Debug.WriteLine("move " + (9-fromX) + "," + (9-fromY)+"to " + (9-toX) + "," + (9-toY));
+           board.boardSquare[9-fromX, 9-fromY] = toValue;
+            
 
 
 
